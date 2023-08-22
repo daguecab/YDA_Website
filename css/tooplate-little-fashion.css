@@ -328,23 +328,42 @@ strong {
 /*---------------------------------------
   NAVIGATION               
 -----------------------------------------*/
-.navbar {
-  /* background: var(--white-color);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding: 25px 0;
-  z-index: 2;
-  will-change: transform;
-  transition: transform 300ms linear; */
-  position: absolute;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  padding: 40px 0;
-  z-index: 1001;
+@media (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    background: transparent;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 2;
+  }
+  .logo{
+    width: 70px;
+  }
+}
+@media (min-width: 769px) {
+  .navbar {
+    /* background: var(--white-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 25px 0;
+    z-index: 2;
+    will-change: transform;
+    transition: transform 300ms linear; */
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    padding: 40px 0;
+    z-index: 1001;
+  }
+  .logo{
+    width: 100px;
+  }
 }
 
 .navbar span, h2 span, h4 span {

@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Yogur Búlgaro",
+        "imageSrc": "images/products/Yogur Búlgaro.png",
+        "isNew": true,
+        "description": "Fermentos para hacer Yogur Búlgaro",
+        "price": "10€",
+        "category": "yogur"
+    },
+    {
+        "name": "Yogur Griego",
+        "imageSrc": "images/products/Yogur Griego.png",
+        "isNew": true,
+        "description": "Fermentos para hacer Yogur Griego",
+        "price": "10€",
+        "category": "yogur"
+    }, 
+    {
+        "name": "Skyr",
+        "imageSrc": "images/products/Skyr.png",
+        "isNew": true,
+        "description": "Fermentos para hacer Skyr",
+        "price": "10€",
+        "category": "yogur"
+    }, 
+    {
+        "name": "Termómetro",
+        "imageSrc": "images/products/Skyr.png",
+        "isNew": true,
+        "description": "Termómetro de cocina para calentar la leche.",
+        "price": "5€",
+        "category": "accesorios"
+    }
+]

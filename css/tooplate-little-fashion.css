@@ -19,7 +19,7 @@ https://www.tooplate.com/view/2127-little-fashion
   --grey-color:                 #d0d1d1;
   --p-color:                    #717275;
 
-  --body-font-family:           'Raleway Flex,Raleway-Fallback,sans-serif';
+  --body-font-family:           'Life Savers,Life-Savers-Fallback,sans-serif';
 
   --h5-font-size:               24px;
   --p-font-size:                20px;
@@ -218,6 +218,15 @@ strong {
 /*---------------------------------------
   CUSTOM BUTTON & ICON              
 -----------------------------------------*/
+
+input {
+  width: 25px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .custom-btn {
   background: var(--primary-color);
   border-radius: 50px;
@@ -674,6 +683,40 @@ strong {
   CUSTOM CIRCLE IMAGES               
 -----------------------------------------*/
 
+.animatedColor {
+  color: white;
+}
+.flecha {
+  animation: arrow 1s ease-in-out infinite;
+  font-size:20px;
+}
+
+.flecha:hover{
+  animation:arrow 1s ease-out infinite !important;
+  color:#C39b7C;
+}
+
+.elemento{
+  width: 100px;
+  height: 50px;
+  margin:0 auto;
+  padding-top: 5%;
+  position: relative;
+}
+
+@keyframes arrow {
+  0% {
+  transform: translate(0px, 50px);
+  }
+  50% {
+  transform: translate(0px, 60px);
+  }
+  100% {
+  transform: translate(0px, 50px);
+  }
+  }
+  
+
 .custom-circle-image {
   border-radius: 100px;
   width: 55px;
@@ -754,6 +797,11 @@ section {
 .section-padding {
   padding-top: 7rem;
   padding-bottom: 7rem;
+}
+
+.section-padding-little {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .featured {
@@ -922,6 +970,14 @@ button:focus:not(:focus-visible) {
 -----------------------------------------*/
 .front-product {
   background: var(--section-bg-color);
+}
+
+.step-icon{
+  float:left;
+}
+
+.step-info{
+  padding: 0px 20px;
 }
 
 @media screen and (max-width: 768px) {

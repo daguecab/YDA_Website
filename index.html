@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Yogures de Antaño - Saborea el auténtico Yogur con nuestros fermentos tradicionales.">
+        <meta name="keywords" content="yogures, tradicion, tradicionales, yogur, fermentos">
+        <meta name="author" content="David Guerrero Cabrerizo">
 
-        <title>Yogures de Antaño - Saborea el auténtico Yogur con nuestros fermentos tradicionales</title>
+        <title>Yogures de Antaño</title>
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,13 +23,8 @@
         <link rel="stylesheet" href="css/slick.css"/>
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
-<!--
 
-Tooplate 2127 Little Fashion
-
-https://www.tooplate.com/view/2127-little-fashion
-
--->
+        <script src="js/cart.js"></script>
     </head>
     
     <body>
@@ -37,42 +33,14 @@ https://www.tooplate.com/view/2127-little-fashion
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <!-- De momento quitamos el botón, ya que no hay ninguna opción -->
-                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
-
                     <a class="navbar-brand" href="index.html">
                         <img class="logo" src="images/Logo.png">
                     </a>
-
                     <div class="d-lg-none">
-                        <!-- <a href="sign-in.html" class="bi-person custom-icon me-3"></a> -->
-
                         <a href="product-detail.html" class="bi-bag custom-icon"></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
-                        <!-- <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="index.html">Inicio</a>
-                            </li> -->
-
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="about.html">Story</a>
-                            </li> -->
-
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="productos.html">Productos</a>
-                            </li> -->
-
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="faq.html">FAQs</a>
-                            </li> -->
-
-                        <!-- </ul> -->
-
                         <div class="d-none d-lg-block" style="text-align: right;">
-                            <!-- <a href="sign-in.html" class="bi-person custom-icon me-3"></a> -->
 
                             <a href="product-detail.html" class="bi-bag custom-icon"></a>
                         </div>
@@ -81,7 +49,7 @@ https://www.tooplate.com/view/2127-little-fashion
             </nav>
             <section class="slick-slideshow" style="overflow: hidden;">
                 <div class="slick-custom">
-                    <img src="images/slideshow/medium-shot-business-women-high-five.jpeg" class="img-fluid" alt="">
+                    <img src="images/Yogures de antaño - Background Photo.jpg" class="img-fluid" alt="">
 
                     <div class="slick-bottom">
                         <div class="container">
@@ -90,7 +58,13 @@ https://www.tooplate.com/view/2127-little-fashion
                                     <h2 class="lead text-primary mt-lg-3 mb-lg-5" style="margin-bottom: 0;">Yogures de Antaño</p>
                                     <h1 class="slick-title">Bienvendo a la tradicion.</h1>
 
-                                    <!-- <a href="about.html" class="btn custom-btn">Learn more about us</a>  -->
+                                    <!-- <h1 class="slick-title text-primary">Bienvendo a la tradicion.</h1>
+                                    <h4 style="font-weight:100;margin-bottom:20px; color:white !important">Descubre la autenticidad de nuestros fermentos tradicionales para yogur. Experimenta el sabor único y los beneficios saludables en cada cucharada. </h4> -->
+
+
+                                    <div class="elemento flecha animatedColor"> 
+                                        <a title="Saber más!" href="#mejores-fermentos"><i class="bi-arrow-down infinite flecha animatedColor" aria-hidden="true"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -101,167 +75,38 @@ https://www.tooplate.com/view/2127-little-fashion
 
              </section>
 
-            <section class="about section-padding">
+            <section class="about section-padding" id="mejores-fermentos">
                 <div class="container">
                     <div class="row" >
 
                         <div class="col-10 text-center" style="margin: auto;">
                             <h2 class="mb-5">Los Mejores Fermentos</h2>
                             <h4 style="font-weight:100;margin-bottom:20px;">Descubre la autenticidad de nuestros fermentos tradicionales para yogur. Experimenta el sabor único y los beneficios saludables en cada cucharada. </p>
-                            <a href="products.html" class="custom-btn">¡HAZ TU PROPIO YOGUR CASERO HOY!</a>
+                            <a href="productos-de-antaño.html" class="custom-btn">¡HAZ TU PROPIO YOGUR CASERO HOY!</a>
                         </div>
+                    </div>
+                </div>
+            </section>
 
-                        <!-- <div class="col-lg-2 col-12 mt-auto mb-auto">
-                            <ul class="nav nav-pills mb-5 mx-auto justify-content-center align-items-center" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Introduction</button>
-                                </li>
-
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-youtube-tab" data-bs-toggle="pill" data-bs-target="#pills-youtube" type="button" role="tab" aria-controls="pills-youtube" aria-selected="true">How we work?</button>
-                                </li>
-
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-skill-tab" data-bs-toggle="pill" data-bs-target="#pills-skill" type="button" role="tab" aria-controls="pills-skill" aria-selected="false">Capabilites</button>
-                                </li>
-                            </ul>
+            <section class="featured-product section-padding"> 
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-12 text-center" id="product-container">
+                            <h2 class="mb-5">Nuestros Yogures</h2>
                         </div>
-
-                        <div class="col-lg-10 col-12">
-                            <div class="tab-content mt-2" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
-                                    <div class="row">
-                                        <div class="col-lg-7 col-12">
-                                            <img src="images/pim-chu-z6NZ76_UTDI-unsplash.jpeg" class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-5 col-12">
-                                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                                <h4 class="mb-3">Good <span>Design</span> <br>Ideas for <span>your</span> fashion</h4>
-
-                                                <p>Little Fashion templates comes with <a href="sign-in.html">sign in</a> / <a href="sign-up.html">sign up</a> pages, product listing / product detail, about, FAQs, and contact page.</p>
-
-                                                <p>Since this HTML template is based on Boostrap 5 CSS library, you can feel free to add more components as you need.</p>
-
-                                                <div class="mt-2 mt-lg-auto">
-                                                    <a href="about.html" class="custom-link mb-2">
-                                                        Learn more about us
-                                                        <i class="bi-arrow-right ms-2"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="pills-youtube" role="tabpanel" aria-labelledby="pills-youtube-tab">
-
-                                    <div class="row">
-                                        <div class="col-lg-7 col-12">
-                                            <div class="ratio ratio-16x9">
-                                                <iframe src="https://www.youtube-nocookie.com/embed/f_7JqPDWhfw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-5 col-12">
-                                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                                <h4 class="mb-3">Life at Studio</h4>
-
-                                                <p>Over three years in business, We’ve had the chance to work on a variety of projects, with companies</p>
-
-                                                <p>Custom work is branding, web design, UI/UX design</p>
-
-                                                <div class="mt-2 mt-lg-auto">
-                                                    <a href="contact.html" class="custom-link mb-2">
-                                                        Work with us
-                                                        <i class="bi-arrow-right ms-2"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="pills-skill" role="tabpanel" aria-labelledby="pills-skill-tab">
-                                    <div class="row">
-                                        <div class="col-lg-7 col-12">
-                                            <img src="images/cody-lannom-G95AReIh_Ko-unsplash.jpeg" class="img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-5 col-12">
-                                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                                <h4 class="mb-3">What can help you?</h4>
-
-                                                <p>Over three years in business, We’ve had the chance on projects</p>
-
-                                                <div class="skill-thumb mt-3">
-
-                                                    <strong>Branding</strong>
-                                                        <span class="float-end">90%</span>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
-                                                            </div>
-
-                                                    <strong>Design & Stragety</strong>
-                                                        <span class="float-end">70%</span>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                                                            </div>
-
-                                                    <strong>Online Platform</strong>
-                                                        <span class="float-end">80%</span>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                                                            </div>
-
-                                                </div>
-                                                
-                                                <div class="mt-2 mt-lg-auto">
-                                                    <a href="products.html" class="custom-link mb-2">
-                                                        Explore products
-                                                        <i class="bi-arrow-right ms-2"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div> -->
+                        <!-- Añadimos todos los productos -->
+                        <script> loadProducts("yogur"); </script>
+                        <div class="col-12 text-center" style="margin-top:20px;">
+                            <a href="productos-de-antaño.html" class="custom-btn " >Ver todos los productos</a>
+                        </div>
 
                     </div>
                 </div>
             </section>
 
-            <!-- <section class="front-product">
-                <div class="container-fluid p-0">
-                    <div class="row align-items-center">
-
-                        <div class="col-lg-6 col-12">
-                            <img src="images/retail-shop-owner-mask-social-distancing-shopping.jpg" class="img-fluid" alt="">
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="px-5 py-5 py-lg-0">
-                                
-                                <h2 class="mb-4"><span>Retail</span> shop owners</h2>
-
-                                <p class="lead mb-4">Credits go to Unsplash and FreePik websites for images used in this Little Fashion by Tooplate.</p>
-
-                                <a href="products.html" class="custom-link">
-                                    Explore Products
-                                    <i class="bi-arrow-right ms-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section> -->
-
-            <section class="featured-product section-padding"> 
+            
+            <section class="about section-padding"> 
                 <div class="container">
                     <div class="row">
                         
@@ -270,87 +115,136 @@ https://www.tooplate.com/view/2127-little-fashion
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3">
-                            <div class="product-thumb">
-                                <a href="product-detail.html">
-                                    <img src="images/products/Yogur Búlgaro.png" class="img-fluid product-image" alt="">
-                                </a>
-
-                                <div class="product-top d-flex">
-                                    <span class="product-alert me-auto">Nuevo</span>
-
-                                    <a href="#" class="bi-heart-fill product-icon"></a>
+                            <div class="step-icon">
+                                <img src="images/desc-icons/olla-2.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">Calentar la leche</h5>
+                                    <h6 style="font-weight:var(--font-weight-normal);"">Tenemos que calentar la leche en una olla. Con esto haremos que la magia comience.</h5>
                                 </div>
-
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <h5 class="product-title mb-0">
-                                            <a href="product-detail.html" class="product-title-link">Yogur Búlgaro</a>
-                                        </h5>
-
-                                        <p class="product-p">Fermentos para hacer Yogur Búlgaro</p>
-                                    </div> 
-                                
-                                    <small class="product-price text-muted ms-auto mt-auto mb-5">10€</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="step-icon">
+                                <img src="images/desc-icons/lactobacillus.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">Usar los fermentos</h5>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Echamos los fermentos, y mezclaremos suavemente. Así empezaremos a hacer nuestros yogur.</h5>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3">
-                            <div class="product-thumb">
-                                <a href="product-detail.html"> 
-                                    <img src="images/products/Yogur Griego.png" class="img-fluid product-image" alt="">
-                                </a>
-
-                                <div class="product-top d-flex">
-                                    <span class="product-alert me-auto">Nuevo</span>
-
-                                    <a href="#" class="bi-heart-fill product-icon"></a>
-                                </div>
-
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <h5 class="product-title mb-0">
-                                            <a href="product-detail.html" class="product-title-link">Yogur Griego</a>
-                                        </h5>
-
-                                        <p class="product-p">Fermentos para hacer Yogur Griego</p>
-                                    </div>
-
-                                    <small class="product-price text-muted ms-auto mt-auto mb-5">10€</small>
+                            <div class="step-icon">
+                                <img src="images/desc-icons/yogur-3.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">Llenar los recipientes</h5>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Dividir la mezcla en tarritos, o echarla toda en un recipiente grande. Tendremos que decidir cuanto nos durará nuestro postre.</h5>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3">
-                            <div class="product-thumb">
-                                <a href="product-detail.html">
-                                    <img src="images/products/Skyr.png" class="img-fluid product-image" alt="">
-                                </a>
-
-                                <div class="product-top d-flex">
-                                    <span class="product-alert me-auto">Nuevo</span>
-
-                                    <a href="#" class="bi-heart-fill product-icon"></a>
+                            <div class="step-icon">
+                                <img src="images/desc-icons/reloj-de-pared.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">Dejar fermentar</h5>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Con el horno apagado y precalentado a 50ºC, dejamos los recipientes tapados con paños limpios. Esperaremos 6-8h, falta poco.</h5>
                                 </div>
-
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <h5 class="product-title mb-0">
-                                            <a href="product-detail.html" class="product-title-link">Skyr</a>
-                                        </h5>
-
-                                        <p class="product-p">Fermentos para hacer Skyr</p>
-                                    </div>
-
-                                    <small class="product-price text-muted ms-auto mt-auto mb-5">10€</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="step-icon">
+                                <img src="images/desc-icons/termometro.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">Enfriar en la nevera</h5>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Llega el peor paso, no comerse el yogur y dejarlo enfriar al menos 2 horas. De esta manera ganará textura y sabor.</h5>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-12 text-center" style="margin-top:20px;">
-                            <a href="products.html" class="custom-btn " >Ver todos los productos</a>
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="step-icon">
+                                <img src="images/desc-icons/disfrutando.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">¿Sexto paso? Disfrutar</h5>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Último y mejor paso, comérnoslo y disfrutar de sus beneficios. No olvidemos guardar un poco para repetir el proceso.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-product section-padding-little">
+                <div class="container">
+                    <div class="row" >
+
+                        <div class="col-10 text-center" style="margin: auto;">
+                            <h2 class="mb-5">Mi misión</h2>
+                            <h5 style="font-weight:50;margin-bottom:20px;">Llevo tomando yogur desde que tengo memoria, de pequeño por su sabor, y ahora también por sus enormes beneficios. Mi objetivo es que podáis hacer los yogures más deliciosos, a un precio muy asequible y solo con dos ingredientes: leche y nuestros fermentos</p>
+                            <!-- <a href="productos-de-antaño.html" class="custom-btn">¡HAZ TU PROPIO YOGUR CASERO HOY!</a> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about section-padding"> 
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-12 text-center">
+                            <h2 class="mb-5">Nuestros Yogures</h2>
                         </div>
 
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="step-icon">
+                                <img src="images/desc-icons/olla-2.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h6 class="product-title mb-0">Un sabor tradicional y auténtico</h6>
+                                    <h6 style="font-weight:var(--font-weight-normal);"">Sabemos que el mejor sabor no existe, pero con Yogures de Antaño podrás hacer unos yogures con el sabor y propiedades tradicionales.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="step-icon">
+                                <img src="images/desc-icons/olla-2.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h6 class="product-title mb-0">Calidad con precios de antaño</h6>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Con nuestros fermentos podrás hacer yogur de manera ilimitada, para que puedas disfrutar de su sabor sin pagar de más por ello.</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="step-icon">
+                                <img src="images/desc-icons/olla-2.png" alt="" width="64" height="64" loading="lazy" style=""/>
+                            </div>
+                            <div class="step-info d-flex">
+                                <div>
+                                    <h6 class="product-title mb-0">Un toque ecológico</h6>
+                                    <h6 style="font-weight:var(--font-weight-normal);">Traemos los mejores ingredientes de las montañas y prados de Bulgaria, famosa por su delicioso yogur, y promovemos prácticas sostenibles para su cuidado.</h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -365,7 +259,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <h4 class="text-white mb-3"><a href="index.html">Little</a> Fashion</h4>
                         <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
                         <br>
-                        <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
+                        <p class="copyright-text">Designed by <a href="https://www.letpro.es/" target="_blank">LetPro</a></p>
                     </div>
 
                     <div class="col-lg-5 col-8">

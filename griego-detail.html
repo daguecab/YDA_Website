@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Tooplate's Little Fashion - Product Detail</title>
+        <title>Yogur Griego</title>
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@
 
                         <div class="col-lg-6 col-12">
                             <div class="product-thumb">
-                                <img src="images/products/Yogur Griego.png" class="img-fluid product-image" alt="">
+                                <img src="images/products/Yogur Griego.png" class="img-fluid product-image" alt="Fermentos para Yogur Griego">
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@
                                     <h2 class="product-title mb-0">Yogur Griego</h2>
 
                                     <p class="product-p">Auténticos fermentos tradicionales para hacer kiselo mlyako</p>
-                                    <h5 style="margin-bottom: 20px;">10€<span style="text-decoration: line-through;color: grey">     15€</span></h5>
+                                    <h5 style="margin-bottom: 20px;" id="precioProducto">9.95<span style="text-decoration: line-through;color: grey">     14.95€</span></h5>
 
                                 </div>
 
@@ -274,24 +274,27 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                                <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                <img src="images/products/Yogur Griego.png" class="img-fluid product-image" alt="Fermentos para Yogur Griego">
                             </div>
 
                             <div class="col-lg-6 col-12 mt-3 mt-lg-0">
-                                <h3 class="modal-title" id="exampleModalLabel">Tree pot</h3>
-
-                                <p class="product-price text-muted mt-3">$25</p>
-
-                                <p class="product-p">Quatity: <span class="ms-1">4</span></p>
-
-                                <p class="product-p">Colour: <span class="ms-1">Black</span></p>
-
-                                <p class="product-p pb-3">Size: <span class="ms-1">S/S</span></p>
-
-                                <div class="border-top mt-4 pt-3">
-                                    <p class="product-p"><strong>Total: <span class="ms-1">$100</span></strong></p>
-                                </div>
-
+                                <h3 class="modal-title" id="NombreProducto">Yogur Griego</h3>
+                                <script>
+                                    console.log(localStorage.getItem('productoReciente'));
+                                    var nombreProductoElement = document.getElementById("NombreProducto");
+                                    var cantidadSeleccionada = document.getElementById('quantity').value;
+                                    var precioUnitario = 9.95; 
+                                    var total = cantidadSeleccionada * precioUnitario; 
+                                    var htmlCantidadTotal = `
+                                        <p class="product-price text-muted mt-3">${precioUnitario}</p>
+                                        <p class="product-p" id="cantidad-modal"><span class="ms-1">Cantidad: <span id="cantidad-seleccionada">${cantidadSeleccionada}</span></span></p>
+                                        <div class="border-top mt-4 pt-3">
+                                            <p class="product-p" id="total"><span class="ms-1">Total: <span id="total-amount">${total}</span></span></p>
+                                        </div>
+                                    `;
+                                        // Insertar el HTML generado después del elemento <h3>
+                                        nombreProductoElement.insertAdjacentHTML('afterend', htmlCantidadTotal);
+                                </script>   
                             </div>
                         </div>
                     </div>

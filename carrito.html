@@ -134,6 +134,29 @@
                     </div>
                 </div>
             </section>
+            <script>
+                // Obtener los elementos de los botones y el campo de entrada
+                const decreaseButton = document.getElementById('decrease');
+                const increaseButton = document.querySelectorAll('#increase');
+                const numberField = document.querySelectorAll('#cantidadCarrito');
+
+                console.log(decreaseButton);
+        
+                // Agregar eventos de clic a los botones de incremento y decremento
+                for (let i = 0; i < decreaseButton.length; i++) {
+                    decreaseButton[i].addEventListener('click', function () {
+                        let currentValue = parseInt(numberField[i].value, 10);
+                        if (currentValue > 1) {
+                            numberField[i].value = currentValue - 1;
+                        }
+                    });
+        
+                    increaseButton[i].addEventListener('click', function () {
+                        let currentValue = parseInt(numberField[i].value, 10);
+                        numberField[i].value = currentValue + 1;
+                    });
+                }
+            </script>
 
         </main>
 

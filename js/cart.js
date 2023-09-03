@@ -1,3 +1,5 @@
+var subtotal = 0;
+
 // Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
 var addToCartButtons = document.querySelectorAll('.cart-btn');
 addToCartButtons.forEach(button => {
@@ -9,7 +11,9 @@ addToCartButtons.forEach(button => {
             alert('Selecciona una cantidad válida para agregar al carrito.');
         } else {
             agregarAlCarrito(producto, parseInt(selectedOption));
-            $('#cart-modal').modal('show');
+            alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
+            //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
+            //$('#cart-modal').modal('show');
         }
     });
 });
@@ -44,7 +48,6 @@ function mostrarCarrito() {
         .then(response => response.json())
         .then(products => {
             //Variable para hacer la suma
-            var subtotal = 0;
             // Genera el HTML para mostrar los productos en el carrito
             const carritoHTML = `
                 <div class="carrito">
@@ -69,13 +72,18 @@ function mostrarCarrito() {
                                         <td class="product-details">
                                             <img width=128px src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb">
                                         <div style="margin-left:5%">
-                                            <p>${item.producto}</p>
-                                            <p>${product.price}</p>
+                                            <p class="carrito-nombre-producto">${item.producto}</p>
+                                            <p class="carrito-precio-unitario">${product.price}</p>
                                         </div>
                                         <td class="carrito-cantidad">
-                                            ${item.cantidad}
+                                            
+                                        <div class="number-field">
+                                            <button id="decrease">-</button>
+                                            <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
+                                            <button id="increase">+</button>
+                                        </div>
                                         </td>
-                                        <td class="carrito-precio-total">
+                                        <td class="carrito-producto-total">
                                             ${totalProducto.toLocaleString('es-ES', { minimumFractionDigits: 2 })}
                                         </td>
                                     </tr>
@@ -84,22 +92,75 @@ function mostrarCarrito() {
                         </tbody>
                     </table>
                     <div class="subtotal">
-                        <p><b>Subtotal:</b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+                        <p id="subtotalField"><b>Subtotal:</b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
                         <p><b>¡Envío Gratis! </b></p>
                     </div>
-                    <p class="total"><b>Total:<b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+                    <p class="total" id="totalField"><b>Total:<b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
                     
                     <button class="btn-comprar">Comprar</button>
                 </div>
             `;
-
             // Inserta el contenido del carrito después del div con la clase "carritoCompra"
             const carritoCompraDiv = document.querySelector(".carritoCompra");
             carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
+            addCampoCantidadFunc();
         })
         .catch(error => {
             console.error("Error al cargar productos:", error);
         });
+}
+
+function addCampoCantidadFunc() {
+    const decreaseButtons = document.querySelectorAll('#decrease');
+    const increaseButtons = document.querySelectorAll('#increase');
+    const numberFields = document.querySelectorAll('#cantidadCarrito');
+
+    // Agregar eventos de clic a los botones de incremento y decremento
+    for (let i = 0; i < decreaseButtons.length; i++) {
+        const producto = document.querySelectorAll('.carrito-nombre-producto')[i];
+        decreaseButtons[i].addEventListener('click', function () {
+            let currentValue = parseInt(numberFields[i].value, 10);
+            if (currentValue > 1) {
+                numberFields[i].value = currentValue - 1;
+                recalculateTotalProduct(i,numberFields, -1);
+                recalculateTotals();
+                updateLocalStorage(i, numberFields[i].value);
+            }
+        });
+
+        increaseButtons[i].addEventListener('click', function () {
+            let currentValue = parseInt(numberFields[i].value, 10);
+            numberFields[i].value = currentValue + 1;
+            recalculateTotalProduct(i,numberFields,1);
+            recalculateTotals();
+            updateLocalStorage(i, numberFields[i].value);
+        });
+    }
+}
+// Función para recalcular los totales
+function recalculateTotals() {
+    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+  
+    // Actualizar los elementos en el HTML
+    document.querySelector('#subtotalField').innerText = 'Subtotal: ' + subtotal.toFixed(2) + '€';
+    document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
+}
+
+
+function recalculateTotalProduct(index,numberFields,multiploSubtotal) {
+    const precioUnitario = parseFloat(document.querySelectorAll('.carrito-precio-unitario')[index].innerText.replace('$', '').trim());
+    const totalFields = document.querySelectorAll('.carrito-producto-total');
+    const cantidad = parseInt(numberFields[index].value, 10);
+    const total = precioUnitario * cantidad;
+    totalFields[index].innerText = total.toFixed(2);
+    subtotal = subtotal + (precioUnitario * multiploSubtotal);
+}
+
+function updateLocalStorage(index, newCantidad) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito[index].cantidad = newCantidad;
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function generateProductHTML(product) {

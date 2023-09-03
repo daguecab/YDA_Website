@@ -14,7 +14,7 @@ https://www.tooplate.com/view/2127-little-fashion
   --white-color:                #FFFFFF;
   --primary-color:              #C39b7C;
   --primary-color2:             #c48b5f;
-  --section-bg-color:           #f0f8ff;
+  --section-bg-color:           #c39b7c40;
   --dark-color:                 #000000;
   --grey-color:                 #d0d1d1;
   --p-color:                    #717275;
@@ -219,6 +219,45 @@ strong {
   CUSTOM BUTTON & ICON              
 -----------------------------------------*/
 
+.feature-left .icon {
+  float: left;
+  margin-right: 5%;
+  width: 54px;
+  height: 54px;
+  background: #fff;
+  display: table;
+  text-align: center;
+  -webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+@media screen and (max-width: 768px) {
+  .feature-left .icon {
+    margin-right: 5%;
+  }
+}
+.feature-left .icon i {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 30px;
+  color: black;
+}
+
+.feature-left .feature-copy {
+  float: left;
+  width: 80%;
+}
+@media screen and (max-width: 768px) {
+  .feature-left .feature-copy {
+    width: 70%;
+    float: left;
+  }
+}
+
 input {
   width: 25px;
   font-size: 16px;
@@ -337,6 +376,11 @@ input {
 /*---------------------------------------
   NAVIGATION               
 -----------------------------------------*/
+
+.pageProducto.navbar {
+  position: relative;
+  padding: 20px;
+}
 @media (max-width: 768px) {
   .navbar {
     position: absolute;
@@ -523,7 +567,6 @@ input {
   background-color: var(--section-bg-color);
   position: relative;
   overflow: hidden;
-  margin-top: 86px;
 }
 
 .site-header.section-padding {
@@ -1005,6 +1048,7 @@ button:focus:not(:focus-visible) {
 .product-image {
   transition: all 0.5s ease-out;
   border-radius: 15px;
+  max-width: 80%!important;
 }
 
 .product-thumb:hover .product-image {

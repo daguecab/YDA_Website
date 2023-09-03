@@ -22,86 +22,45 @@
         <link rel="stylesheet" href="css/slick.css"/>
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
-<!--
 
-Tooplate 2127 Little Fashion
-
-https://www.tooplate.com/view/2127-little-fashion
-
--->
+        <script src="js/cart.js"></script>
+        
     </head>
     
     <body>
-
-        <section class="preloader">
-            <div class="spinner">
-                <span class="sk-inner-circle"></span>
-            </div>
-        </section>
     
         <main>
 
-            <nav class="navbar navbar-expand-lg">
+            <nav class=" pageProducto navbar navbar-expand-lg">
                 <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
                     <a class="navbar-brand" href="index.html">
-                        <strong><span>Little</span> Fashion</strong>
+                        <img class="logo" src="images/Logo.png">
                     </a>
-
                     <div class="d-lg-none">
-                        <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                        <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                        <a href="carrito.html" class="bi-bag custom-icon"></a>
                     </div>
-
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">Story</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="productos-de-antaño.html">Products</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="faq.html">FAQs</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-none d-lg-block">
-                            <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                            <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                    <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
+                        <div class="d-none d-lg-block" style="text-align: right;">
+                            <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </nav>
 
-            <header class="site-header section-padding d-flex justify-content-center align-items-center">
+            <header style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-10 col-12">
+                        <div class="col-12">
                             <h1>
-                                <span class="d-block text-primary">We provide you</span>
-                                <span class="d-block text-dark">Fashionable Stuffs</span>
+                                <span class="d-block">Yogures</span>
                             </h1>
                         </div>
                     </div>
                 </div>
             </header>
+
+            <!-- <script>generateProductDetailHTML("Yogur Griego")</script> -->
 
             <section class="product-detail section-padding">
                 <div class="container">
@@ -109,44 +68,51 @@ https://www.tooplate.com/view/2127-little-fashion
 
                         <div class="col-lg-6 col-12">
                             <div class="product-thumb">
-                                <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                <img src="images/products/Yogur Griego.png" class="img-fluid product-image" alt="">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-12">
                             <div class="product-info d-flex">
                                 <div>
-                                    <h2 class="product-title mb-0">Tree pot</h2>
+                                    <h2 class="product-title mb-0">Yogur Griego</h2>
 
-                                    <p class="product-p">Original package design from house</p>
+                                    <p class="product-p">Auténticos fermentos tradicionales para hacer kiselo mlyako</p>
+                                    <h5 style="margin-bottom: 20px;">10€<span style="text-decoration: line-through;color: grey">     15€</span></h5>
+
                                 </div>
 
-                                <small class="product-price text-muted ms-auto mt-auto mb-5">$25</small>
                             </div>
 
                             <div class="product-description">
 
-                                <strong class="d-block mt-4 mb-2">Description</strong>
+                                <p class="lead mb-5">Nuestro Yogur Griego es cremoso y espeso, con un sabor impecable y el equilibrio perfecto entre suavidad y acidez. Es único, diferente a cualquier otro yogur que hayas probado.</p>
 
-                                <p class="lead mb-5">Over three years in business, We’ve had the chance to work on a variety of projects, with companies</p>
                             </div>
 
                             <div class="product-cart-thumb row">
                                 <div class="col-lg-6 col-12">
                                     
-                                    <select class="form-select cart-form-select" id="inputGroupSelect01">
-                                        <option selected>Quantity</option>
+                                    <select class="form-select cart-form-select" id="quantity">
+                                        <option value="Cantidad" disabled selected>Cantidad</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
+                                    <script>
+                                        const dropdown = document.getElementById('quantity');
+                                        dropdown.addEventListener('change', function() {
+                                          this.style.color = this.value === 'Cantidad' ? 'gray' : 'black';
+                                        });
+                                    </script>
                                 </div>
-
                                 <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                                    <button type="submit" class="btn custom-btn cart-btn" data-bs-toggle="modal" data-bs-target="#cart-modal">Add to Cart</button>
+                                    <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-producto="Yogur Griego" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                                 </div>
+                                <script src="js/cart.js"></script>
+
 
                                 <p>
                                     <a href="#" class="product-additional-link">Details</a>

@@ -1,12 +1,8 @@
 // Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
 var addToCartButtons = document.querySelectorAll('.cart-btn');
-console.log(addToCartButtons.length);
 addToCartButtons.forEach(button => {
-    console.log("Entro ");
     button.addEventListener('click', function() {
-        console.log("concha");
         var producto = button.dataset.producto;
-        console.log(button.parentNode.parentNode.nodeName);
         var selectedOption = button.parentNode.parentNode.querySelector('#quantity').value;
 
         if (selectedOption === 'Cantidad') {
@@ -32,8 +28,117 @@ function agregarAlCarrito(producto, cantidad) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// Función para cargar los productos desde el archivo JSON
+// Función para cargar y mostrar el contenido del carrito desde localStorage
+function mostrarCarrito() {
+    // Obtén los productos del carrito desde el localStorage
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Verifica si el carrito está vacío
+    if (carrito.length === 0) {
+        console.log("El carrito está vacío.");
+        return;
+    }
+
+    // Carga los productos de manera asíncrona desde products.json utilizando fetch
+    fetch("productos.json")
+        .then(response => response.json())
+        .then(products => {
+            //Variable para hacer la suma
+            var subtotal = 0;
+            // Genera el HTML para mostrar los productos en el carrito
+            const carritoHTML = `
+                <div class="carrito">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${carrito.map(item => {
+                                // Busca el producto correspondiente en products.json por el nombre
+                                const product = products.find(p => p.name === item.producto);
+                                // Elimina el símbolo € y convierte el precio por unidad a número
+                                const precioUnidad = parseFloat(product.price.replace('€', '').trim());
+                                const totalProducto = product.price * item.cantidad;
+                                subtotal += totalProducto;
+                                return `
+                                    <tr>
+                                        <td class="product-details">
+                                            <img width=128px src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb">
+                                        <div style="margin-left:5%">
+                                            <p>${item.producto}</p>
+                                            <p>${product.price}</p>
+                                        </div>
+                                        <td class="carrito-cantidad">
+                                            ${item.cantidad}
+                                        </td>
+                                        <td class="carrito-precio-total">
+                                            ${totalProducto.toLocaleString('es-ES', { minimumFractionDigits: 2 })}
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                    <div class="subtotal">
+                        <p><b>Subtotal:</b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+                        <p><b>¡Envío Gratis! </b></p>
+                    </div>
+                    <p class="total"><b>Total:<b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+                    
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+            `;
+
+            // Inserta el contenido del carrito después del div con la clase "carritoCompra"
+            const carritoCompraDiv = document.querySelector(".carritoCompra");
+            carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
+        })
+        .catch(error => {
+            console.error("Error al cargar productos:", error);
+        });
+}
+
+function generateProductHTML(product) {
+    let priceHTML = `<h6 style="color:black !important;" class="product-price text-muted ms-auto mt-auto mb-5">${product.price}</h6>`;
+    
+    if (product.oldPrice) {
+        priceHTML = `
+            <h6 class="product-price text-muted ms-auto mt-auto mb-5"><del>${product.oldPrice}</del></h6>
+            <h6 style="color:black !important;margin-left:5px;" class="product-price text-muted mt-auto mb-5"><b>${product.price}</b></h6>
+        `;
+    }
+
+    return `
+        <div class="col-lg-4 col-12 mb-3">
+            <div class="product-thumb">
+                <a href="${product.productLink}">
+                    <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
+                </a>
+
+                <div class="product-top d-flex">
+                    ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
+                </div>
+
+                <div class="product-info d-flex">
+                    <div>
+                        <h5 class="product-title mb-0">
+                            <a href="product-detail.html" class="product-title-link">${product.name}</a>
+                        </h5>
+                        <p class="product-p">${product.description}</p>
+                    </div>
+                    ${priceHTML}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 function loadProducts(category) {
+    // Carga los productos de manera asíncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
@@ -49,31 +154,68 @@ function loadProducts(category) {
             });
         })
         .catch(error => console.error("Error al cargar los productos:", error));
-    
 }
 
-function generateProductHTML(product) {
-    return `
-        <div class="col-lg-4 col-12 mb-3">
-            <div class="product-thumb">
-                <a href="bulgaro-detail.html">
-                    <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
-                </a>
+// Función para generar el HTML de los detalles del producto
+async function generateProductDetailHTML(productName) {
+    const product = products.find(p => p.name === productName);
 
-                <div class="product-top d-flex">
-                    ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
-                </div>
+    if (!product) {
+        return "<p>Producto no encontrado</p>";
+    }
 
-                <div class="product-info d-flex">
-                    <div>
-                        <h5 class="product-title mb-0">
-                            <a href="product-detail.html" class="product-title-link">${product.name}</a>
-                        </h5>
-                        <p class="product-p">${product.description}</p>
+    const oldPriceHTML = product.oldPrice ? `<span style="text-decoration: line-through;color: grey">${product.oldPrice}</span>` : '';
+    const productDetailHTML = `
+        <section class="product-detail section-padding2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="product-thumb">
+                            <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
+                        </div>
                     </div>
-                    <small class="product-price text-muted ms-auto mt-auto mb-5">${product.price}</small>
+                    <div class="col-lg-6 col-12">
+                        <div class="product-info d-flex">
+                            <div>
+                                <h2 class="product-title mb-0">${product.name}</h2>
+                                <p class="product-p">${product.description}</p>
+                                <h5 style="margin-bottom: 20px;">${product.price}${oldPriceHTML}</h5>
+                            </div>
+                        </div>
+                        <div class="product-description">
+                            <p class="lead mb-5">${product.longDescription}</p>
+                        </div>
+                        <div class="product-cart-thumb row">
+                            <div class="col-lg-6 col-12">
+                                <select class="form-select cart-form-select" id="quantity">
+                                    <option value="Cantidad" disabled selected>Cantidad</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <script>
+                                    const dropdown = document.getElementById('quantity');
+                                    dropdown.addEventListener('change', function() {
+                                      this.style.color = this.value === 'Cantidad' ? 'gray' : 'black';
+                                    });
+                                </script>
+                            </div>
+                            <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                                <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                            </div>
+                            <script src="js/cart.js"></script>
+                            <p>
+                                <a href="#" class="product-additional-link">Details</a>
+                                <a href="#" class="product-additional-link">Delivery and Payment</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     `;
+
+    return productDetailHTML;
 }

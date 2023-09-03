@@ -22,90 +22,53 @@
         <link rel="stylesheet" href="css/slick.css"/>
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
-<!--
 
-Tooplate 2127 Little Fashion
-
-https://www.tooplate.com/view/2127-little-fashion
-
--->
+        <script src="js/cart.js"></script>
+        
     </head>
     
     <body>
     
         <main>
 
-            <nav class="navbar navbar-expand-lg">
+            <nav class=" pageProducto navbar navbar-expand-lg">
                 <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
                     <a class="navbar-brand" href="index.html">
-                        <strong><span>Little</span> Fashion</strong>
+                        <img class="logo" src="images/Logo.png">
                     </a>
-
                     <div class="d-lg-none">
-                        <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                        <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                        <a href="carrito.html" class="bi-bag custom-icon"></a>
                     </div>
-
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">Story</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="productos-de-antaño.html">Products</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="faq.html">FAQs</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-none d-lg-block">
-                            <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                            <a href="product-detail.html" class="bi-bag custom-icon">
-                                <ul id="carrito" class="list-group"></ul>
-                            </a>
+                    <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
+                        <div class="d-none d-lg-block" style="text-align: right;">
+                            <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </nav>
 
-            <header class="site-header section-padding d-flex justify-content-center align-items-center">
+            <header style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-10 col-12">
+                        <div class="col-12">
                             <h1>
-                                <span class="d-block text-primary">Te traemos</span>
-                                <span class="d-block text-dark">Tus Yogures Favoritos</span>
+                                <span class="d-block">Yogures</span>
                             </h1>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <section class="product-detail section-padding2">
+            <!-- <script>generateProductDetailHTML("Yogur Búlgaro")</script> -->
+
+            <section class="product-detail section-padding">
                 <div class="container">
                     <div class="row">
 
                         <div class="col-lg-6 col-12">
                             <div class="product-thumb">
-                                <img src="images/products/Yogur Búlgaro.png" class="img-fluid product-image" alt="">
+                                <img src="images/products/Yogur Bulgaro.png" class="img-fluid product-image" alt="">
                             </div>
                         </div>
 

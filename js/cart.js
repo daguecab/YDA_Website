@@ -1,3 +1,4 @@
+//Subtotal de la cesta
 var subtotal = 0;
 
 // Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
@@ -5,7 +6,7 @@ var addToCartButtons = document.querySelectorAll('.cart-btn');
 addToCartButtons.forEach(button => {
     button.addEventListener('click', function() {
         var producto = button.dataset.producto;
-        var selectedOption = button.parentNode.parentNode.querySelector('#quantity').value;
+        var selectedOption = button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
         if (selectedOption === 'Cantidad') {
             alert('Selecciona una cantidad válida para agregar al carrito.');
@@ -24,7 +25,7 @@ function agregarAlCarrito(producto, cantidad) {
 
     var productoEnCarrito = carrito.find(item => item.producto === producto);
     if (productoEnCarrito) {
-        productoEnCarrito.cantidad += cantidad;
+        productoEnCarrito.cantidad = parseInt(productoEnCarrito.cantidad) + cantidad;
     } else {
         carrito.push({ producto: producto, cantidad: cantidad });
     }
@@ -70,7 +71,7 @@ function mostrarCarrito() {
                                 return `
                                     <tr>
                                         <td class="product-details">
-                                            <img width=128px src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb">
+                                            <a href="${product.productLink}" ><img src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb"/></a>
                                         <div style="margin-left:5%">
                                             <p class="carrito-nombre-producto">${item.producto}</p>
                                             <p class="carrito-precio-unitario">${product.price}</p>
@@ -103,62 +104,72 @@ function mostrarCarrito() {
             // Inserta el contenido del carrito después del div con la clase "carritoCompra"
             const carritoCompraDiv = document.querySelector(".carritoCompra");
             carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
-            addCampoCantidadFunc();
+            funcionalidadCampoCantidad(true);
         })
         .catch(error => {
             console.error("Error al cargar productos:", error);
         });
 }
 
-function addCampoCantidadFunc() {
+//Añadimos funcinoalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
+function funcionalidadCampoCantidad(funcionalidadCarrito) {
     const decreaseButtons = document.querySelectorAll('#decrease');
     const increaseButtons = document.querySelectorAll('#increase');
-    const numberFields = document.querySelectorAll('#cantidadCarrito');
+    const camposCantidad = document.querySelectorAll('#cantidadCarrito');
 
     // Agregar eventos de clic a los botones de incremento y decremento
-    for (let i = 0; i < decreaseButtons.length; i++) {
-        const producto = document.querySelectorAll('.carrito-nombre-producto')[i];
-        decreaseButtons[i].addEventListener('click', function () {
-            let currentValue = parseInt(numberFields[i].value, 10);
-            if (currentValue > 1) {
-                numberFields[i].value = currentValue - 1;
-                recalculateTotalProduct(i,numberFields, -1);
-                recalculateTotals();
-                updateLocalStorage(i, numberFields[i].value);
-            }
+    decreaseButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            cantidadActualizada(camposCantidad, index, camposCantidad[index].value - 1,funcionalidadCarrito);
         });
+    });
+    increaseButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            cantidadActualizada(camposCantidad, index, parseInt(camposCantidad[index].value, 10)  + 1,funcionalidadCarrito);
+        });
+    });
+    camposCantidad.forEach((input, index) => {
+        input.addEventListener('input', function(event) {
+            cantidadActualizada(camposCantidad, index, camposCantidad[index].value,funcionalidadCarrito);
+        });
+    });
+}
 
-        increaseButtons[i].addEventListener('click', function () {
-            let currentValue = parseInt(numberFields[i].value, 10);
-            numberFields[i].value = currentValue + 1;
-            recalculateTotalProduct(i,numberFields,1);
-            recalculateTotals();
-            updateLocalStorage(i, numberFields[i].value);
-        });
+function cantidadActualizada(camposCantidad,index,nuevaCantidad,funcionalidadCarrito){
+    if (!isNaN(nuevaCantidad)) {
+        if(nuevaCantidad>0){
+            camposCantidad[index].value = nuevaCantidad;
+            if(funcionalidadCarrito){
+                recalcularTotalProductos(index,nuevaCantidad);
+            }
+        }
     }
 }
-// Función para recalcular los totales
-function recalculateTotals() {
-    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-  
-    // Actualizar los elementos en el HTML
-    document.querySelector('#subtotalField').innerText = 'Subtotal: ' + subtotal.toFixed(2) + '€';
-    document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
-}
-
-
-function recalculateTotalProduct(index,numberFields,multiploSubtotal) {
+function recalcularTotalProductos(index,nuevaCantidad) {
     const precioUnitario = parseFloat(document.querySelectorAll('.carrito-precio-unitario')[index].innerText.replace('$', '').trim());
     const totalFields = document.querySelectorAll('.carrito-producto-total');
-    const cantidad = parseInt(numberFields[index].value, 10);
-    const total = precioUnitario * cantidad;
+    const total = precioUnitario * nuevaCantidad;
     totalFields[index].innerText = total.toFixed(2);
-    subtotal = subtotal + (precioUnitario * multiploSubtotal);
+    recalcularTotal(totalFields,index, nuevaCantidad);
 }
 
-function updateLocalStorage(index, newCantidad) {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+// Función para recalcular los totales
+function recalcularTotal(totalFields, index, nuevaCantidad) {
+    //Reseteamos el subtotal y lo calculamos sumando todos los totales
+    subtotal = 0;
+    totalFields.forEach((totalField) => {
+        const totalProducto = parseFloat(totalField.innerText.replace('$', '').trim());
+        subtotal += totalProducto;
+    });
+    // Actualizar los elementos en el HTML
+    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    document.querySelector('#subtotalField').innerText = 'Subtotal: ' + subtotal.toFixed(2) + '€';
+    document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
+    actualizarLocalStorage(carrito, index, nuevaCantidad);
+}
+
+function actualizarLocalStorage(carrito, index, newCantidad) {
     carrito[index].cantidad = newCantidad;
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }

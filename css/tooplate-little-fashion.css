@@ -138,6 +138,49 @@ a:hover {
 }
 
 /*---------------------------------------
+CUSTOM FIELDS
+-----------------------------------------*/
+
+/* Estilos para el campo de cantidad */
+.number-field {
+  display: inline-block;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Añadir sombra */
+  border-radius: 5px;
+}
+
+/* Estilos para el botón de decremento */
+.number-field button#decrease {
+  border: none;
+  padding: 0 10px;
+  background-color: #FFF;
+  cursor: pointer;
+}
+
+/* Estilos para el botón de incremento */
+.number-field button#increase {
+  border: none;
+  padding: 0 10px;
+  background-color: #FFF;
+  cursor: pointer;
+}
+
+/* Estilos para el campo de entrada numérica */
+.number-field input[type="text"] {
+  border: none;
+  width: 40px;
+  text-align: center;
+  padding: 5px 0;
+  background-color: #FFF;
+  cursor: pointer;
+  border-radius: 0%;
+}
+
+/* Estilos al enfocar el campo de entrada numérica */
+.number-field input[type="text"]:focus {
+  outline: none;
+}
+
+/*---------------------------------------
   CUSTOM LINK               
 -----------------------------------------*/
 .custom-link {
@@ -432,7 +475,7 @@ input {
 }
 
 .headroom--unpinned {
-  transform: translate(0, -150%);
+  /* transform: translate(0, -150%); */
 }
 
 .navbar-brand {

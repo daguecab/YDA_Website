@@ -93,26 +93,19 @@
                             <div class="product-cart-thumb row">
                                 <div class="col-lg-6 col-12">
                                     
-                                    <select class="form-select cart-form-select" id="quantity">
-                                        <option value="Cantidad" disabled selected>Cantidad</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                                    <div class="number-field">
+                                        <button id="decrease">-</button>
+                                        <input type="text" id="cantidadCarrito" value="1" min="1">
+                                        <button id="increase">+</button>
+                                    </div>
                                     <script>
-                                        const dropdown = document.getElementById('quantity');
-                                        dropdown.addEventListener('change', function() {
-                                          this.style.color = this.value === 'Cantidad' ? 'gray' : 'black';
-                                        });
+                                        // const dropdown = document.getElementById('quantity');
+                                        // dropdown.addEventListener('change', function() {
+                                        //   this.style.color = this.value === 'Cantidad' ? 'gray' : 'black';
+                                        // });
+                                        funcionalidadCampoCantidad(false);
                                     </script>
                                 </div>
-                                <!-- <div class="number-field">
-                                    <button id="decrease">-</button>
-                                    <input type="text" id="number" value="1" min="1">
-                                    <button id="increase">+</button>
-                                </div> -->
                                 <div class="col-lg-6 col-12 mt-4 mt-lg-0">
                                     <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-producto="Yogur Búlgaro" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                                 </div>

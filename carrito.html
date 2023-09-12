@@ -62,13 +62,13 @@
         }
 
         .btn-comprar {
-            background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            width: auto !important;
             cursor: pointer;
-            float: right; /* Alinea a la derecha */
+            clear: right;
+            width: 100% !important;
         }
 
         /* Estilos para imágenes */
@@ -89,10 +89,32 @@
         p {
             margin-bottom: 0 !important;
         }
+        .subtotal-envio {
+            display: inline-block; /* Para que ocupe solo el ancho necesario */
+            text-align: center;
+            width: 30%;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td.izquierda {
+            text-align: left;
+        }
+
+        td.derecha {
+            text-align: right;
+        }
+
     </style>
     
     <body>
-    
+        <section class="loading" style="display: none !important;">
+            <div class="spinner">
+                <span class="sk-inner-circle"></span>
+            </div>
+        </section>
         <main>
 
             <nav class=" pageProducto navbar navbar-expand-lg">
@@ -134,29 +156,6 @@
                     </div>
                 </div>
             </section>
-            <script>
-                // Obtener los elementos de los botones y el campo de entrada
-                const decreaseButton = document.getElementById('decrease');
-                const increaseButton = document.querySelectorAll('#increase');
-                const numberField = document.querySelectorAll('#cantidadCarrito');
-
-                console.log(decreaseButton);
-        
-                // Agregar eventos de clic a los botones de incremento y decremento
-                for (let i = 0; i < decreaseButton.length; i++) {
-                    decreaseButton[i].addEventListener('click', function () {
-                        let currentValue = parseInt(numberField[i].value, 10);
-                        if (currentValue > 1) {
-                            numberField[i].value = currentValue - 1;
-                        }
-                    });
-        
-                    increaseButton[i].addEventListener('click', function () {
-                        let currentValue = parseInt(numberField[i].value, 10);
-                        numberField[i].value = currentValue + 1;
-                    });
-                }
-            </script>
 
         </main>
 

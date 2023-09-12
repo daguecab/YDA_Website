@@ -6,12 +6,13 @@ var addToCartButtons = document.querySelectorAll('.cart-btn');
 addToCartButtons.forEach(button => {
     button.addEventListener('click', function() {
         var producto = button.dataset.producto;
+        var precio = button.dataset.precio;
         var selectedOption = button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
         if (selectedOption === 'Cantidad') {
             alert('Selecciona una cantidad válida para agregar al carrito.');
         } else {
-            agregarAlCarrito(producto, parseInt(selectedOption));
+            agregarAlCarrito(producto, parseInt(selectedOption),precio);
             alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
             //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
             //$('#cart-modal').modal('show');
@@ -20,14 +21,14 @@ addToCartButtons.forEach(button => {
 });
 
 // Función para agregar al carrito
-function agregarAlCarrito(producto, cantidad) {
+function agregarAlCarrito(producto, cantidad,precio) {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
     var productoEnCarrito = carrito.find(item => item.producto === producto);
     if (productoEnCarrito) {
         productoEnCarrito.cantidad = parseInt(productoEnCarrito.cantidad) + cantidad;
     } else {
-        carrito.push({ producto: producto, cantidad: cantidad });
+        carrito.push({ producto: producto, cantidad: cantidad, precio: precio });
     }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -93,17 +94,31 @@ function mostrarCarrito() {
                         </tbody>
                     </table>
                     <div class="subtotal">
-                        <p id="subtotalField"><b>Subtotal:</b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
-                        <p><b>¡Envío Gratis! </b></p>
+                        <p style="float:left" >Comentarios del Pedido:</p>
+                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquí"></textarea>
+                        <div class="subtotal-envio">
+                            <table>
+                                <tr style="border:none;">
+                                    <td class="izquierda" >Subtotal:</td>
+                                    <td class="derecha" id="subtotalField">${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}€</td>
+                                </tr>
+                                <tr >
+                                    <td class="izquierda">Envío gratuito:</td>
+                                    <td class="derecha">0.0 €</td>
+                                </tr>
+                            </table>
+                            <button id="checkout" class="btn-comprar btn custom-btn cart-btn">Comprar</button>
+                        </div>
                     </div>
-                    <p class="total" id="totalField"><b>Total:<b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+                    <!--p class="total" id="totalField"><b>Total:<b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p-->
                     
-                    <button class="btn-comprar">Comprar</button>
+
                 </div>
             `;
             // Inserta el contenido del carrito después del div con la clase "carritoCompra"
             const carritoCompraDiv = document.querySelector(".carritoCompra");
             carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
+            funcionalidadComprar();
             funcionalidadCampoCantidad(true);
         })
         .catch(error => {
@@ -111,7 +126,46 @@ function mostrarCarrito() {
         });
 }
 
-//Añadimos funcinoalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
+function funcionalidadComprar() {
+    const checkout = document.getElementById('checkout');
+    const preloader = document.querySelector('.loading');
+    console.log(preloader);
+    checkout.addEventListener('click', async () => {
+        //Mostrar Spinner
+        preloader.style.display = 'flex';
+        // Recupera los productos del localStorage
+        const productosEnCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        console.log(productosEnCarrito[0].precio * 100);
+
+        // Convierte los productos en el formato necesario para la solicitud
+        const productsForCheckout = productosEnCarrito.map((producto) => ({
+            name: producto.producto,
+            price: Math.round(producto.precio * 100), // Convierte el precio a centavos (si es necesario)
+            quantity: producto.cantidad || 1 // Establece una cantidad predeterminada si no está definida
+        }));
+        console.log(productsForCheckout);
+
+        // Realiza la solicitud al servidor
+        const res = await fetch('https://stripe-integration-n0er.onrender.com/create-checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                products: productsForCheckout,
+                backURL: window.location.href
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);
+        preloader.style.display = 'none';
+        window.location.href = data.url;
+    });
+}
+
+
+//Añadimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
 function funcionalidadCampoCantidad(funcionalidadCarrito) {
     const decreaseButtons = document.querySelectorAll('#decrease');
     const increaseButtons = document.querySelectorAll('#increase');
@@ -164,8 +218,8 @@ function recalcularTotal(totalFields, index, nuevaCantidad) {
     });
     // Actualizar los elementos en el HTML
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    document.querySelector('#subtotalField').innerText = 'Subtotal: ' + subtotal.toFixed(2) + '€';
-    document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
+    document.querySelector('#subtotalField').innerHTML = '<b>Subtotal</b> ' + subtotal.toFixed(2) + '€';
+    //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
     actualizarLocalStorage(carrito, index, nuevaCantidad);
 }
 

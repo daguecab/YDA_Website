@@ -140,7 +140,15 @@ a:hover {
 /*---------------------------------------
 CUSTOM FIELDS
 -----------------------------------------*/
-
+/* Estilos para textarea */
+#comentariosPedido {
+  float: left;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border: none;
+  clear: left;
+  height: 90px;
+}
 /* Estilos para el campo de cantidad */
 .number-field {
   display: inline-block;
@@ -218,7 +226,7 @@ strong {
 /*---------------------------------------
   PRE LOADER               
 -----------------------------------------*/
-.preloader {
+.loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -229,7 +237,7 @@ strong {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  background: none repeat scroll 0 0 var(--white-color);
+  background-color: transparent;
 }
 
 .spinner {
@@ -336,7 +344,7 @@ input {
 }
 
 .cart-btn {
-  border-radius: 0;
+  border-radius: 5px;
   width: 100%;
   font-size: var(--product-link-font-size);
 }

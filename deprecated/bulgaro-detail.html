@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Yogures de Antaño - Skyr</title>
+        <title>Yogur Búlgaro</title>
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@
                 </div>
             </nav>
 
-            <header id="productHeader" style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
+            <header style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
                 <div class="container">
                     <div class="row">
 
@@ -61,9 +61,82 @@
                 </div>
             </header>
 
-            <script>generateProductDetailHTML("Skyr")</script>
+            <!-- <script>generateProductDetailHTML("Yogur Búlgaro")</script> -->
 
-           
+            <section class="product-detail section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <div class="product-thumb">
+                                <img src="images/products/Yogur Bulgaro.png" class="img-fluid product-image" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="product-info d-flex">
+                                <div>
+                                    <h2 class="product-title mb-0">Yogur Búlgaro</h2>
+
+                                    <p class="product-p">Auténticos fermentos tradicionales para hacer kiselo mlyako</p>
+                                    <h5 style="margin-bottom: 20px;">9.95€<span style="text-decoration: line-through;color: grey">     14.95€</span></h5>
+
+                                </div>
+
+                            </div>
+
+                            <div class="product-description">
+
+                                <p class="lead mb-5">Nuestro Yogur Búlgaro es cremoso y espeso, con un sabor impecable y el equilibrio perfecto entre suavidad y acidez. Es único, diferente a cualquier otro yogur que hayas probado.</p>
+
+                            </div>
+
+                            <div class="product-cart-thumb row">
+                                <div class="col-lg-6 col-12">
+                                    
+                                    <div class="number-field">
+                                        <button id="decrease">-</button>
+                                        <input type="text" id="cantidadCarrito" value="1" min="1">
+                                        <button id="increase">+</button>
+                                    </div>
+                                    <script>
+                                        funcionalidadCampoCantidad(false);
+                                    </script>
+                                </div>
+                                <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                                    <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="9.95" data-producto="Yogur Búlgaro" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                                </div>
+                                <script src="js/cart.js"></script>
+
+
+                                <p>
+                                    <a href="#" class="product-additional-link">Details</a>
+
+                                    <a href="#" class="product-additional-link">Delivery and Payment</a>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-product section-padding border-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h3 class="mb-5">Puede que te interese</h3>
+                        </div>
+
+                        <div class="col-12 text-center" id="product-container">
+                        </div>
+                        <script> loadProducts("yogur", "Yogur Búlgaro"); </script>
+
+                    </div>
+                </div>
+            </section>
 
         </main>
 

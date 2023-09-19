@@ -2,23 +2,25 @@
 var subtotal = 0;
 
 // Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
-var addToCartButtons = document.querySelectorAll('.cart-btn');
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        var producto = button.dataset.producto;
-        var precio = button.dataset.precio;
-        var selectedOption = button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
+function addClickEventToCartButtons() {
+    var addToCartButtons = document.querySelectorAll('.cart-btn');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            var producto = button.dataset.producto;
+            var precio = button.dataset.precio;
+            var selectedOption = button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
-        if (selectedOption === 'Cantidad') {
-            alert('Selecciona una cantidad válida para agregar al carrito.');
-        } else {
-            agregarAlCarrito(producto, parseInt(selectedOption),precio);
-            alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
-            //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
-            //$('#cart-modal').modal('show');
-        }
+            if (selectedOption === 'Cantidad') {
+                alert('Selecciona una cantidad válida para agregar al carrito.');
+            } else {
+                agregarAlCarrito(producto, parseInt(selectedOption), precio);
+                alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
+                //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
+                //$('#cart-modal').modal('show');
+            }
+        });
     });
-});
+}
 
 // Función para agregar al carrito
 function agregarAlCarrito(producto, cantidad,precio) {
@@ -218,7 +220,7 @@ function recalcularTotal(totalFields, index, nuevaCantidad) {
     });
     // Actualizar los elementos en el HTML
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    document.querySelector('#subtotalField').innerHTML = '<b>Subtotal</b> ' + subtotal.toFixed(2) + '€';
+    document.querySelector('#subtotalField').innerHTML = subtotal.toFixed(2) + '€';
     //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
     actualizarLocalStorage(carrito, index, nuevaCantidad);
 }
@@ -263,7 +265,7 @@ function generateProductHTML(product) {
     `;
 }
 
-function loadProducts(category) {
+function loadProducts(category, name) {
     // Carga los productos de manera asíncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
@@ -271,7 +273,7 @@ function loadProducts(category) {
             const productContainer = document.getElementById("product-container");
             // Filtrar productos por categoría
             const filteredProducts = category
-                ? products.filter(product => product.category === category)
+                ? products.filter(product => product.category === category && product.name != name)
                 : products;
 
             filteredProducts.forEach(product => {
@@ -284,6 +286,11 @@ function loadProducts(category) {
 
 // Función para generar el HTML de los detalles del producto
 async function generateProductDetailHTML(productName) {
+    const productHeader = document.getElementById('productHeader');
+    const response = await fetch("productos.json");
+    const products = await response.json();
+
+    console.log(products);
     const product = products.find(p => p.name === productName);
 
     if (!product) {
@@ -292,56 +299,97 @@ async function generateProductDetailHTML(productName) {
 
     const oldPriceHTML = product.oldPrice ? `<span style="text-decoration: line-through;color: grey">${product.oldPrice}</span>` : '';
     const productDetailHTML = `
-        <section class="product-detail section-padding2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="product-thumb">
-                            <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
+    <section class="product-detail section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="product-thumb">
+                        <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
+                    </div>
+                </div>
+            
+                <div class="col-lg-6 col-12">
+                    <div class="product-info d-flex">
+                        <div>
+                            <h2 class="product-title mb-0">${product.name}</h2>
+                            <p class="product-p">${product.productPageDescription}</p>
+                            <h5 style="margin-bottom: 20px;"><span class="price">${product.price}</span><span class="price" style="text-decoration: line-through;color: grey"> ${oldPriceHTML}</span></h5>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="product-info d-flex">
-                            <div>
-                                <h2 class="product-title mb-0">${product.name}</h2>
-                                <p class="product-p">${product.description}</p>
-                                <h5 style="margin-bottom: 20px;">${product.price}${oldPriceHTML}</h5>
+                    <div class="product-description">
+                        <p class="lead mb-5">${product.longDescription}</p>
+                    </div>
+                    <div class="product-cart-thumb row">
+                        <div class="col-lg-6 col-12">
+                            <div class="number-field">
+                                <button id="decrease">-</button>
+                                <input type="text" id="cantidadCarrito" value="1" min="1">
+                                <button id="increase">+</button>
                             </div>
                         </div>
-                        <div class="product-description">
-                            <p class="lead mb-5">${product.longDescription}</p>
+                        <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                         </div>
-                        <div class="product-cart-thumb row">
-                            <div class="col-lg-6 col-12">
-                                <select class="form-select cart-form-select" id="quantity">
-                                    <option value="Cantidad" disabled selected>Cantidad</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <script>
-                                    const dropdown = document.getElementById('quantity');
-                                    dropdown.addEventListener('change', function() {
-                                      this.style.color = this.value === 'Cantidad' ? 'gray' : 'black';
-                                    });
-                                </script>
+                        <script src="js/cart.js"></script>
+                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+                            <h6><a href="#" id="botonIncluye" class="product-additional-link">Qué incluye</a></h6>
+                            <div id="incluye" style="display: none;">
+                                <p>${product.incluye}</p>
                             </div>
-                            <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                                <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                        </div>
+                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+                            <h6><a href="#" id="botonGastos" class="product-additional-link">Gastos de Envío</a></h6>
+                            <div id="gastos" style="display: none;">
+                                <p>Los gastos de envío son GRATIS, aunque damos la opción de un envío express.</p>
                             </div>
-                            <script src="js/cart.js"></script>
-                            <p>
-                                <a href="#" class="product-additional-link">Details</a>
-                                <a href="#" class="product-additional-link">Delivery and Payment</a>
-                            </p>
+                        </div>
+                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+                            <h6><a href="#" id="botonDevolver" class="product-additional-link">Devoluciones</a></h6>
+                            <div id="devolver" style="display: none;">
+                                <p>Si el yogur no te parece de calidad, te devuelvo el dinero, sin preguntas.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     `;
 
-    return productDetailHTML;
+    productHeader.insertAdjacentHTML('afterend', productDetailHTML);
+    funcionalidadCampoCantidad(false);
+    addClickEventToCartButtons();
+    funcionalidadDetalles();
+}
+function funcionalidadDetalles() {
+    const botonIncluye = document.getElementById('botonIncluye');
+    const incluye = document.getElementById('incluye');
+    botonIncluye.addEventListener('click', function () {
+        event.preventDefault();
+        if (incluye.style.display === 'none' || incluye.style.display === '') {
+            incluye.style.display = 'block';
+        } else {
+            incluye.style.display = 'none';
+        }
+    });
+    const botonGastos = document.getElementById('botonGastos');
+    const gastos = document.getElementById('gastos');
+    botonGastos.addEventListener('click', function () {
+        event.preventDefault();
+        if (gastos.style.display === 'none' || gastos.style.display === '') {
+            gastos.style.display = 'block';
+        } else {
+            gastos.style.display = 'none';
+        }
+    });
+    const botonDevolver = document.getElementById('botonDevolver');
+    const devolver = document.getElementById('devolver');
+    botonDevolver.addEventListener('click', function () {
+        event.preventDefault();
+        if (devolver.style.display === 'none' || devolver.style.display === '') {
+            devolver.style.display = 'block';
+        } else {
+            devolver.style.display = 'none';
+        }
+    });
 }

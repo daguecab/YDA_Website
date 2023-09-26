@@ -143,7 +143,11 @@ function funcionalidadComprar() {
         preloader.style.display = 'flex';
         // Recupera los productos del localStorage
         const productosEnCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        console.log(productosEnCarrito[0].precio * 100);
+        
+        //Base url
+        const protocol = window.location.protocol;
+        const host = window.location.host;
+        const base_url = `${protocol}//${host}`;
 
         // Convierte los productos en el formato necesario para la solicitud
         const productsForCheckout = productosEnCarrito.map((producto) => ({
@@ -161,7 +165,9 @@ function funcionalidadComprar() {
             },
             body: JSON.stringify({
                 products: productsForCheckout,
-                backURL: window.location.href
+                returnUrl: window.location.href,
+                successUrl: base_url + '/success.html'
+
             })
         });
 
@@ -344,7 +350,7 @@ async function generateProductDetailHTML(productName) {
                 </div>
             
                 <div class="col-lg-6 col-12">
-                    <div class="product-info d-flex">
+                    <div class="product-description mt-5 d-flex">
                         <div>
                             <h2 class="product-title mb-0">${product.name}</h2>
                             <p class="product-p">${product.productPageDescription}</p>

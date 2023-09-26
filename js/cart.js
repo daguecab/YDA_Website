@@ -40,18 +40,22 @@ function agregarAlCarrito(producto, cantidad,precio) {
 function mostrarCarrito() {
     // Obtén los productos del carrito desde el localStorage
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-    // Verifica si el carrito está vacío
+    const carritoCompraDiv = document.querySelector(".carritoCompra");
+    // Verifica si el cesta está vacía
     if (carrito.length === 0) {
-        console.log("El carrito está vacío.");
+        const carritoHTML = `
+            <div style="text-align:center;">
+                <h2>Tu cesta está vacía<h2>
+                <a href="productos-de-antaño.html" class="custom-btn">Seguir comprando</a>
+            </div>
+        `;
+        carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
         return;
     }
-
     // Carga los productos de manera asíncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
-            //Variable para hacer la suma
             // Genera el HTML para mostrar los productos en el carrito
             const carritoHTML = `
                 <div class="carrito">
@@ -63,7 +67,7 @@ function mostrarCarrito() {
                                 <th>Total</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="bodyProductos">
                             ${carrito.map(item => {
                                 // Busca el producto correspondiente en products.json por el nombre
                                 const product = products.find(p => p.name === item.producto);
@@ -77,7 +81,7 @@ function mostrarCarrito() {
                                             <a href="${product.productLink}" ><img src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb"/></a>
                                         <div style="margin-left:5%">
                                             <p class="carrito-nombre-producto">${item.producto}</p>
-                                            <p class="carrito-precio-unitario">${product.price}</p>
+                                            <p class="precio carrito-precio-unitario">${product.price}</p>
                                         </div>
                                         <td class="carrito-cantidad">
                                             
@@ -86,9 +90,12 @@ function mostrarCarrito() {
                                             <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
                                             <button id="increase">+</button>
                                         </div>
+                                        <button id="delete">
+                                            <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
+                                        </button>
                                         </td>
                                         <td class="carrito-producto-total">
-                                            ${totalProducto.toLocaleString('es-ES', { minimumFractionDigits: 2 })}
+                                            <p class="precio">${totalProducto.toFixed(2)}</p>
                                         </td>
                                     </tr>
                                 `;
@@ -102,11 +109,11 @@ function mostrarCarrito() {
                             <table>
                                 <tr style="border:none;">
                                     <td class="izquierda" >Subtotal:</td>
-                                    <td class="derecha" id="subtotalField">${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}€</td>
+                                    <td class="derecha precio" id="subtotalField">${subtotal.toFixed(2)}</td>
                                 </tr>
                                 <tr >
                                     <td class="izquierda">Envío gratuito:</td>
-                                    <td class="derecha">0.0 €</td>
+                                    <td class="derecha precio">0.0</td>
                                 </tr>
                             </table>
                             <button id="checkout" class="btn-comprar btn custom-btn cart-btn">Comprar</button>
@@ -118,7 +125,6 @@ function mostrarCarrito() {
                 </div>
             `;
             // Inserta el contenido del carrito después del div con la clase "carritoCompra"
-            const carritoCompraDiv = document.querySelector(".carritoCompra");
             carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
             funcionalidadComprar();
             funcionalidadCampoCantidad(true);
@@ -166,39 +172,52 @@ function funcionalidadComprar() {
     });
 }
 
+function restarUnoProducto(){
+    cantidadActualizada(camposCantidad, index, camposCantidad[index].value - 1,funcionalidadCarrito,false);
+}
+
 
 //Añadimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
-function funcionalidadCampoCantidad(funcionalidadCarrito) {
-    const decreaseButtons = document.querySelectorAll('#decrease');
-    const increaseButtons = document.querySelectorAll('#increase');
+    function funcionalidadCampoCantidad(funcionalidadCarrito) {
+        const decreaseButtons = document.querySelectorAll('#decrease');
+        const increaseButtons = document.querySelectorAll('#increase');
+        const deleteButtons = document.querySelectorAll('#delete');
     const camposCantidad = document.querySelectorAll('#cantidadCarrito');
 
     // Agregar eventos de clic a los botones de incremento y decremento
     decreaseButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            cantidadActualizada(camposCantidad, index, camposCantidad[index].value - 1,funcionalidadCarrito);
+            cantidadActualizada(camposCantidad, index, camposCantidad[index].value - 1,funcionalidadCarrito,false);
         });
     });
     increaseButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            cantidadActualizada(camposCantidad, index, parseInt(camposCantidad[index].value, 10)  + 1,funcionalidadCarrito);
+            cantidadActualizada(camposCantidad, index, parseInt(camposCantidad[index].value, 10)  + 1,funcionalidadCarrito,false);
+        });
+    });
+    deleteButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            cantidadActualizada(camposCantidad, index, 0, funcionalidadCarrito,true);
         });
     });
     camposCantidad.forEach((input, index) => {
+        input.removeEventListener('click', null);
         input.addEventListener('input', function(event) {
-            cantidadActualizada(camposCantidad, index, camposCantidad[index].value,funcionalidadCarrito);
+            cantidadActualizada(camposCantidad, index, camposCantidad[index].value,funcionalidadCarrito,false);
         });
     });
 }
 
-function cantidadActualizada(camposCantidad,index,nuevaCantidad,funcionalidadCarrito){
+function cantidadActualizada(camposCantidad,index,nuevaCantidad,funcionalidadCarrito,botonDelete){
     if (!isNaN(nuevaCantidad)) {
-        if(nuevaCantidad>0){
+        if(nuevaCantidad>0 || botonDelete){
             camposCantidad[index].value = nuevaCantidad;
             if(funcionalidadCarrito){
                 recalcularTotalProductos(index,nuevaCantidad);
             }
         }
+        var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        actualizarLocalStorage(carrito, index, nuevaCantidad);
     }
 }
 
@@ -206,7 +225,7 @@ function recalcularTotalProductos(index,nuevaCantidad) {
     const precioUnitario = parseFloat(document.querySelectorAll('.carrito-precio-unitario')[index].innerText.replace('$', '').trim());
     const totalFields = document.querySelectorAll('.carrito-producto-total');
     const total = precioUnitario * nuevaCantidad;
-    totalFields[index].innerText = total.toFixed(2);
+    totalFields[index].innerHTML = `<p class="precio">${total.toFixed(2)}</p>`;
     recalcularTotal(totalFields,index, nuevaCantidad);
 }
 
@@ -219,34 +238,48 @@ function recalcularTotal(totalFields, index, nuevaCantidad) {
         subtotal += totalProducto;
     });
     // Actualizar los elementos en el HTML
-    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    document.querySelector('#subtotalField').innerHTML = subtotal.toFixed(2) + '€';
+    document.querySelector('#subtotalField').innerHTML = subtotal.toFixed(2);
     //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
-    actualizarLocalStorage(carrito, index, nuevaCantidad);
 }
 
 function actualizarLocalStorage(carrito, index, newCantidad) {
-    carrito[index].cantidad = newCantidad;
+    console.log("llego");
+    const tbody = document.getElementById('bodyProductos');
+    if (newCantidad === 0) {
+        console.log(index);
+        const decreaseButton = document.querySelectorAll('#decrease')[index];
+        decreaseButton.parentNode.removeChild(decreaseButton);
+        tbody.deleteRow(index);
+        carrito.splice(index, 1);
+        console.log(carrito);
+        //funcionalidadCampoCantidad(true); 
+    } else {
+        carrito[index].cantidad = newCantidad;
+    }
     localStorage.setItem('carrito', JSON.stringify(carrito));
+    if (tbody.rows.length === 0) {
+        window.location.href = 'carrito.html';
+    }
 }
 
 function generateProductHTML(product) {
-    let priceHTML = `<h6 style="color:black !important;" class="product-price text-muted ms-auto mt-auto mb-5">${product.price}</h6>`;
+    let priceHTML = `<h6 style="color:black !important;" class="product-price precio text-muted ms-auto mt-auto mb-5 price">${product.price}</h6>`;
     
     if (product.oldPrice) {
         priceHTML = `
-            <h6 class="product-price text-muted ms-auto mt-auto mb-5"><del>${product.oldPrice}</del></h6>
-            <h6 style="color:black !important;margin-left:5px;" class="product-price text-muted mt-auto mb-5"><b>${product.price}</b></h6>
+            <h6 style="color:black !important;" class="product-price text-muted mt-auto mb-5 precio"><b>${product.price}</b></h6>
+            <h6 class="product-price text-muted mt-auto mb-5 precio" style="margin-left:5px;"><del>${product.oldPrice}</del></h6>
         `;
     }
 
     return `
         <div class="col-lg-4 col-12 mb-3">
             <div class="product-thumb">
-                <a href="${product.productLink}">
-                    <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
-                </a>
-
+                <div style="text-align: center;">
+                    <a href="${product.productLink}">
+                        <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
+                    </a>
+                </div>
                 <div class="product-top d-flex">
                     ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
                 </div>
@@ -258,7 +291,9 @@ function generateProductHTML(product) {
                         </h5>
                         <p class="product-p">${product.description}</p>
                     </div>
-                    ${priceHTML}
+                    <div class="d-flex ms-auto">
+                        ${priceHTML}
+                    </div>
                 </div>
             </div>
         </div>
@@ -313,7 +348,7 @@ async function generateProductDetailHTML(productName) {
                         <div>
                             <h2 class="product-title mb-0">${product.name}</h2>
                             <p class="product-p">${product.productPageDescription}</p>
-                            <h5 style="margin-bottom: 20px;"><span class="price">${product.price}</span><span class="price" style="text-decoration: line-through;color: grey"> ${oldPriceHTML}</span></h5>
+                            <h5 style="margin-bottom: 20px;"><span class="precio">${product.price}</span><span class="precio" style="text-decoration: line-through;color: grey"> ${oldPriceHTML}</span></h5>
                         </div>
                     </div>
                     <div class="product-description">

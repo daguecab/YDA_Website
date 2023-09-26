@@ -81,7 +81,7 @@ function loadFooter() {
 
                       <li class="footer-menu-item"><a href="politica-de-privacidad.html" class="footer-menu-link">Política de privacidad</a></li>
 
-                      <li class="footer-menu-item"><a href="politica-de-ventas-y-envios.html" class="footer-menu-link">Política de ventas y envíos</a></li>
+                      <li class="footer-menu-item"><a href="#" class="footer-menu-link">Política de ventas y envíos</a></li>
                   </ul>
               </div>
           </div>

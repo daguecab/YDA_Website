@@ -141,7 +141,7 @@ a:hover {
 CUSTOM FIELDS
 -----------------------------------------*/
 
-.price::after {
+.precio::after {
   content: "€";
 }
 /* Estilos para textarea */
@@ -162,6 +162,13 @@ CUSTOM FIELDS
 
 /* Estilos para el botón de decremento */
 .number-field button#decrease {
+  border: none;
+  padding: 0 10px;
+  background-color: #FFF;
+  cursor: pointer;
+}
+
+#delete {
   border: none;
   padding: 0 10px;
   background-color: #FFF;
@@ -699,7 +706,7 @@ input {
 
 .slick-slideshow .custom-btn {
   font-weight: var(--font-weight-bold);
-  display: none;
+  /* display: none; */
   padding-right: 32px;
   padding-left: 32px;
 }
@@ -1117,10 +1124,11 @@ button:focus:not(:focus-visible) {
   right: 0;
   left: 0;
   margin: 20px;
+  padding-left: 10%;
 }
 
 .product-info {
-  padding: 30px 20px;
+  padding: 30px 10%;
 }
 
 .featured-product .product-info{
@@ -1157,6 +1165,7 @@ button:focus:not(:focus-visible) {
   font-size: var(--custom-link-font-size);
   font-weight: var(--font-weight-bold);
   padding: 3px 10px;
+  border-radius: 5px;
 }
 
 .product-p {

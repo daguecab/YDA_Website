@@ -788,6 +788,10 @@ input {
   CUSTOM CIRCLE IMAGES               
 -----------------------------------------*/
 
+.animate-box {
+  opacity: 0;
+}
+
 .animatedColor {
   color: white;
 }

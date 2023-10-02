@@ -283,7 +283,7 @@ function generateProductHTML(product) {
 
     return `
         <div class="col-lg-4 col-12 mb-3">
-            <div class="product-thumb">
+            <div class="product-thumb feature-left animate-box" data-animate-effect="fadeInLeft">
                 <div style="text-align: center;">
                     <a href="${product.productLink}">
                         <img src="${product.imageSrc}" class="img-fluid product-image" alt="">

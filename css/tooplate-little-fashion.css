@@ -156,7 +156,7 @@ CUSTOM FIELDS
 /* Estilos para el campo de cantidad */
 .number-field {
   display: inline-block;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Añadir sombra */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
   border-radius: 5px;
 }
 
@@ -368,7 +368,7 @@ input {
 }
 
 .custom-icon {
-  color: var(--p-color);
+  color: var(--dark-color);
   font-size: 24px;
 }
 
@@ -486,11 +486,11 @@ input {
 }
 
 .navbar.headroom--not-top {
-  padding: 20px 0;
+  /* padding: 20px 0; */
 }
 
 .headroom--pinned {
-  transform: translate(0, 0);
+  /* transform: translate(0, 0); */
 }
 
 .headroom--unpinned {

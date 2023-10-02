@@ -1,6 +1,15 @@
 [
     
     {
+        "name": "Termómetro",
+        "imageSrc": "images/products/Termometro.png",
+        "productLink": "skyr-detail.html",
+        "isNew": true,
+        "description": "Termómetro de cocina para calentar la leche.",
+        "price": "4.95",
+        "category": "accesorios"
+    },
+    {
         "name": "Skyr",
         "imageSrc": "images/products/Skyr.png",
         "productLink": "skyr-detail.html",
@@ -38,14 +47,5 @@
         "oldPrice": "14.95",
         "category": "yogur",
         "incluye":"-Un sobre de 2g de Fermentos para hacer Yogur Búlgaro, 1g para empezar y otro de reserva.<br>"
-    },
-    {
-        "name": "Termómetro",
-        "imageSrc": "images/products/Termometro.png",
-        "productLink": "skyr-detail.html",
-        "isNew": true,
-        "description": "Termómetro de cocina para calentar la leche.",
-        "price": "4.95",
-        "category": "accesorios"
     }
 ]

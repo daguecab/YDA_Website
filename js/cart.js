@@ -22,6 +22,10 @@ function addClickEventToCartButtons() {
     });
 }
 
+function vaciarCarrito(){
+    localStorage.setItem('carrito', null);
+}
+
 // Función para agregar al carrito
 function agregarAlCarrito(producto, cantidad,precio) {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -79,20 +83,19 @@ function mostrarCarrito() {
                                     <tr>
                                         <td class="product-details">
                                             <a href="${product.productLink}" ><img src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb"/></a>
-                                        <div style="margin-left:5%">
-                                            <p class="carrito-nombre-producto">${item.producto}</p>
-                                            <p class="precio carrito-precio-unitario">${product.price}</p>
-                                        </div>
+                                            <div style="margin-left:5%">
+                                                <p class="carrito-nombre-producto">${item.producto}</p>
+                                                <p class="precio carrito-precio-unitario">${product.price}</p>
+                                            </div>
                                         <td class="carrito-cantidad">
-                                            
-                                        <div class="number-field">
-                                            <button id="decrease">-</button>
-                                            <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
-                                            <button id="increase">+</button>
-                                        </div>
-                                        <button id="delete">
-                                            <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
-                                        </button>
+                                            <div class="number-field">
+                                                <button id="decrease">-</button>
+                                                <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
+                                                <button id="increase">+</button>
+                                            </div>
+                                            <button id="delete">
+                                                <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
+                                            </button>
                                         </td>
                                         <td class="carrito-producto-total">
                                             <p class="precio">${totalProducto.toFixed(2)}</p>

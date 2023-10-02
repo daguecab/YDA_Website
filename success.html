@@ -1,81 +1,98 @@
 <html>
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
 
-  </head>
-    <style>
-      /* Estilos base */
-        body {
-        text-align: center;
-        padding: 40px 0;
-        background: #EBF0F5;
-        }
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <link href="css/tooplate-little-fashion.css" rel="stylesheet">
+  <script src="js/cart.js"></script>
 
-        h1 {
-        color: #88B04B;
-        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-        font-weight: 900;
-        font-size: 40px;
-        margin-bottom: 10px;
-        }
+</head>
+<style>
+  /* Estilos base */
+  body {
+    text-align: center;
+    padding: 40px 0;
+    background: #EBF0F5;
+  }
 
-        p {
-        color: #404F5E;
-        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-        font-size: 20px;
-        margin: 0;
-        }
+  .contenedor {
+    border-radius: 200px;
+    height: 200px;
+    width: 200px;
+    background: transparent;
+    margin: 0 auto;
+  }
 
-        i {
-        color: #9ABC66;
-        font-size: 100px;
-        line-height: 200px;
-        margin-left: -15px;
-        }
+  h1 {
+    color: #88B04B;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
 
-        .card {
-        background: white;
-        padding: 60px;
-        border-radius: 4px;
-        box-shadow: 0 2px 3px #C8D0D8;
-        display: inline-block;
-        margin: 0 auto;
-        max-width: 100%; /* Añadir esta propiedad */
-        }
+  p {
+    color: #404F5E;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-size: 20px;
+  }
 
-        /* Estilos para pantallas más pequeñas */
-        @media (max-width: 768px) {
-        h1 {
-            font-size: 30px;
-        }
+  i {
+    color: #9ABC66;
+    font-size: 100px;
+    line-height: 200px;
+    margin-left: -15px;
+  }
 
-        p {
-            font-size: 16px;
-        }
+  .card {
+    background: white;
+    padding: 60px;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px #C8D0D8;
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 100%;
+    /* Añadir esta propiedad */
+  }
 
-        i {
-            font-size: 80px;
-            line-height: 160px;
-        }
+  /* Estilos para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 30px;
+    }
 
-        .card {
-            padding: 30px;
-        }
-        }
-        .card img {
-            max-width: 100%; /* La imagen se ajustará al ancho del contenedor */
-            height: auto; /* Esto garantiza que la altura se ajuste proporcionalmente */
-        }
+    p {
+      font-size: 16px;
+    }
 
-    </style>
-    <body>
-      <div class="card">
-      <div style="border-radius:200px; height:200px; width:200px; background: transparent; margin:0 auto;">
-        <img src="images/success.jpeg"></img>
-      </div>
-        <h1>Pago realizado</h1> 
-        <p>Hemos recibido el pago<br/> En breve recibirás la confirmación.</p>
-      </div>
-    </body>
+    i {
+      font-size: 80px;
+      line-height: 160px;
+    }
+
+    .card {
+      padding: 30px;
+    }
+    .contenedor {
+      height: 80%;
+    }
+  }
+
+  .card img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<body>
+  <div class="card">
+    <div class="contenedor">
+      <img src="images/success.jpeg"></img>
+    </div>
+    <h1>Pago realizado</h1>
+    <p>Hemos recibido el pago<br /> En breve recibirás la confirmación.</p>
+    <a href="index.html" class="custom-btn">Volver al inicio</a>
+  </div>
+</body>
+<script>vaciarCarrito()</script>
 </html>

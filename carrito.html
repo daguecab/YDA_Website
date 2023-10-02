@@ -108,6 +108,52 @@
 
         td.derecha {
             text-align: right;
+            display:block !important;
+        }
+
+        /* Estilo para ocultar la columna "Cantidad" en dispositivos móviles */
+        @media (max-width: 768px) {
+            th:nth-child(2),
+            td:nth-child(2) {
+                display: none;
+            }
+
+            /* Estilo para mostrar el contenido de "Cantidad" debajo de "Producto" */
+            td.product-details {
+                /* display: block; */
+            }
+            
+            td.carrito-cantidad {
+                display: block;
+                margin-left: 30%;
+                margin-top: 10px; /* Ajusta el espaciado entre "Producto" y "Cantidad" */
+            }
+            
+            .subtotal {
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Estilo para el párrafo de comentarios */
+            .subtotal p {
+                order: 1; 
+                float: none;
+                text-align: center; 
+            }
+
+            textarea {
+                order: 2; 
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .subtotal-envio {
+                order: 3; 
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
     </style>

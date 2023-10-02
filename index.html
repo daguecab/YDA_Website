@@ -19,7 +19,9 @@
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-icons.css" rel="stylesheet">
-        
+        <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="images/Favicon.ico" type="image/x-icon">
+
 
         <link rel="stylesheet" href="css/slick.css"/>
 
@@ -32,11 +34,11 @@
     <body>
     
         <main>
-                <style>
-                    .container2 {
-                        position: relative;
-                        display: inline-block;
-                    }
+            <style>
+                .container2 {
+                    position: relative;
+                    display: inline-block;
+                }
 
                 .item-count {
                     position: absolute;
@@ -50,6 +52,45 @@
                     text-align: center;
                     font-size: 10px; /* Ajusta el tamaño de la fuente */
                 }
+
+                .custom-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+                .custom-modal-content {
+                    background-color: #fff;
+                    width: 30%;
+                    margin: 100px auto;
+                    padding: 20px;
+                    text-align: center;
+                    border-radius: 5px;
+                    box-shadow: 0 15px 10px rgba(255, 255, 255, 0.2); 
+                }
+
+                .custom-btn {
+                    background: var(--primary-color);
+                    border-radius: 50px;
+                    color: var(--white-color);
+                    font-size: var(--copyright-text-font-size);
+                    text-transform: uppercase;
+                    padding: 16.50px 20px;
+                }
+
+                @media screen and (max-width: 768px) {
+                    .custom-modal-content {
+                        width: 70%;
+                    }
+                }
+
+                label {
+                    display: flex;
+                }
+
             </style>
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
@@ -98,14 +139,19 @@
                 <!-- Si necesitas añadir mas imagenes, solo añade más slick-custom aquí -->
 
              </section>
-
             <section class="about section-padding" id="mejores-fermentos">
                 <div class="container">
-                    <div class="row" >
-
+                    <div class="row">
+            
                         <div class="col-10 text-center" style="margin: auto;">
                             <h2 class="mb-5">Los Mejores Fermentos</h2>
-                            <h4 style="font-weight:100;margin-bottom:20px;">Descubre la autenticidad de nuestros fermentos tradicionales para yogur. Experimenta el sabor único y los beneficios saludables en cada cucharada. </p>
+                            <h5 style="font-weight:100;margin-bottom:20px;">Descubre la autenticidad de nuestros fermentos
+                                tradicionales para yogur. Experimenta el sabor único y los beneficios saludables en cada cucharada.
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
                             <a href="productos-de-antaño.html" class="custom-btn">¡HAZ TU PROPIO YOGUR CASERO HOY!</a>
                         </div>
                     </div>
@@ -330,6 +376,124 @@
                     </div>
                 </div>
             </section>
+            <!-- Modal -->
+            <div class="custom-modal" id="emailModal">
+                <div class="custom-modal-content">
+                    <h3>Apúntate a la preventa</h3>
+                    <form id="formulario" action="#" method="post">
+
+                        <div class="form-floating">
+                            <input type="name" name="name" id="name" pattern="[A-Za-z ]+" class="form-control" style="text-align: left;" placeholder="Nombre" required>
+                            <label for="name">Nombre</label>
+                        </div>
+
+                        <div class="form-floating my-4">
+                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
+                            <label for="email">Correo Electrónico</label>
+                        </div>
+
+                        <div class="form-floating my-4">
+                            <input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form-control" style="text-align: left;" placeholder="Teléfono">
+                            <label for="tel">Teléfono</label>
+                        </div>
+                        <div class="form-floating" style="float:left;">
+                            <input type="checkbox" name="consentimientoAviso" required>
+                            Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
+                        </div>
+                        <div class="form-floating mb-3" style="float:left;">
+                            <input type="checkbox" name="consentimientoComercial">
+                            Quiero recibir cupones y/o promociones alguna vez
+                        </div>
+                        <button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">Enviar</button>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                // JavaScript para mostrar el modal al cargar la página
+                var emailModal = document.getElementById('emailModal');
+                // var closeModalBtn = document.getElementById('closeModalBtn');
+
+                window.addEventListener('load', function() {
+                    emailModal.style.display = 'block';
+                });
+
+                window.addEventListener('load', function() {
+                // Verifica si el parámetro "desactivar" está presente en la URL
+                var params = new URLSearchParams(window.location.search);
+                if (params.has('preventa') && params.get('preventa') === 'false') {
+                    emailModal.style.display = 'none'; // Cierra el modal si está presente el parámetro
+                } else {
+                    emailModal.style.display = 'block'; // Muestra el modal por defecto
+                }
+            });
+
+                // closeModalBtn.addEventListener('click', function() {
+                //     emailModal.style.display = 'none';
+                // });
+            </script>
+            <script>
+                // Validador de datos e integración con Zoho CRM
+                document.getElementById('formulario').addEventListener('submit', function(event) {
+                if(validarFormulario()){
+                    crearLeadZohoCRM();
+                }
+                
+            });
+
+            function getAuthToken(){
+                var clientID= '1000.R45TVCTSP2E6GCWY0VIHU71P98JBPM';
+                var clientSecret= '984c1e2862d1bcc06a89de55119f9080034d30e99f';
+            }
+            function validarFormulario(){
+                var emailInput = document.getElementById('email');
+                var telefonoInput = document.getElementById('telefono');
+                var form = document.getElementById('formulario');
+                var emailValue = emailInput.value.trim();
+                var telefonoValue = telefonoInput.value.trim();
+
+                // Verificar si al menos uno de los campos está relleno
+                if (emailValue === '' && telefonoValue === '') {
+                    alert('Por favor, rellena al menos uno de los campos (email o teléfono).');
+                    return false;
+                }
+                return true;
+            }
+            function crearLeadZohoCRM(){
+                event.preventDefault(); // Evitar que el formulario se envíe
+                // Obtiene los valores de los campos del formulario
+                const apellido = "-";//document.getElementById("name").value;
+                const nombre = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const telefono = document.getElementById("telefono").value;
+                // Estructura los datos en el formato requerido
+                const datos = {
+                    data: [
+                    {
+                        Last_Name: apellido,
+                        First_Name: nombre,
+                        Email: email,
+                        Phone: telefono
+                    }
+                    ]
+                };
+                fetch('https://www.zohoapis.com/crm/v2/Leads', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Zoho-oauthtoken 1000.c747f25cae5f365b6569b161f0d545a0.ef682a6eff1d0dc5fa661084495215c7"
+                        },
+                    body: JSON.stringify(datos)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Manejar la respuesta de Zoho CRM aquí
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            }
+            </script>
 
         </main>
 

@@ -17,24 +17,20 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
         <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="images/Favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/animate.css">
 
-
-
-        <link rel="stylesheet" href="css/slick.css"/>
+        <link href="css/slick.css" rel="stylesheet">
+        <link href="css/animate.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.waypoints.min.js"></script>
 
 
 
         <script src="js/cart.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="js/misc.js"></script>
     </head>
     
     <body>
@@ -450,6 +446,14 @@
             function getAuthToken(){
                 var clientID= '1000.R45TVCTSP2E6GCWY0VIHU71P98JBPM';
                 var clientSecret= '984c1e2862d1bcc06a89de55119f9080034d30e99f';
+                
+                fetch('https://accounts.zoho.com/oauth/v2/auth?client_id=1000.MF1EDPBXI742D7I5LFN36GNM3BN21H&response_type=token&scope=ZohoCRM.modules.all&redirect_uri=http://127.0.0.1:8080/callback', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Manejar la respuesta de Zoho CRM aquí
+                });
             }
             function validarFormulario(){
                 var emailInput = document.getElementById('email');
@@ -508,6 +512,8 @@
         </footer>
 
         <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/Headroom.js"></script>
         <script src="js/jQuery.headroom.js"></script>

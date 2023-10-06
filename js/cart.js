@@ -8,12 +8,13 @@ function addClickEventToCartButtons() {
         button.addEventListener('click', function() {
             var producto = button.dataset.producto;
             var precio = button.dataset.precio;
+            var idPrecio = button.dataset.idprecio;
             var selectedOption = button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
             if (selectedOption === 'Cantidad') {
                 alert('Selecciona una cantidad válida para agregar al carrito.');
             } else {
-                agregarAlCarrito(producto, parseInt(selectedOption), precio);
+                agregarAlCarrito(producto, parseInt(selectedOption), precio, idPrecio);
                 alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
                 //$('#cart-modal').modal('show');
@@ -27,14 +28,14 @@ function vaciarCarrito(){
 }
 
 // Función para agregar al carrito
-function agregarAlCarrito(producto, cantidad,precio) {
+function agregarAlCarrito(producto, cantidad,precio, idPrecio) {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
     var productoEnCarrito = carrito.find(item => item.producto === producto);
     if (productoEnCarrito) {
         productoEnCarrito.cantidad = parseInt(productoEnCarrito.cantidad) + cantidad;
     } else {
-        carrito.push({ producto: producto, cantidad: cantidad, precio: precio });
+        carrito.push({ producto: producto, cantidad: cantidad, precio: precio, price_id: idPrecio });
     }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -140,7 +141,6 @@ function mostrarCarrito() {
 function funcionalidadComprar() {
     const checkout = document.getElementById('checkout');
     const preloader = document.querySelector('.loading');
-    console.log(preloader);
     checkout.addEventListener('click', async () => {
         //Mostrar Spinner
         preloader.style.display = 'flex';
@@ -156,9 +156,10 @@ function funcionalidadComprar() {
         const productsForCheckout = productosEnCarrito.map((producto) => ({
             name: producto.producto,
             price: Math.round(producto.precio * 100), // Convierte el precio a centavos (si es necesario)
+            price_id: producto.price_id,
             quantity: producto.cantidad || 1 // Establece una cantidad predeterminada si no está definida
         }));
-        console.log(productsForCheckout);
+        const comentarios = document.querySelector('#comentariosPedido').value;
 
         // Realiza la solicitud al servidor
         const res = await fetch('https://stripe-integration-n0er.onrender.com/create-checkout-session', {
@@ -169,6 +170,7 @@ function funcionalidadComprar() {
             body: JSON.stringify({
                 products: productsForCheckout,
                 returnUrl: window.location.href,
+                comentarios: comentarios,
                 successUrl: base_url + '/success.html'
 
             })
@@ -334,7 +336,6 @@ async function generateProductDetailHTML(productName) {
     const response = await fetch("productos.json");
     const products = await response.json();
 
-    console.log(products);
     const product = products.find(p => p.name === productName);
 
     if (!product) {
@@ -372,7 +373,7 @@ async function generateProductDetailHTML(productName) {
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                         </div>
                         <script src="js/cart.js"></script>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">

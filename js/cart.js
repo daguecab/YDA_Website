@@ -377,19 +377,35 @@ async function generateProductDetailHTML(productName) {
                         </div>
                         <script src="js/cart.js"></script>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
-                            <h6><a href="#" id="botonIncluye" class="product-additional-link">Qué incluye</a></h6>
+                            <h6>
+                                <a href="#" id="botonIncluye" class="product-additional-link">
+                                    <i id="arrowBotonIncluye" class="material-icons">keyboard_arrow_down</i>
+                                    Qué incluye
+                                </a>
+
+                            </h6>
                             <div id="incluye" style="display: none;">
                                 <p>${product.incluye}</p>
                             </div>
                         </div>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
-                            <h6><a href="#" id="botonGastos" class="product-additional-link">Gastos de Envío</a></h6>
+                            <h6>
+                                <a href="#" id="botonGastos" class="product-additional-link">
+                                    <i id="arrowBotonGastos" class="material-icons">keyboard_arrow_down</i>
+                                    Gastos de Envío
+                                </a>
+                            </h6>
                             <div id="gastos" style="display: none;">
                                 <p>Los gastos de envío son GRATIS, aunque damos la opción de un envío express.</p>
                             </div>
                         </div>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
-                            <h6><a href="#" id="botonDevolver" class="product-additional-link">Devoluciones</a></h6>
+                            <h6>
+                                <a href="#" id="botonDevolver" class="product-additional-link">
+                                    <i id="arrowBotonDevolver" class="material-icons">keyboard_arrow_down</i>
+                                    Devoluciones
+                                </a>
+                            </h6>
                             <div id="devolver" style="display: none;">
                                 <p>Si el yogur no te parece de calidad, te devuelvo el dinero, sin preguntas.</p>
                             </div>
@@ -410,31 +426,40 @@ function funcionalidadDetalles() {
     const botonIncluye = document.getElementById('botonIncluye');
     const incluye = document.getElementById('incluye');
     botonIncluye.addEventListener('click', function () {
+        const arrow = document.getElementById('arrowBotonIncluye');
         event.preventDefault();
         if (incluye.style.display === 'none' || incluye.style.display === '') {
             incluye.style.display = 'block';
+            arrow.style.transform = 'rotate(180deg)';
         } else {
             incluye.style.display = 'none';
+            arrow.style.transform = 'rotate(0deg)';
         }
     });
     const botonGastos = document.getElementById('botonGastos');
     const gastos = document.getElementById('gastos');
     botonGastos.addEventListener('click', function () {
+        const arrow = document.getElementById('arrowBotonIncluye');
         event.preventDefault();
         if (gastos.style.display === 'none' || gastos.style.display === '') {
             gastos.style.display = 'block';
+            arrow.style.transform = 'rotate(180deg)';
         } else {
             gastos.style.display = 'none';
+            arrow.style.transform = 'rotate(0deg)';
         }
     });
     const botonDevolver = document.getElementById('botonDevolver');
     const devolver = document.getElementById('devolver');
     botonDevolver.addEventListener('click', function () {
+        const arrow = document.getElementById('arrowBotonIncluye');
         event.preventDefault();
         if (devolver.style.display === 'none' || devolver.style.display === '') {
             devolver.style.display = 'block';
+            arrow.style.transform = 'rotate(180deg)';
         } else {
             devolver.style.display = 'none';
+            arrow.style.transform = 'rotate(0deg)';
         }
     });
 }

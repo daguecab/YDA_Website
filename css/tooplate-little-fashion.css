@@ -362,8 +362,9 @@ input {
 
 .custom-btn:hover,
 .slick-slideshow .custom-btn:hover {
-  background: var(--primary-color2);
-  color: var(--white-color);
+  background: transparent;
+  color: var(--primary-color2);
+  border: 2px solid var(--primary-color2);
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.758);
 }
 
@@ -675,6 +676,8 @@ input {
 .slick-custom img {
   width: 100%;
   object-fit: cover;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .slick-bottom {
@@ -706,9 +709,16 @@ input {
 
 .slick-slideshow .custom-btn {
   font-weight: var(--font-weight-bold);
-  /* display: none; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
   padding-right: 32px;
   padding-left: 32px;
+  background: transparent;
+  color: var(--primary-color2);
+  border: 2px solid var(--primary-color2);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.758);
 }
 
 @media (min-width: 576px) {
@@ -787,6 +797,10 @@ input {
 /*---------------------------------------
   CUSTOM CIRCLE IMAGES               
 -----------------------------------------*/
+.material-icons{
+  transition: transform 0.3s ease;
+  vertical-align:middle;
+}
 
 .animate-box {
   opacity: 0;

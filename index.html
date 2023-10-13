@@ -371,6 +371,11 @@
             </section>
             <!-- Modal -->
             <div class="custom-modal" id="emailModal">
+                <section class="loading" style="display: none !important;">
+                    <div class="spinner">
+                        <span class="sk-inner-circle"></span>
+                    </div>
+                </section>
                 <div class="custom-modal-content">
                     <h3>Apúntate a la preventa</h3>
                     <form id="formulario" action="#" method="post">
@@ -389,11 +394,11 @@
                             <input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form-control" style="text-align: left;" placeholder="Teléfono">
                             <label for="tel">Teléfono</label>
                         </div>
-                        <div class="form-floating" style="float:left;">
+                        <div class="form-floating" style="text-align:left;">
                             <input type="checkbox" name="consentimientoAviso" required>
                             Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
                         </div>
-                        <div class="form-floating mb-3" style="float:left;">
+                        <div class="form-floating mb-3" style="text-align:left;">
                             <input type="checkbox" name="consentimientoComercial">
                             Quiero recibir cupones y/o promociones alguna vez
                         </div>
@@ -427,25 +432,25 @@
             </script>
             <script>
                 // Validador de datos e integración con Zoho CRM
-                document.getElementById('formulario').addEventListener('submit', function(event) {
-                if(validarFormulario()){
-                    crearLeadZohoCRM();
-                }
-                
-            });
-
-            function getAuthToken(){
-                var clientID= '1000.R45TVCTSP2E6GCWY0VIHU71P98JBPM';
-                var clientSecret= '984c1e2862d1bcc06a89de55119f9080034d30e99f';
-                
-                fetch('https://accounts.zoho.com/oauth/v2/auth?client_id=1000.MF1EDPBXI742D7I5LFN36GNM3BN21H&response_type=token&scope=ZohoCRM.modules.all&redirect_uri=http://127.0.0.1:8080/callback', {
-                    method: 'GET'
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data); // Manejar la respuesta de Zoho CRM aquí
+                const formulario = document.getElementById('formulario');
+                formulario.addEventListener('submit', async function(event) {
+                    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+                    
+                    if (validarFormulario()) {
+                        try {
+                            await crearLeadZohoCRM();
+                            alert('Datos registrados correctamente. Se te notificará cuando se abra la web.');
+                            formulario.reset();
+                        } catch (error) {
+                            console.error('Error en la petición:', error);
+                            alert('Hubo un error en la petición. Por favor, contáctenos por WhatsApp o teléfono. Gracias por su comprensión.');
+                        }
+                        const preloader = document.querySelector('.loading');
+                        preloader.style.display = 'none';
+                    }
                 });
-            }
+
+
             function validarFormulario(){
                 var emailInput = document.getElementById('email');
                 var telefonoInput = document.getElementById('telefono');
@@ -460,40 +465,53 @@
                 }
                 return true;
             }
-            function crearLeadZohoCRM(){
-                event.preventDefault(); // Evitar que el formulario se envíe
-                // Obtiene los valores de los campos del formulario
-                const apellido = "-";//document.getElementById("name").value;
-                const nombre = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const telefono = document.getElementById("telefono").value;
-                // Estructura los datos en el formato requerido
-                const datos = {
-                    data: [
-                    {
-                        Last_Name: apellido,
-                        First_Name: nombre,
-                        Email: email,
-                        Phone: telefono
-                    }
-                    ]
-                };
-                fetch('https://www.zohoapis.com/crm/v2/Leads', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Zoho-oauthtoken 1000.c747f25cae5f365b6569b161f0d545a0.ef682a6eff1d0dc5fa661084495215c7"
+            async function crearLeadZohoCRM() {
+                try {
+                    //Mostrar Spinner
+                    const preloader = document.querySelector('.loading');
+                    preloader.style.display = 'flex';
+                    // Evitar que el formulario se envíe
+                    event.preventDefault(); 
+                    // Obtiene los valores de los campos del formulario
+                    // const nombre = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[0] : "-";
+                    // const apellido = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[1] : "-";
+                    const apellido = "-"; //document.getElementById("name").value;
+                    const nombre = document.getElementById("name").value;
+                    const email = document.getElementById("email").value;
+                    const telefono = document.getElementById("telefono").value;
+                    // Estructura los datos en el formato requerido
+                    const lead = {
+                        lead: {
+                            Last_Name: apellido,
+                            First_Name: nombre,
+                            Email: email,
+                            Phone: telefono
+                        }
+                    };
+                    // http://stripe-integration-n0er.onrender.com/zoho/insertLead
+                    const response = await fetch('http://127.0.0.1:3000/zoho/insertLead', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
                         },
-                    body: JSON.stringify(datos)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data); // Manejar la respuesta de Zoho CRM aquí
-                })
-                .catch(error => {
+                        body: JSON.stringify(lead)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        console.log(data);
+                        return data;
+                    } else {
+                        console.error(data);
+                        throw new Error(data.message || "Error en la solicitud al servidor");
+                    }
+                } catch (error) {
                     console.error(error);
-                });
+                    throw error; // Devuelve el error para que pueda ser manejado por el código que llama a esta función
+                }
             }
+
             </script>
 
         </main>

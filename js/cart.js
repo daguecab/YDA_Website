@@ -162,7 +162,7 @@ function funcionalidadComprar() {
         const comentarios = document.querySelector('#comentariosPedido').value;
 
         // Realiza la solicitud al servidor
-        const res = await fetch('https://stripe-integration-n0er.onrender.com/create-checkout-session', {
+        const res = await fetch('https://stripe-integration-n0er.onrender.com/stripe/create-checkout-session', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

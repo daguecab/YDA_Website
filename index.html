@@ -475,8 +475,8 @@
                     event.preventDefault(); 
                     // Obtiene los valores de los campos del formulario
                     const nombreCompleto = document.getElementById("name").value;
-                    const nombre = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[0] : "-";
-                    const apellido = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[1] : "-";
+                    const nombre = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[0] : nombreCompleto;
+                    const apellido = nombreCompleto.includes(" ") ? nombreCompleto.split(" ").slice(1).join(" ") : "-";
                     // const apellido = "-"; //document.getElementById("name").value;
                     // const nombre = document.getElementById("name").value;
                     // const email = document.getElementById("email").value;

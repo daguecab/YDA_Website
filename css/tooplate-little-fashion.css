@@ -11,27 +11,27 @@ https://www.tooplate.com/view/2127-little-fashion
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
-  --white-color:                #FFFFFF;
-  --primary-color:              #C39b7C;
-  --primary-color2:             #c48b5f;
-  --section-bg-color:           #c39b7c40;
-  --dark-color:                 #000000;
-  --grey-color:                 #d0d1d1;
-  --p-color:                    #717275;
+  --white-color: #FFFFFF;
+  --primary-color: #C39b7C;
+  --primary-color2: #c48b5f;
+  --section-bg-color: #c39b7c40;
+  --dark-color: #000000;
+  --grey-color: #d0d1d1;
+  --p-color: #717275;
 
-  --body-font-family:           'Life Savers,Life-Savers-Fallback,sans-serif';
+  --body-font-family: 'Life Savers,Life-Savers-Fallback,sans-serif';
 
-  --h5-font-size:               24px;
-  --p-font-size:                20px;
-  --copyright-text-font-size:   16px;
-  --product-link-font-size:     14px;
-  --custom-link-font-size:      12px;
+  --h5-font-size: 24px;
+  --p-font-size: 20px;
+  --copyright-text-font-size: 16px;
+  --product-link-font-size: 14px;
+  --custom-link-font-size: 12px;
 
-  --font-weight-thin:           100;
-  --font-weight-light:          300;
-  --font-weight-normal:         400;
-  --font-weight-bold:           700;
-  --font-weight-black:          900;
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 }
 
 body,
@@ -50,9 +50,9 @@ html {
 }
 
 body {
-    background: var(--white-color);
-    font-family: var(--body-font-family);    
-    position: relative;
+  background: var(--white-color);
+  font-family: var(--body-font-family);
+  position: relative;
 }
 
 /*---------------------------------------
@@ -113,7 +113,7 @@ p {
   font-weight: var(--font-weight-light);
 }
 
-a, 
+a,
 button {
   touch-action: manipulation;
   transition: all 0.3s;
@@ -144,6 +144,7 @@ CUSTOM FIELDS
 .precio::after {
   content: "€";
 }
+
 /* Estilos para textarea */
 #comentariosPedido {
   float: left;
@@ -153,10 +154,11 @@ CUSTOM FIELDS
   clear: left;
   height: 90px;
 }
+
 /* Estilos para el campo de cantidad */
 .number-field {
   display: inline-block;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
@@ -173,6 +175,22 @@ CUSTOM FIELDS
   padding: 0 10px;
   background-color: #FFF;
   cursor: pointer;
+}
+
+.medio {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #delete {
+    display: none;
+  }
+  .number-field{
+    display: none;
+  }
+  .medio{
+    display: inline-block !important;
+  }
 }
 
 /* Estilos para el botón de incremento */
@@ -274,7 +292,9 @@ strong {
 }
 
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /*---------------------------------------
@@ -297,11 +317,13 @@ strong {
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
+
 @media screen and (max-width: 768px) {
   .feature-left .icon {
     margin-right: 5%;
   }
 }
+
 .feature-left .icon i {
   display: table-cell;
   vertical-align: middle;
@@ -313,6 +335,7 @@ strong {
   float: left;
   width: 80%;
 }
+
 @media screen and (max-width: 768px) {
   .feature-left .feature-copy {
     width: 70%;
@@ -444,6 +467,7 @@ input {
   position: relative;
   padding: 20px;
 }
+
 @media (max-width: 768px) {
   .navbar {
     position: absolute;
@@ -454,10 +478,12 @@ input {
     padding: 10px;
     z-index: 2;
   }
-  .logo{
+
+  .logo {
     width: 70px;
   }
 }
+
 @media (min-width: 769px) {
   .navbar {
     /* background: var(--white-color);
@@ -477,13 +503,16 @@ input {
     padding: 40px 0;
     z-index: 1001;
   }
-  .logo{
+
+  .logo {
     width: 100px;
   }
 }
 
-.navbar span, h2 span, h4 span {
-	color: var(--primary-color);
+.navbar span,
+h2 span,
+h4 span {
+  color: var(--primary-color);
 }
 
 .navbar.headroom--not-top {
@@ -505,7 +534,8 @@ input {
   margin: 0;
   padding: 0;
 }
-.navbar-brand:hover{
+
+.navbar-brand:hover {
   scale: 110%;
 }
 
@@ -539,7 +569,7 @@ input {
   transform: translateY(10px);
 }
 
-.navbar .nav-link.active::after, 
+.navbar .nav-link.active::after,
 .navbar .nav-link:hover::after {
   opacity: 1;
   -webkit-transform: translateY(0px);
@@ -552,7 +582,7 @@ input {
   color: var(--primary-color);
 }
 
-.nav-link:focus, 
+.nav-link:focus,
 .nav-link:hover {
   color: var(--p-color);
 }
@@ -797,9 +827,9 @@ input {
 /*---------------------------------------
   CUSTOM CIRCLE IMAGES               
 -----------------------------------------*/
-.material-icons{
+.material-icons {
   transition: transform 0.3s ease;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .animate-box {
@@ -809,36 +839,39 @@ input {
 .animatedColor {
   color: white;
 }
+
 .flecha {
   animation: arrow 1s ease-in-out infinite;
-  font-size:20px;
+  font-size: 20px;
 }
 
-.flecha:hover{
-  animation:arrow 1s ease-out infinite !important;
-  color:#C39b7C;
+.flecha:hover {
+  animation: arrow 1s ease-out infinite !important;
+  color: #C39b7C;
 }
 
-.elemento{
+.elemento {
   width: 100px;
   height: 50px;
-  margin:0 auto;
+  margin: 0 auto;
   padding-top: 5%;
   position: relative;
 }
 
 @keyframes arrow {
   0% {
-  transform: translate(0px, 50px);
+    transform: translate(0px, 50px);
   }
+
   50% {
-  transform: translate(0px, 60px);
+    transform: translate(0px, 60px);
   }
+
   100% {
-  transform: translate(0px, 50px);
+    transform: translate(0px, 50px);
   }
-  }
-  
+}
+
 
 .custom-circle-image {
   border-radius: 100px;
@@ -923,8 +956,8 @@ section {
 }
 
 .section-padding-little {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .featured {
@@ -952,7 +985,7 @@ section {
 }
 
 .about .nav-pills .nav-link:hover,
-.about .nav-pills .nav-link.active, 
+.about .nav-pills .nav-link.active,
 .about .nav-pills .show>.nav-link {
   background: transparent;
   border-left-color: var(--primary-color);
@@ -985,7 +1018,7 @@ button:focus:not(:focus-visible) {
 }
 
 .accordion-body {
-  border-top: 1px solid rgba(0,0,0,.125);
+  border-top: 1px solid rgba(0, 0, 0, .125);
 }
 
 .accordion-button {
@@ -1095,11 +1128,11 @@ button:focus:not(:focus-visible) {
   background: var(--section-bg-color);
 }
 
-.step-icon{
-  float:left;
+.step-icon {
+  float: left;
 }
 
-.step-info{
+.step-info {
   padding: 0px 20px;
 }
 
@@ -1107,6 +1140,9 @@ button:focus:not(:focus-visible) {
   .product-thumb {
     width: 50%;
     margin: auto;
+  }
+  #relacionados {
+    text-align: center;
   }
 }
 
@@ -1128,7 +1164,7 @@ button:focus:not(:focus-visible) {
 .product-image {
   transition: all 0.5s ease-out;
   border-radius: 15px;
-  max-width: 80%!important;
+  max-width: 80% !important;
 }
 
 .product-thumb:hover .product-image {
@@ -1149,7 +1185,7 @@ button:focus:not(:focus-visible) {
   padding: 30px 10%;
 }
 
-.featured-product .product-info{
+.featured-product .product-info {
   background-color: #efefef;
 }
 
@@ -1423,4 +1459,127 @@ button:focus:not(:focus-visible) {
     bottom: 0;
   }
 }
+/*---------------------------------------
+  CARRITO               
+-----------------------------------------*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
 
+th {
+  border-bottom: 1px solid #ddd;
+  background-color: #f2f2f2;
+  padding: 8px;
+  text-align: left;
+}
+
+td {
+  border: none;
+  /* Eliminar bordes en las celdas de datos */
+  padding: 20px 8px;
+  text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+  /* Borde inferior */
+}
+
+.subtotal {
+  font-weight: bold;
+  text-align: right;
+  /* Alinea a la derecha */
+}
+
+.total {
+  font-size: 20px;
+  text-align: right;
+  /* Alinea a la derecha */
+}
+
+.carrito .btn-comprar {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  width: auto !important;
+  cursor: pointer;
+  clear: right;
+  width: 100% !important;
+}
+
+/* Estilos para imágenes */
+.carrito .product-image {
+  max-width: 100px !important;
+  max-height: 100px;
+}
+
+.carrito .product-details {
+  display: flex;
+  align-items: center;
+}
+
+.product-details>div {
+  flex: 1;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.subtotal-envio {
+  display: inline-block;
+  /* Para que ocupe solo el ancho necesario */
+  text-align: center;
+  width: 30%;
+}
+
+td.izquierda {
+  text-align: left;
+}
+
+td.derecha {
+  text-align: right;
+  display: block !important;
+}
+
+/* Estilo para ocultar la columna "Cantidad" en dispositivos móviles */
+@media (max-width: 768px) {
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    display: none;
+  }
+
+  td.carrito-cantidad {
+    display: none;
+    /* Ajusta el espaciado entre "Producto" y "Cantidad" */
+  }
+
+  .subtotal {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Estilo para el párrafo de comentarios */
+  .subtotal p {
+    order: 1;
+    float: none;
+    text-align: center;
+  }
+
+  textarea {
+    order: 2;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .subtotal-envio {
+    order: 3;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

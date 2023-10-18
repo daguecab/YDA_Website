@@ -6,12 +6,11 @@ function loadFooter() {
         const footerHTML = `
         <div class="container">
           <div class="row">
-              <div class="col-lg-3 col-10 me-auto mb-4">
+              <div class="col-lg-3 col-10 text-center mb-4" style="margin:auto">
                   <a class="navbar-brand" href="index.html">
                       <img class="logo" style="margin-top: -5%;" src="images/Logo.png">
                   </a>
-                  <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2023 <strong>Yogures de Antaño</strong></p>
-                  <br>
+                  <p class="copyright-text text-muted mt-lg-3 mb-4 mb-lg-0">Copyright © 2023 <strong>Yogures de Antaño</strong></p>
                   <p class="copyright-text">Designed by <a href="https://www.letpro.es/" target="_blank">LetPro</a></p>
               </div>
 

@@ -66,6 +66,7 @@
                     z-index: 10000
                 }
                 .custom-modal-content {
+                    display: flex;
                     background-color: #fff;
                     width: 30%;
                     margin: 100px auto;
@@ -83,6 +84,14 @@
 
                 label {
                     display: flex;
+                }
+                .hidden {
+                   opacity: 0;
+                   transform: translateX(100%);
+                }
+                .divCarroussel {
+                    transition: all 0.5s ease-in-out;
+                    flex: 0 0 100%;   
                 }
 
             </style>
@@ -138,14 +147,14 @@
                     <div class="row">
             
                         <div class="col-10 text-center" style="margin: auto;">
-                            <h2 class="mb-5">Los Mejores Fermentos</h2>
+                            <h3 class="mb-3">Los Mejores Fermentos</h3>
                             <h5 style="font-weight:100;margin-bottom:20px;">Descubre la autenticidad de nuestros fermentos
                                 tradicionales para yogur. Experimenta el sabor único y los beneficios saludables en cada cucharada.
                             </h5>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="text-center feature-left animate-box" data-animate-effect="fadeInTop">
+                        <div class="text-center feature-left animate-box mt-3" data-animate-effect="fadeInTop">
                             <a href="productos-de-antaño.html" class="custom-btn">¡HAZ TU PROPIO YOGUR CASERO HOY!</a>
                         </div>
                     </div>
@@ -157,7 +166,7 @@
                     <div class="row" >
 
                         <div class="col-10 text-center" style="margin: auto;">
-                            <h2 class="mb-5">Mi misión</h2>
+                            <h3 class="mb-3">Mi misión</h3>
                             <h5 style="font-weight:50;margin-bottom:20px;">Llevo tomando yogur desde que tengo memoria, de pequeño por su sabor, y ahora también por sus enormes beneficios. Mi objetivo es que podáis hacer los yogures más deliciosos, a un precio muy asequible y solo con dos ingredientes: leche y nuestros fermentos.</p>
                         </div>
                     </div>
@@ -168,7 +177,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-10 text-center" style="margin: auto;">
-                            <h2 class="mb-5">¿Por qué hago mis propios yogures?</h2>
+                            <h3 class="mb-3">¿Por qué hago mis propios yogures?</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -220,7 +229,7 @@
                     <div class="row">
                         
                         <div class="col-12 text-center" id="product-container">
-                            <h2 class="mb-5">Nuestros Yogures</h2>
+                            <h3 class="mb-3">Nuestros Yogures</h3>
                         </div>
                         <!-- Añadimos todos los productos -->
                         <script> loadProducts('yogur'); </script>
@@ -238,7 +247,7 @@
                     <div class="row">
                         
                         <div class="col-12 text-center">
-                            <h2 class="mb-5">¡Haz tu yogur en 5 sencillos pasos!</h2>
+                            <h3 class="mb-3">¡Haz tu yogur en 5 sencillos pasos!</h3>
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3 feature-left">
@@ -323,7 +332,7 @@
                     <div class="row">
                         
                         <div class="col-12 text-center">
-                            <h2 class="mb-5">¿Por qué Yogures de Antaño?</h2>
+                            <h3 class="mb-3">¿Por qué Yogures de Antaño?</h3>
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3">
@@ -378,33 +387,61 @@
                     </div>
                 </section>
                 <div class="custom-modal-content">
-                    <h3>Apúntate a la preventa</h3>
-                    <form id="formulario" action="#" method="post">
+                    <div id="datosPreventaDiv" class="divCarroussel" style="width: 100%;height: 100%; display: block;">
+                        <h3>Apúntate a la preventa</h3>
+                        <form id="datosPreventa" action="#" method="post">
 
-                        <div class="form-floating">
-                            <input type="name" name="name" id="name" pattern="[A-Za-z ]+" class="form-control" style="text-align: left;" placeholder="Nombre" required>
-                            <label for="name">Nombre</label>
-                        </div>
+                            <div class="form-floating">
+                                <input type="name" name="name" id="name" pattern="[A-Za-z ]+" class="form-control" style="text-align: left;" placeholder="Nombre" required>
+                                <label for="name">Nombre</label>
+                            </div>
 
-                        <div class="form-floating my-4">
-                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
-                            <label for="email">Correo Electrónico</label>
-                        </div>
+                            <div class="form-floating my-4">
+                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
+                                <label for="email">Correo Electrónico</label>
+                            </div>
 
-                        <div class="form-floating my-4">
-                            <input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form-control" style="text-align: left;" placeholder="Teléfono">
-                            <label for="tel">Teléfono</label>
-                        </div>
-                        <div class="form-floating" style="text-align:left;">
-                            <input type="checkbox" name="consentimientoAviso" required>
-                            Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
-                        </div>
-                        <div class="form-floating mb-3" style="text-align:left;">
-                            <input type="checkbox" name="consentimientoComercial" id="consentimientoComercial">
-                            Quiero recibir cupones y/o promociones alguna vez
-                        </div>
-                        <button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">Enviar</button>
-                    </form>
+                            <div class="form-floating my-4">
+                                <input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form-control" style="text-align: left;" placeholder="Teléfono">
+                                <label for="tel">Teléfono</label>
+                            </div>
+                            <div class="form-floating" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoAviso" required>
+                                Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
+                            </div>
+                            <div class="form-floating mb-3" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoComercial" id="consentimientoComercial">
+                                Quiero recibir cupones y/o promociones alguna vez
+                            </div>
+                            <button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">Enviar</button>
+                        </form>
+                    </div>
+                    <div id="preguntarStockDiv"style="width: 100%;height: 100%;" class="divCarroussel hidden">
+                        <h3>¿Que productos quieres?</h3>
+                        <form id="preguntarStock" action="#" method="post">
+
+
+                            <div class="form-floating my-4">
+                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
+                                <label for="email">Correo Electrónico</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="name" name="name" id="name" pattern="[A-Za-z ]+" class="form-control" style="text-align: left;" placeholder="Nombre" required>
+                                <label for="name">Nombre</label>
+                            </div>
+
+                            <div class="form-floating" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoAviso" required>
+                                Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
+                            </div>
+                            <div class="form-floating mb-3" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoComercial" id="consentimientoComercial">
+                                Quiero recibir cupones y/o promociones alguna vez
+                            </div>
+                            <button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">Enviar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -433,15 +470,17 @@
             </script>
             <script>
                 // Validador de datos e integración con Zoho CRM
-                const formulario = document.getElementById('formulario');
-                formulario.addEventListener('submit', async function(event) {
-                    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+                const datosPreventa = document.getElementById('datosPreventa');
+                datosPreventa.addEventListener('submit', async function(event) {
+                    // Evita que el formulario se envíe automáticamente
+                    event.preventDefault();
                     
-                    if (validarFormulario()) {
+                    if (validarDatosPreventa(datosPreventa)) {
                         try {
                             await crearLeadZohoCRM();
                             alert('Datos registrados correctamente. Se te notificará cuando se abra la web.');
-                            formulario.reset();
+                            datosPreventa.reset();
+                            // preguntarProductos();
                         } catch (error) {
                             console.error('Error en la petición:', error);
                             alert('Hubo un error en la petición. Por favor, contáctenos por WhatsApp o teléfono. Gracias por su comprensión.');
@@ -452,10 +491,9 @@
                 });
 
 
-            function validarFormulario(){
+            function validarDatosPreventa(){
                 var emailInput = document.getElementById('email');
                 var telefonoInput = document.getElementById('telefono');
-                var form = document.getElementById('formulario');
                 var emailValue = emailInput.value.trim();
                 var telefonoValue = telefonoInput.value.trim();
 
@@ -466,20 +504,19 @@
                 }
                 return true;
             }
+
             async function crearLeadZohoCRM() {
                 try {
                     //Mostrar Spinner
                     const preloader = document.querySelector('.loading');
                     preloader.style.display = 'flex';
-                    // Evitar que el formulario se envíe
-                    event.preventDefault(); 
                     // Obtiene los valores de los campos del formulario
                     const nombreCompleto = document.getElementById("name").value;
                     const nombre = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[0] : nombreCompleto;
                     const apellido = nombreCompleto.includes(" ") ? nombreCompleto.split(" ").slice(1).join(" ") : "-";
                     // const apellido = "-"; //document.getElementById("name").value;
                     // const nombre = document.getElementById("name").value;
-                    // const email = document.getElementById("email").value;
+                    const email = document.getElementById("email").value;
                     const telefono = document.getElementById("telefono").value;
                     const consentimientoComercial = document.getElementById("consentimientoComercial").checked ? "Si" : "No";
                     // Estructura los datos en el formato requerido
@@ -489,7 +526,8 @@
                             First_Name: nombre,
                             Email: email,
                             Phone: telefono,
-                            Consentimiento_Comercial: consentimientoComercial
+                            Consentimiento_Comercial: consentimientoComercial,
+                            Lead_Source: "Preventa Web"
                         }
                     };
                     // http://127.0.0.1:3000/zoho/insertLead
@@ -514,6 +552,19 @@
                     console.error(error);
                     throw error; // Devuelve el error para que pueda ser manejado por el código que llama a esta función
                 }
+            }
+
+            function preguntarProductos() {
+                const formularioActual = document.getElementById("datosPreventaDiv");
+                const nuevoFormulario = document.getElementById("preguntarStockDiv");
+                // Aquí puedes procesar los datos del formulario actual si es necesario
+
+                // Muestra el nuevo formulario
+                formularioActual.style.opacity = 0;
+                formularioActual.style.transform = "translateX(-100%)";
+                // Reinicia la posición del formulario actual
+                nuevoFormulario.style.opacity = 1;
+                nuevoFormulario.style.transform = "translateX(-100%)";
             }
 
             </script>

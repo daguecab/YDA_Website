@@ -64,7 +64,21 @@
 
             <script>generateProductDetailHTML("Yogur Griego")</script>
 
-           
+            <section class="related-product section-padding border-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 id="relacionados" class="mb-5">Puede que te interese</h2>
+                        </div>
+
+                        <div class="text-center col-12" id="product-container">                            
+                            <script> loadProducts("yogur", "Yogur Griego"); </script>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
 
         </main>
 
@@ -82,32 +96,8 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                                <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
+                            <div class="carritoCompra">
                             </div>
-
-                            <div class="col-lg-6 col-12 mt-3 mt-lg-0">
-                                <h3 class="modal-title" id="exampleModalLabel">Tree pot</h3>
-
-                                <p class="product-price text-muted mt-3">$25</p>
-
-                                <p class="product-p">Quatity: <span class="ms-1">4</span></p>
-
-                                <p class="product-p">Colour: <span class="ms-1">Black</span></p>
-
-                                <p class="product-p pb-3">Size: <span class="ms-1">S/S</span></p>
-
-                                <div class="border-top mt-4 pt-3">
-                                    <p class="product-p"><strong>Total: <span class="ms-1">$100</span></strong></p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="row w-50">
-                            <button type="button" class="btn custom-btn cart-btn ms-lg-4">Checkout</button>
                         </div>
                     </div>
                 </div>

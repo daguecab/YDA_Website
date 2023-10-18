@@ -17,7 +17,8 @@ function addClickEventToCartButtons() {
                 agregarAlCarrito(producto, parseInt(selectedOption), precio, idPrecio);
                 alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
-                //$('#cart-modal').modal('show');
+                // $('#cart-modal').modal('show');
+                mostrarCarrito()
             }
         });
     });
@@ -54,7 +55,7 @@ function mostrarCarrito() {
                 <a href="productos-de-antaño.html" class="custom-btn">Seguir comprando</a>
             </div>
         `;
-        carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
+        carritoCompraDiv.innerHTML = carritoHTML;
         return;
     }
     // Carga los productos de manera asíncrona desde products.json utilizando fetch
@@ -87,6 +88,14 @@ function mostrarCarrito() {
                                             <div style="margin-left:5%">
                                                 <p class="carrito-nombre-producto">${item.producto}</p>
                                                 <p class="precio carrito-precio-unitario">${product.price}</p>
+                                                <div class="number-field medio mt-1">
+                                                    <button id="decrease">-</button>
+                                                    <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
+                                                    <button id="increase">+</button>
+                                                </div>
+                                                <button id="delete" class="medio">
+                                                    <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
+                                                </button>
                                             </div>
                                         <td class="carrito-cantidad">
                                             <div class="number-field">
@@ -129,7 +138,7 @@ function mostrarCarrito() {
                 </div>
             `;
             // Inserta el contenido del carrito después del div con la clase "carritoCompra"
-            carritoCompraDiv.insertAdjacentHTML("afterend", carritoHTML);
+            carritoCompraDiv.innerHTML = carritoHTML;
             funcionalidadComprar();
             funcionalidadCampoCantidad(true);
         })
@@ -278,14 +287,14 @@ function generateProductHTML(product) {
     
     if (product.oldPrice) {
         priceHTML = `
-            <h6 style="color:black !important;" class="product-price text-muted mt-auto mb-5 precio"><b>${product.price}</b></h6>
-            <h6 class="product-price text-muted mt-auto mb-5 precio" style="margin-left:5px;"><del>${product.oldPrice}</del></h6>
+            <h5 style="color:black !important;" class="product-price text-muted mt-auto mb-5 precio"><b>${product.price}</b></h5>
+            <h5 class="product-price text-muted mt-auto mb-5 precio" style="margin-left:5px;"><del>${product.oldPrice}</del></h5>
         `;
     }
 
     return `
         <div class="col-lg-4 col-12 mb-3">
-            <div class="product-thumb feature-left animate-box" data-animate-effect="fadeInLeft">
+            <div class="product-thumb">
                 <div style="text-align: center;">
                     <a href="${product.productLink}">
                         <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
@@ -348,7 +357,7 @@ async function generateProductDetailHTML(productName) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
-                    <div class="product-thumb">
+                    <div class="product-thumb" style="text-align:center">
                         <img src="${product.imageSrc}" class="img-fluid product-image" alt="">
                     </div>
                 </div>

@@ -2,8 +2,8 @@
     
     {
         "name": "Termómetro",
-        "imageSrc": "images/products/Termometro.png",
-        "productLink": "skyr-detail.html",
+        "imageSrc": "images/products/Termometro.jpg",
+        "productLink": "termometro-detail.html",
         "isNew": true,
         "description": "Termómetro de cocina para calentar la leche.",
         "price": "4.95",

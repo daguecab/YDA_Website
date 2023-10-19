@@ -4,21 +4,22 @@ var subtotal = 0;
 // Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
 function addClickEventToCartButtons() {
     var addToCartButtons = document.querySelectorAll('.cart-btn');
+    console.log(addToCartButtons);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
             var producto = button.dataset.producto;
             var precio = button.dataset.precio;
             var idPrecio = button.dataset.idprecio;
-            var selectedOption = button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
+            var cantidad = button.dataset.cantidad;
+            var cantidadSeleccionada = cantidad != null ? cantidad : button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
-            if (selectedOption === 'Cantidad') {
+            if (cantidadSeleccionada === 'Cantidad') {
                 alert('Selecciona una cantidad válida para agregar al carrito.');
             } else {
-                agregarAlCarrito(producto, parseInt(selectedOption), precio, idPrecio);
+                agregarAlCarrito(producto, parseInt(cantidadSeleccionada), precio, idPrecio);
                 alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
                 // $('#cart-modal').modal('show');
-                mostrarCarrito()
             }
         });
     });
@@ -283,17 +284,17 @@ function actualizarLocalStorage(carrito, index, newCantidad) {
 }
 
 function generateProductHTML(product) {
-    let priceHTML = `<h6 style="color:black !important;" class="product-price precio text-muted ms-auto mt-auto mb-5 price">${product.price}</h6>`;
+    let priceHTML = `<h6 style="color:black !important;" class="product-price precio text-muted ms-auto mt-auto mb-1 price">${product.price}</h6>`;
     
     if (product.oldPrice) {
         priceHTML = `
-            <h5 style="color:black !important;" class="product-price text-muted mt-auto mb-5 precio"><b>${product.price}</b></h5>
-            <h5 class="product-price text-muted mt-auto mb-5 precio" style="margin-left:5px;"><del>${product.oldPrice}</del></h5>
+            <h5 style="color:black !important;" class="product-price text-muted mt-auto mb-1 precio"><b>${product.price}</b></h5>
+            <h5 class="product-price text-muted mt-auto mb-1 precio" style="margin-left:5px;"><del>${product.oldPrice}</del></h5>
         `;
     }
 
     return `
-        <div class="col-lg-4 col-12 mb-3">
+        <div class="col-lg-4 col-12 mb-5">
             <div class="product-thumb">
                 <div style="text-align: center;">
                     <a href="${product.productLink}">
@@ -304,15 +305,17 @@ function generateProductHTML(product) {
                     ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
                 </div>
 
-                <div class="product-info d-flex">
+                <div class="product-info text-center">
                     <div>
                         <h5 class="product-title mb-0">
                             <a href="product-detail.html" class="product-title-link">${product.name}</a>
                         </h5>
                         <p class="product-p">${product.description}</p>
+                        <div class="d-inline-flex">${priceHTML}</div>
+                        <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                     </div>
                     <div class="d-flex ms-auto">
-                        ${priceHTML}
+                        
                     </div>
                 </div>
             </div>
@@ -335,6 +338,7 @@ function loadProducts(category, name) {
                 const productHTML = generateProductHTML(product);
                 productContainer.insertAdjacentHTML("afterend", productHTML);
             });
+            addClickEventToCartButtons();
         })
         .catch(error => console.error("Error al cargar los productos:", error));
 }
@@ -428,7 +432,6 @@ async function generateProductDetailHTML(productName) {
 
     productHeader.insertAdjacentHTML('afterend', productDetailHTML);
     funcionalidadCampoCantidad(false);
-    addClickEventToCartButtons();
     funcionalidadDetalles();
 }
 function funcionalidadDetalles() {

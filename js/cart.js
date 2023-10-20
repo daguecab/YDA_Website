@@ -284,12 +284,16 @@ function actualizarLocalStorage(carrito, index, newCantidad) {
 }
 
 function generateProductHTML(product) {
-    let priceHTML = `<h6 style="color:black !important;" class="product-price precio text-muted ms-auto mt-auto mb-1 price">${product.price}</h6>`;
+    let priceHTML = `<div class="d-inline-flex" style="width:100%">
+                        <h6 style="width:100%;color:black !important;" class="product-price precio text-muted ms-auto mt-auto mb-1 price">${product.price}</h6>
+                    </div>`;
     
     if (product.oldPrice) {
         priceHTML = `
+        <div class="d-inline-flex">
             <h5 style="color:black !important;" class="product-price text-muted mt-auto mb-1 precio"><b>${product.price}</b></h5>
             <h5 class="product-price text-muted mt-auto mb-1 precio" style="margin-left:5px;"><del>${product.oldPrice}</del></h5>
+        </div>
         `;
     }
 
@@ -311,8 +315,8 @@ function generateProductHTML(product) {
                             <a href="product-detail.html" class="product-title-link">${product.name}</a>
                         </h5>
                         <p class="product-p">${product.description}</p>
-                        <div class="d-inline-flex">${priceHTML}</div>
-                        <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                        ${priceHTML}</div>
+                        <button type="submit" id="addToCart" style="width:60%" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                     </div>
                     <div class="d-flex ms-auto">
                         

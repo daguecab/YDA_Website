@@ -90,9 +90,9 @@ function mostrarCarrito() {
                                                 <p class="carrito-nombre-producto">${item.producto}</p>
                                                 <p class="precio carrito-precio-unitario">${product.price}</p>
                                                 <div class="number-field medio mt-1">
-                                                    <button id="decrease">-</button>
-                                                    <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
-                                                    <button id="increase">+</button>
+                                                    <button id="decreaseMedio">-</button>
+                                                    <input type="text" id="cantidadCarritoMedio" value="${item.cantidad}" min="1">
+                                                    <button id="increaseMedio">+</button>
                                                 </div>
                                                 <button id="delete" class="medio">
                                                     <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
@@ -104,7 +104,7 @@ function mostrarCarrito() {
                                                 <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
                                                 <button id="increase">+</button>
                                             </div>
-                                            <button id="delete">
+                                            <button id="deleteMedio">
                                                 <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
                                             </button>
                                         </td>
@@ -199,40 +199,68 @@ function restarUnoProducto(){
 
 
 //Añadimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
-    function funcionalidadCampoCantidad(funcionalidadCarrito) {
-        const decreaseButtons = document.querySelectorAll('#decrease');
-        const increaseButtons = document.querySelectorAll('#increase');
-        const deleteButtons = document.querySelectorAll('#delete');
+function funcionalidadCampoCantidad(funcionalidadCarrito) {
+    const decreaseButtons = document.querySelectorAll('#decrease');
+    const increaseButtons = document.querySelectorAll('#increase');
+    const deleteButtons = document.querySelectorAll('#delete');
     const camposCantidad = document.querySelectorAll('#cantidadCarrito');
+    //Para los botones del medio
+    const decreaseButtonsMedio = document.querySelectorAll('#decreaseMedio');
+    const increaseButtonsMedio = document.querySelectorAll('#increaseMedio');
+    const deleteButtonsMedio = document.querySelectorAll('#deleteMedio');
+    const camposCantidadMedio = document.querySelectorAll('#cantidadCarritoMedio');
 
     // Agregar eventos de clic a los botones de incremento y decremento
     decreaseButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            cantidadActualizada(camposCantidad, index, camposCantidad[index].value - 1,funcionalidadCarrito,false);
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, camposCantidad[index].value - 1,funcionalidadCarrito,false);
         });
     });
     increaseButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            cantidadActualizada(camposCantidad, index, parseInt(camposCantidad[index].value, 10)  + 1,funcionalidadCarrito,false);
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, parseInt(camposCantidad[index].value, 10)  + 1,funcionalidadCarrito,false);
         });
     });
     deleteButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            cantidadActualizada(camposCantidad, index, 0, funcionalidadCarrito,true);
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, 0, funcionalidadCarrito,true);
         });
     });
     camposCantidad.forEach((input, index) => {
         input.removeEventListener('click', null);
         input.addEventListener('input', function(event) {
-            cantidadActualizada(camposCantidad, index, camposCantidad[index].value,funcionalidadCarrito,false);
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, camposCantidad[index].value,funcionalidadCarrito,false);
+        });
+    });
+    // Agregar eventos de clic a los botones de incremento y decremento del campo del medio
+    decreaseButtonsMedio.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, camposCantidad[index].value - 1,funcionalidadCarrito,false);
+        });
+    });
+    increaseButtonsMedio.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, parseInt(camposCantidad[index].value, 10)  + 1,funcionalidadCarrito,false);
+        });
+    });
+    deleteButtonsMedio.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, 0, funcionalidadCarrito,true);
+        });
+    });
+    camposCantidadMedio.forEach((input, index) => {
+        input.removeEventListener('click', null);
+        input.addEventListener('input', function(event) {
+            cantidadActualizada(camposCantidad, camposCantidadMedio, index, camposCantidad[index].value,funcionalidadCarrito,false);
         });
     });
 }
 
-function cantidadActualizada(camposCantidad,index,nuevaCantidad,funcionalidadCarrito,botonDelete){
+function cantidadActualizada(camposCantidad,camposCantidadMedio,index,nuevaCantidad,funcionalidadCarrito,botonDelete){
     if (!isNaN(nuevaCantidad)) {
         if(nuevaCantidad>0 || botonDelete){
             camposCantidad[index].value = nuevaCantidad;
+            camposCantidadMedio[index].value = nuevaCantidad;
             if(funcionalidadCarrito){
                 recalcularTotalProductos(index,nuevaCantidad);
             }

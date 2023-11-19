@@ -69,7 +69,6 @@
                     display: flex;
                     background-color: #fff;
                     width: 30%;
-                    max-height: 80%;
                     margin: 100px auto;
                     padding: 20px;
                     text-align: center;
@@ -99,16 +98,6 @@
                     flex: 0 0 100%;   
                 }
 
-                .cerrar-btn {
-                    color: black;
-                    background-color: white;
-                    padding: 10px 15px;
-                    border: none;
-                    border-radius: 50px;
-                    font-size: 16px;
-                    cursor: pointer;
-                    text-decoration: none;
-                    }
             </style>
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
@@ -150,7 +139,7 @@
                 <!-- Si necesitas añadir mas imagenes, solo añade más slick-custom aquí -->
             </section>
 
-            <!-- <section class="about section-padding" id="mejores-fermentos">
+            <section class="about section-padding" id="mejores-fermentos">
                 <div class="container">
                     <div class="row">
             
@@ -167,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
 
             <section class="featured-product section-padding-little">
                 <div class="container">
@@ -389,40 +378,193 @@
             </section>
             <!-- Modal -->
             <div class="custom-modal" id="emailModal">
+                <section class="loading" style="display: none !important;">
+                    <div class="spinner">
+                        <span class="sk-inner-circle"></span>
+                    </div>
+                </section>
                 <div class="custom-modal-content">
-                    <div id="datosPreventaDiv" style="width: 100%; height: 70vh; display: inline-grid; background-image: url('images/descuento.JPG'); background-size: cover; position: relative; border-radius: 5px;">
-                        <div style="position: absolute; top: -1%; right: -3%; color: black;">
-                            <a class="cerrar-btn" id="closeModalBtn">x</a>
-                        </div>
-                        <div style="position: absolute; top: 5%; text-align: center; width: 100%; color: black; background-color: transparent;">
-                            <h4 style="color: white; padding: 5px; display: inline-block;">SEMANA BLACK FRIDAY<br> 15% de descuento</h4>
-                            <h4 style="color: white; border: 5px solid black; padding: 5px; border-style: dashed; display: inline-block; margin-top: 10%;">CODIGO: BLACKWEEK20</h4><br>
-                        </div>
-                        <div style="position: absolute; bottom: 5%; width: 100%; text-align: center; color: white;  ">
-                            <a href="productos-de-antaño.html" class="custom-btn mt-5">¡HAZ TU YOGUR CON DESCUENTO!</a>
-                        </div>
+                    <div id="datosPreventaDiv" class="divCarroussel" style="width: 100%;height: 100%; display: block;">
+                        <h3>Apúntate a la preventa</h3>
+                        <form id="datosPreventa" action="#" method="post">
+
+                            <div class="form-floating">
+                                <input type="name" name="name" id="name" pattern="[A-Za-z ]+" class="form-control" style="text-align: left;" placeholder="Nombre" required>
+                                <label for="name">Nombre</label>
+                            </div>
+
+                            <div class="form-floating my-4">
+                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
+                                <label for="email">Correo Electrónico</label>
+                            </div>
+
+                            <div class="form-floating my-4">
+                                <input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form-control" style="text-align: left;" placeholder="Teléfono">
+                                <label for="tel">Teléfono</label>
+                            </div>
+                            <div class="form-floating" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoAviso" required>
+                                Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
+                            </div>
+                            <div class="form-floating mb-3" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoComercial" id="consentimientoComercial">
+                                Quiero recibir cupones y/o promociones alguna vez
+                            </div>
+                            <button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">Enviar</button>
+                        </form>
+                    </div>
+                    <div id="preguntarStockDiv"style="width: 100%;height: 100%;" class="divCarroussel hidden">
+                        <h3>¿Que productos quieres?</h3>
+                        <form id="preguntarStock" action="#" method="post">
+
+
+                            <div class="form-floating my-4">
+                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
+                                <label for="email">Correo Electrónico</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="name" name="name" id="name" pattern="[A-Za-z ]+" class="form-control" style="text-align: left;" placeholder="Nombre" required>
+                                <label for="name">Nombre</label>
+                            </div>
+
+                            <div class="form-floating" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoAviso" required>
+                                Acepto que se me notifique a cualquiera de mis <a style="color:var(--primary-color)" title="No haremos uso comercial de estos datos"> contactos</a>*
+                            </div>
+                            <div class="form-floating mb-3" style="text-align:left;">
+                                <input type="checkbox" name="consentimientoComercial" id="consentimientoComercial">
+                                Quiero recibir cupones y/o promociones alguna vez
+                            </div>
+                            <button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">Enviar</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            
-            
+
             <script>
                 // JavaScript para mostrar el modal al cargar la página
                 var emailModal = document.getElementById('emailModal');
-                var closeModalBtn = document.getElementById('closeModalBtn');
+                // var closeModalBtn = document.getElementById('closeModalBtn');
 
                 window.addEventListener('load', function() {
                     emailModal.style.display = 'block';
                 });
 
-    
+                window.addEventListener('load', function() {
+                // Verifica si el parámetro "desactivar" está presente en la URL
+                var params = new URLSearchParams(window.location.search);
+                if (params.has('preventa') && params.get('preventa') === 'false') {
+                    emailModal.style.display = 'none'; // Cierra el modal si está presente el parámetro
+                } else {
+                    emailModal.style.display = 'block'; // Muestra el modal por defecto
+                }
+            });
 
-                closeModalBtn.addEventListener('click', function() {
-                    emailModal.style.display = 'none';
-                });
+                // closeModalBtn.addEventListener('click', function() {
+                //     emailModal.style.display = 'none';
+                // });
             </script>
-            
-            
+            <script>
+                // Validador de datos e integración con Zoho CRM
+                const datosPreventa = document.getElementById('datosPreventa');
+                datosPreventa.addEventListener('submit', async function(event) {
+                    // Evita que el formulario se envíe automáticamente
+                    event.preventDefault();
+                    
+                    if (validarDatosPreventa(datosPreventa)) {
+                        try {
+                            await crearLeadZohoCRM();
+                            alert('Datos registrados correctamente. Se te notificará cuando se abra la web.');
+                            datosPreventa.reset();
+                            // preguntarProductos();
+                        } catch (error) {
+                            console.error('Error en la petición:', error);
+                            alert('Hubo un error en la petición. Por favor, contáctenos por WhatsApp o teléfono. Gracias por su comprensión.');
+                        }
+                        const preloader = document.querySelector('.loading');
+                        preloader.style.display = 'none';
+                    }
+                });
+
+
+            function validarDatosPreventa(){
+                var emailInput = document.getElementById('email');
+                var telefonoInput = document.getElementById('telefono');
+                var emailValue = emailInput.value.trim();
+                var telefonoValue = telefonoInput.value.trim();
+
+                // Verificar si al menos uno de los campos está relleno
+                if (emailValue === '' && telefonoValue === '') {
+                    alert('Por favor, rellena al menos uno de los campos (email o teléfono).');
+                    return false;
+                }
+                return true;
+            }
+
+            async function crearLeadZohoCRM() {
+                try {
+                    //Mostrar Spinner
+                    const preloader = document.querySelector('.loading');
+                    preloader.style.display = 'flex';
+                    // Obtiene los valores de los campos del formulario
+                    const nombreCompleto = document.getElementById("name").value;
+                    const nombre = nombreCompleto.includes(" ") ? nombreCompleto.split(" ")[0] : nombreCompleto;
+                    const apellido = nombreCompleto.includes(" ") ? nombreCompleto.split(" ").slice(1).join(" ") : "-";
+                    // const apellido = "-"; //document.getElementById("name").value;
+                    // const nombre = document.getElementById("name").value;
+                    const email = document.getElementById("email").value;
+                    const telefono = document.getElementById("telefono").value;
+                    const consentimientoComercial = document.getElementById("consentimientoComercial").checked ? "Si" : "No";
+                    // Estructura los datos en el formato requerido
+                    const lead = {
+                        lead: {
+                            Last_Name: apellido,
+                            First_Name: nombre,
+                            Email: email,
+                            Phone: telefono,
+                            Consentimiento_Comercial: consentimientoComercial,
+                            Lead_Source: "Preventa Web"
+                        }
+                    };
+                    // http://127.0.0.1:3000/zoho/insertLead
+                    const response = await fetch('https://stripe-integration-n0er.onrender.com/zoho/insertLead', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(lead)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        console.log(data);
+                        return data;
+                    } else {
+                        console.error(data);
+                        throw new Error(data.message || "Error en la solicitud al servidor");
+                    }
+                } catch (error) {
+                    console.error(error);
+                    throw error; // Devuelve el error para que pueda ser manejado por el código que llama a esta función
+                }
+            }
+
+            function preguntarProductos() {
+                const formularioActual = document.getElementById("datosPreventaDiv");
+                const nuevoFormulario = document.getElementById("preguntarStockDiv");
+                // Aquí puedes procesar los datos del formulario actual si es necesario
+
+                // Muestra el nuevo formulario
+                formularioActual.style.opacity = 0;
+                formularioActual.style.transform = "translateX(-100%)";
+                // Reinicia la posición del formulario actual
+                nuevoFormulario.style.opacity = 1;
+                nuevoFormulario.style.transform = "translateX(-100%)";
+            }
+
+            </script>
 
         </main>
 

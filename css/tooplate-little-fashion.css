@@ -163,14 +163,14 @@ CUSTOM FIELDS
 }
 
 /* Estilos para el botón de decremento */
-.number-field button#decrease {
+.number-field button#decrease,button#decreaseMedio {
   border: none;
   padding: 0 10px;
   background-color: #FFF;
   cursor: pointer;
 }
 
-#delete {
+#delete, #deleteMedio{
   border: none;
   padding: 0 10px;
   background-color: #FFF;
@@ -182,7 +182,7 @@ CUSTOM FIELDS
 }
 
 @media screen and (max-width: 768px) {
-  #delete {
+  #delete, #deleteMedio{
     display: none;
   }
   .number-field{
@@ -194,7 +194,7 @@ CUSTOM FIELDS
 }
 
 /* Estilos para el botón de incremento */
-.number-field button#increase {
+.number-field button#increase,button#increaseMedio {
   border: none;
   padding: 0 10px;
   background-color: #FFF;

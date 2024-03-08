@@ -345,7 +345,7 @@ function generateProductHTML(product) {
                 <div class="product-info text-center">
                     <div>
                         <h5 class="product-title mb-0">
-                            <a href="product-detail.html" class="product-title-link">${product.name}</a>
+                            <a href="${product.productLink}" class="product-title-link">${product.name}</a>
                         </h5>
                         <p class="product-p">${product.description}</p>
                         ${priceHTML}</div>

@@ -301,6 +301,24 @@ strong {
   CUSTOM BUTTON & ICON              
 -----------------------------------------*/
 
+.whatsapp {
+  position: fixed;
+  bottom: 0px;
+  right:0px;
+  color:var(--primary-color);
+}
+
+svg {
+  width: 80px;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.4));
+}
+circle {
+  fill: #fff;
+}
+path {
+  fill: var(--primary-color);
+}
+
 .feature-left .icon {
   float: left;
   margin-right: 5%;

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Yogures de Antaño - Información de Productos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+        <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/slick.css"/>
+
+        <link href="css/tooplate-little-fashion.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />        <script src="js/misc.js"></script>
+    </head>
+    
+    <body>
+
+        <main>
+            <style>
+                .related-product {
+                    font-family: 'Arial', sans-serif;
+                    background: url('images/construccion.jpg') center center fixed;
+                    background-size: cover;
+                    height: 80vh;
+                    text-align: center;
+                    width: 100%;
+                }
+            
+                .custom-icon {
+                  font-size: 2rem;
+                  color: #000;
+                }
+            
+                header {
+                  padding: 2rem;
+                  text-align: center;
+                }
+            
+            
+                p {
+                  font-size: 1.2rem;
+                  margin-bottom: 30px;
+                }
+            
+                input {
+                  width: 30%;
+                  padding: 10px;
+                  box-shadow: 0 2px 4px rgba(5, 5, 0, 1.0);
+                  text-align: left;
+                  background-color: white;
+                  border-right: none;
+                  border-radius: 5px 0 0 5px;
+                  border-color: var(--primary-color);
+                }
+
+                .input-group {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                input::placeholder {
+                  color: black; /* Color del placeholder */
+                  text-align: left;
+                }
+
+            
+                button {
+                  padding: 10px 20px;
+                  background-color: var(--primary-color);
+                  color: #fff;
+                  border-color: var(--primary-color);
+                  cursor: pointer;
+                  border-radius: 0 5px 5px 0; /* Bordes redondeados en la derecha */
+                  box-shadow: 0 2px 4px rgba(5, 5, 0, 1.0);
+                }
+            </style>
+            
+            <nav class="pageProducto navbar navbar-expand-lg">
+              <div class="container">
+                <a class="navbar-brand" href="index.html">
+                  <img class="logo" src="images/Logo.png" alt="Logo">
+                </a>
+                <div class="d-lg-none">
+                  <a href="carrito.html" class="bi-bag custom-icon"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
+                  <div class="d-none d-lg-block" style="text-align: right;">
+                    <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
+                  </div>
+                </div> 
+              </div>
+            </nav>
+            
+            <header style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <span class="d-block">Yogur en construcción</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <section class="related-product section-padding border-top">
+                    <!-- <div style="top:10%; position: absolute;">
+                        <h1>Yogur en Construcción</h1>
+                    </div>
+                    <div style="bottom:10%; position: absolute;">
+                        <input type="text" placeholder="Envíanos un WhatsApp con tus dudas">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div> -->
+                    
+                <!-- </div> -->
+                    <div style="width: 100%; height: 70vh; position: relative;">
+                        <div style="position: absolute; top: -5%; text-align: center; width: 100%; color: black; background-color: transparent;">
+                            <!-- <h2>¿Tienes dudas?</h2> -->
+                        </div>
+                        <div class="input-group" style="position: absolute; bottom: 5%; width: 100%; margin: auto; color: white;  ">
+                            <input type="text" id="texto" placeholder="Envíanos un WhatsApp con tus dudas">
+                            <button onclick="enviarMensaje()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+            </section>
+
+        </main>
+
+        <script>
+            function enviarMensaje() {
+              var numeroTelefono = '34620373319';  // Coloca el número de teléfono
+              var mensaje = document.getElementById('texto').value;
+              var enlaceWhatsApp = 'https://api.whatsapp.com/send?phone=' + numeroTelefono + '&text=' + encodeURIComponent(mensaje);
+              
+              // Redirige al usuario a la página de WhatsApp
+              window.location.href = enlaceWhatsApp;
+            }
+        </script>
+
+        <footer class="site-footer">
+            <script>loadFooter()</script>
+        </footer>
+
+        
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/Headroom.js"></script>
+        <script src="js/jQuery.headroom.js"></script>
+        <script src="js/slick.min.js"></script>
+
+    </body>
+</html>

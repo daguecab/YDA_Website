@@ -18,7 +18,7 @@ function loadFooter() {
                   <h5 class="text-white mb-3">Mapa de Yogures de Antaño</h5>
 
                   <ul class="footer-menu flex-wrap">
-                      <li class="footer-menu-item"><a href="about.html" class="footer-menu-link">Quién soy</a></li>
+                      <li class="footer-menu-item"><a href="#" class="footer-menu-link">Quién soy</a></li>
 
                       <li class="footer-menu-item"><a href="#" class="footer-menu-link">Opiniones</a></li>
 

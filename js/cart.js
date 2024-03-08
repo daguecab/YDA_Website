@@ -4,7 +4,6 @@ var subtotal = 0;
 // Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
 function addClickEventToCartButtons() {
     var addToCartButtons = document.querySelectorAll('.cart-btn');
-    console.log(addToCartButtons);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
             var producto = button.dataset.producto;
@@ -16,8 +15,12 @@ function addClickEventToCartButtons() {
             if (cantidadSeleccionada === 'Cantidad') {
                 alert('Selecciona una cantidad válida para agregar al carrito.');
             } else {
+                textoDescuento = "";
+                if(cantidadSeleccionada>1){
+                    textoDescuento =  "\nPuedes usar el cupón DESCUENTO2A para tener un descuento por comprar más de una unidad.";
+                }
                 agregarAlCarrito(producto, parseInt(cantidadSeleccionada), precio, idPrecio);
-                alert('Se ha añadido el ' + producto + ' correctamente a la cesta');
+                alert('Se ha añadido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
                 // $('#cart-modal').modal('show');
             }
@@ -259,14 +262,15 @@ function funcionalidadCampoCantidad(funcionalidadCarrito) {
 function cantidadActualizada(camposCantidad,camposCantidadMedio,index,nuevaCantidad,funcionalidadCarrito,botonDelete){
     if (!isNaN(nuevaCantidad)) {
         if(nuevaCantidad>0 || botonDelete){
+            console.log(nuevaCantidad,botonDelete);
             camposCantidad[index].value = nuevaCantidad;
             camposCantidadMedio[index].value = nuevaCantidad;
             if(funcionalidadCarrito){
                 recalcularTotalProductos(index,nuevaCantidad);
             }
+            var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            actualizarLocalStorage(carrito, index, nuevaCantidad);
         }
-        var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        actualizarLocalStorage(carrito, index, nuevaCantidad);
     }
 }
 
@@ -335,6 +339,7 @@ function generateProductHTML(product) {
                 </div>
                 <div class="product-top d-flex">
                     ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
+                    ${product.isRecommended ? '<span class="product-alert me-auto">Recomendado</span>' : ''}
                 </div>
 
                 <div class="product-info text-center">
@@ -364,8 +369,8 @@ function loadProducts(category, name) {
             // Filtrar productos por categoría
             const filteredProducts = category
                 ? products.filter(product => product.category === category && product.name != name)
-                : products;
-
+                : products.filter(product => product.name != name);
+            console.log(filteredProducts);
             filteredProducts.forEach(product => {
                 const productHTML = generateProductHTML(product);
                 productContainer.insertAdjacentHTML("afterend", productHTML);

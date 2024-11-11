@@ -7,7 +7,7 @@ function loadFooter() {
         <div class="container">
           <div class="row">
               <div class="col-lg-3 col-10 text-center mb-4" style="margin:auto">
-                  <a class="navbar-brand" href="index.html">
+                  <a class="navbar-brand" href="/">
                       <img class="logo" style="margin-top: -5%;" src="images/Logo.png">
                   </a>
                   <p class="copyright-text text-muted mt-lg-3 mb-4 mb-lg-0">Copyright © 2023 <strong>Yogures de Antaño</strong></p>
@@ -22,7 +22,7 @@ function loadFooter() {
 
                       <li class="footer-menu-item"><a href="#" class="footer-menu-link">Opiniones</a></li>
 
-                      <li class="footer-menu-item"><a href="productos-de-antaño.html" class="footer-menu-link">Productos</a></li>
+                      <li class="footer-menu-item"><a href="productos-de-antaño" class="footer-menu-link">Productos</a></li>
 
                       <li class="footer-menu-item"><a href="#" class="footer-menu-link">FAQs</a></li>
                   </ul>
@@ -44,9 +44,9 @@ function loadFooter() {
                   <h5 class="text-white mb-3">Aviso Legal</h5>
 
                   <ul class="footer-menu flex-wrap">
-                      <li class="footer-menu-item"><a href="terminos-y-condiciones.html" class="footer-menu-link">Términos y condiciones</a></li>
+                      <li class="footer-menu-item"><a href="terminos-y-condiciones" class="footer-menu-link">Términos y condiciones</a></li>
 
-                      <li class="footer-menu-item"><a href="politica-de-privacidad.html" class="footer-menu-link">Política de privacidad</a></li>
+                      <li class="footer-menu-item"><a href="politica-de-privacidad" class="footer-menu-link">Política de privacidad</a></li>
 
                       <li class="footer-menu-item"><a href="#" class="footer-menu-link">Política de ventas y envíos</a></li>
                   </ul>

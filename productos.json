@@ -3,7 +3,7 @@
     {
         "name": "Termómetro",
         "imageSrc": "images/products/Termometro.jpg",
-        "productLink": "termometro-detail.html",
+        "productLink": "termometro-detail",
         "isNew": true,
         "description": "Termómetro de cocina para calentar la leche.",
         "price": "4.95",
@@ -13,7 +13,7 @@
     {
         "name": "Skyr",
         "imageSrc": "images/products/Skyr.jpg",
-        "productLink": "skyr-detail.html",
+        "productLink": "skyr-detail",
         "isNew": true,
         "description": "Fermentos para hacer Skyr",
         "productPageDescription":"Auténticos fermentos tradicionales para hacer kiselo mlyako",
@@ -27,7 +27,7 @@
     {
         "name": "Yogur Griego",
         "imageSrc": "images/products/Yogur Griego.jpg",
-        "productLink": "griego-detail.html",
+        "productLink": "griego-detail",
         "isNew": true,
         "description": "Fermentos para hacer Yogur Griego",
         "productPageDescription":"Auténticos fermentos tradicionales para hacer yogur griego (ελληνικό γιαούρτι)",
@@ -41,7 +41,7 @@
     {
         "name": "Yogur Original",
         "imageSrc": "images/products/Yogur Bulgaro.jpg",
-        "productLink": "bulgaro-detail.html",
+        "productLink": "bulgaro-detail",
         "isNew": true,
         "description": "Fermentos para hacer Yogur Original",
         "productPageDescription":"Auténticos fermentos tradicionales para hacer kiselo mlyako",

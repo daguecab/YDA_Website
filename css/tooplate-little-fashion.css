@@ -1411,8 +1411,7 @@ button:focus:not(:focus-visible) {
   .slick-slideshow .custom-btn {
     padding-right: 27px;
     padding-left: 27px;
-    width: auto;
-    margin: 0px 30px; 
+    width: 95%;
   }
 
   .social-login,

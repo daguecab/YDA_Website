@@ -56,7 +56,7 @@ function mostrarCarrito() {
         const carritoHTML = `
             <div style="text-align:center;">
                 <h2>Tu cesta está vacía<h2>
-                <a href="productos-de-antaño.html" class="custom-btn">Seguir comprando</a>
+                <a href="productos-de-antaño" class="custom-btn">Seguir comprando</a>
             </div>
         `;
         carritoCompraDiv.innerHTML = carritoHTML;
@@ -311,7 +311,7 @@ function actualizarLocalStorage(carrito, index, newCantidad) {
     }
     localStorage.setItem('carrito', JSON.stringify(carrito));
     if (tbody.rows.length === 0) {
-        window.location.href = 'carrito.html';
+        window.location.href = 'carrito';
     }
 }
 

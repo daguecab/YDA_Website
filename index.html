@@ -3,8 +3,23 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "Organization",
+		  "name": "Yogures de Antaño",
+		  "url": "https://yogures-de-antaño.com",
+		  "logo": "https://yogures-de-antaño.com/images/Logo.png",
+		  "description": "En Yogures de Antaño ofrecemos fermentos vivos para crear un yogur casero, natural y lleno de probióticos. Nuestros productos están diseñados para ayudarte a redescubrir el sabor auténtico y saludable del yogur tradicional",
+		  "sameAs": [
+			"https://www.instagram.com/yoguresdeantano",
+			"https://www.tiktok.com/@yogures.de.antano"
+		  ]
+		}
+		</script>
 
-        <meta name="description" content="Yogures de Antaño - Saborea el auténtico Yogur Casero con nuestros fermentos tradicionales.">
+
+        <meta name="description" content="Fermentos vivos para hacer el yogur casero más tradicional. Disfruta de un yogur lleno de probióticos con el sabor auténtico de Yogures de Antaño.">
         <meta name="keywords" content="yogures, tradicion, tradicionales, yogur, fermentos">
         <meta name="author" content="David Guerrero Cabrerizo">
 
@@ -19,6 +34,8 @@
 
         <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="images/Favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="images/Favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/Favicon.ico" type="image/x-icon">
 
         <link href="css/slick.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
@@ -31,6 +48,22 @@
 
         <script src="js/cart.js"></script>
         <script src="js/misc.js"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-24H4SHL5Y7"></script>
+		<!--GA4-->
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-24H4SHL5Y7');
+		</script>
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KHWCTFHC');</script>
+		<!-- End Google Tag Manager -->
     </head>
     
     <body>
@@ -112,37 +145,47 @@
             </style>
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="/">
                         <img class="logo" src="images/Logo.png">
                     </a>
                     <div class="d-lg-none">
-                        <a href="carrito.html" class="bi-bag custom-icon"></a>
+                        <a href="carrito" class="bi-bag custom-icon"></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
                         <div class="d-none d-lg-block" style="text-align: right;">
-                            <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
+                            <a href="carrito" class="bi-bag custom-icon" style="color:black"></a>
                         </div>
                     </div> 
                 </div>
             </nav> 
             <section class="slick-slideshow" style="overflow: hidden;">
-                <div class="slick-custom">
+                <div class="slick-custom slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 1404px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00">
                     <img src="images/Yogures-de-antano-Background.jpg" class="img-fluid background" alt="">
 
                     <div class="slick-bottom">
                         <div class="container">
                             <div class="row">
-                                <div class="">
-                                    <!-- <h1 class="index" style="color:white">Bienvendo a la tradicion</h1>
-                                    <h2 class="index text-primary">Fermentos para Yogur</h2> -->
-                                    <!-- <h2 class="slick-title text-primary">Fermentos tradicionales para yogur</h2> -->
+                                <div class="" style="
+    /* text-align: center; */
+    width: 55%;
+">
+                                    <h2 class="index" style="color: white; --darkreader-inline-color: #e8e6e3;" data-darkreader-inline-color="">EL YOGUR<br> MÁS TRADICIONAL</h2>
+                                   
+    <h4 class="index text-primary" style="
+    font-weight: 400;
+">____________________________</h4><h6 class="index text-white">Nuestros Fermentos + Leche
+    </h6>
+                                   
+   
+   
+                                       
                                 </div>
                             </div>
                         </div>
-                        <div style="padding-top: 2%;position: absolute;bottom: 5%;width: 100%; text-align: center;"> 
-                            <div style="display: inline-flex;margin-bottom: 3%; width: 100%; background-color: rgba(195, 155, 124, 0.5);">
+                        <div style="padding-top: 2%;position: absolute;bottom: 5%;width: 100%; text-align: center;">
+                            <div style="display: inline-flex; margin-bottom: 3%; width: 100%; background-color: rgba(195, 155, 124, 0.5); --darkreader-inline-bgcolor: rgba(114, 79, 52, 0.5);" data-darkreader-inline-bgcolor="">
                             </div>
-                            <a href="productos-de-antaño.html" class="custom-btn">¡HAZ TU YOGUR CASERO HOY!</a>
+                            <a href="productos-de-antaño" class="custom-btn" tabindex="0">¡HAZ TU YOGUR CASERO HOY!</a>
                         </div>
                     </div>
                 </div>
@@ -174,8 +217,8 @@
                     <div class="row" >
 
                         <div class="col-10 text-center" style="margin: auto;">
-                            <h3 class="mb-3">Mi misión</h3>
-                            <h5 style="font-weight:50;margin-bottom:20px;">Llevo tomando yogur desde que tengo memoria, de pequeño por su sabor, y ahora también por sus enormes beneficios. Mi objetivo es que podáis hacer los yogures más deliciosos, a un precio muy asequible y solo con dos ingredientes: leche y nuestros fermentos.</p>
+                            <h2 class="mb-3">Mi misión</h2>
+                            <h6 style="font-weight:50;margin-bottom:20px;">Llevo tomando yogur desde que tengo memoria, de pequeño por su sabor, y ahora también por sus enormes beneficios. Mi objetivo es que podáis hacer los yogures más deliciosos, a un precio muy asequible y solo con dos ingredientes: leche y nuestros fermentos.</h6>
                         </div>
                     </div>
                 </div>
@@ -185,7 +228,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-10 text-center" style="margin: auto;">
-                            <h3 class="mb-5">¿Por qué hago mis propios yogures?</h3>
+                            <h2 class="mb-5">¿Por qué hago mis propios yogures?</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -237,7 +280,7 @@
                     <div class="row">
                         
                         <div class="col-12 text-center" id="product-container">
-                            <h3 class="mb-5">Nuestros Yogures</h3>
+                            <h2 class="mb-5">Nuestros Yogures</h2>
                         </div>
                         <!-- Añadimos todos los productos -->
                         <script> loadProducts('yogur'); </script>
@@ -255,7 +298,7 @@
                     <div class="row">
                         
                         <div class="col-12 text-center">
-                            <h3 class="mb-5">¡Haz tu yogur en 5 sencillos pasos!</h3>
+                            <h2 class="mb-5">¡Haz tu yogur en 5 sencillos pasos!</h2>
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3 feature-left">
@@ -340,7 +383,7 @@
                     <div class="row">
                         
                         <div class="col-12 text-center">
-                            <h3 class="mb-5">¿Por qué Yogures de Antaño?</h3>
+                            <h2 class="mb-5">¿Por qué Yogures de Antaño?</h2>
                         </div>
 
                         <div class="col-lg-4 col-12 mb-3">
@@ -404,6 +447,12 @@
                     </div>
                 </div>
             </div>
+			<!-- Google Tag Manager (noscript) -->
+			<noscript>
+				<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHWCTFHC"
+					height="0" width="0" style="display:none;visibility:hidden"></iframe>
+			</noscript>
+			<!-- End Google Tag Manager (noscript) -->
             
             
             <script>

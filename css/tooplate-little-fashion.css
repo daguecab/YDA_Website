@@ -1192,6 +1192,7 @@ button:focus:not(:focus-visible) {
 }
 
 .product-top {
+  opacity: 0;
   position: absolute;
   top: 0;
   right: 0;

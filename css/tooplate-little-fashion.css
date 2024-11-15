@@ -971,6 +971,7 @@ section {
 .section-padding {
   padding-top: 7rem;
   padding-bottom: 7rem;
+  background-color: #efefef;
 }
 
 .section-padding-little {
@@ -983,7 +984,7 @@ section {
 }
 
 .featured-product {
-  background-color: #efefef;
+  background-color: #fff;
 }
 
 /*---------------------------------------
@@ -1204,7 +1205,7 @@ button:focus:not(:focus-visible) {
 }
 
 .featured-product .product-info {
-  background-color: #efefef;
+  background-color: transparent;
 }
 
 .product-description,

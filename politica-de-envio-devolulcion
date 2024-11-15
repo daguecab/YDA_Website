@@ -63,6 +63,33 @@
             <section class="related-product section-padding border-top">
                 <div class="container">
                     <div id="politicaDeEnvios">
+						
+
+							<h2>Condiciones Generales de venta</h2>
+							<p>No existen condiciones específicas de venta, como restricciones de edad o requisitos de registro para realizar un pedido en nuestra página web.</p>
+
+							<h2>Métodos de Pago</h2>
+							<p>Aceptamos únicamente pagos a través de Tarjeta de Crédito, utilizando la pasarela de pago segura de Stripe. Este es el único método de pago aceptado actualmente.</p>
+
+							<h2>Precios e Impuestos</h2>
+							<p>Todos los precios de nuestros productos incluyen los impuestos correspondientes. En caso de que se produzca un error en el precio de algún producto, asumiremos la diferencia de precio para garantizar la satisfacción del cliente.</p>
+
+							<h2>Proceso de Pedido</h2>
+							<p>Para realizar un pedido, selecciona los productos deseados y añádelos a la cesta de la compra. Una vez completada la selección, procede a pagar a través de nuestra pasarela segura Stripe. Al completar la compra, recibirás una confirmación del pedido a través del correo electrónico proporcionado.</p>
+
+							<h2>Confirmación de Pedido</h2>
+							<p>La confirmación del pedido se enviará por correo electrónico una vez que se haya procesado el pago con éxito. Este correo incluirá los detalles del pedido y un número de referencia para cualquier consulta futura.</p>
+
+							<h2>Cancelación de Pedidos</h2>
+							<p>No aceptamos cancelaciones de pedidos una vez que se ha realizado la compra. Si tienes alguna pregunta o necesitas más información, por favor, contáctanos a través de nuestro número de WhatsApp, disponible en la página web.</p>
+
+							<h2>Caducidad y Garantía de Productos</h2>
+							<p>Todos nuestros fermentos tienen una caducidad de 2 años. En caso de que un producto no funcione según lo esperado, se reembolsará el importe íntegro al cliente.</p>
+
+							<h2>Limitaciones de Responsabilidad</h2>
+							<p>No existen limitaciones específicas de responsabilidad a priori. Sin embargo, nos reservamos el derecho de revisar las políticas en el futuro si se considera necesario.</p>
+
+
 
 						<h2>Envíos</h2>
 

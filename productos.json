@@ -12,7 +12,8 @@
     },
     {
         "name": "Skyr",
-        "imageSrc": "images/products/Skyr.jpg",
+        "imageSrc": "images/products/fermento-yogur-skyr.png",
+        "secondaryImageSrc": "images/products/Skyr.png",
         "productLink": "skyr-detail",
         "isNew": true,
         "description": "Fermentos para hacer Skyr",
@@ -26,7 +27,8 @@
     },
     {
         "name": "Yogur Griego",
-        "imageSrc": "images/products/Yogur Griego.jpg",
+        "imageSrc": "images/products/fermento-yogur-griego.png",
+        "secondaryImageSrc": "images/products/Yogur Griego.png",
         "productLink": "griego-detail",
         "isNew": true,
         "description": "Fermentos para hacer Yogur Griego",
@@ -40,7 +42,8 @@
     },  
     {
         "name": "Yogur Original",
-        "imageSrc": "images/products/Yogur Bulgaro.jpg",
+        "imageSrc": "images/products/fermento-yogur-bulgaro.png",
+        "secondaryImageSrc": "images/products/Skyr.jpg",
         "productLink": "bulgaro-detail",
         "isNew": true,
         "description": "Fermentos para hacer Yogur Original",

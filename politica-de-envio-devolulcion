@@ -63,7 +63,6 @@
             <section class="related-product section-padding border-top">
                 <div class="container">
                     <div id="politicaDeEnvios">
-						<h2>Política de Envío y Devoluciones</h2>
 
 						<h2>Envíos</h2>
 
@@ -75,36 +74,27 @@
 
 						<p><strong>Envío Estándar:</strong> Plazo de entrega de 5 a 7 días hábiles, sin coste adicional.</p>
 
-						<p><strong>Envío Certificado:</strong> Plazo de entrega de 2 a 3 días hábiles con un coste de 4€.</p>
-
-						<p><strong>Envío Exprés:</strong> Consulta la opción en nuestra página web.</p>
+						<p><strong>Envío Certificado/Express:</strong> Plazo de entrega de 2 a 3 días hábiles con un coste de 4€.</p>
 
 						<p>Los envíos se realizan a través de la compañía Correos y están disponibles para toda la península.</p>
 
 						<p>El seguimiento del envío solo está disponible con la opción de envío certificado. La información de seguimiento se enviará por correo electrónico cuando el pedido haya sido despachado.</p>
 
-						<h2>Devoluciones</h2>
-
-						<p>Aceptamos devoluciones en caso de productos defectuosos o si has recibido un producto equivocado. El plazo máximo para solicitar una devolución es de 15 días a partir de la recepción del pedido.</p>
-
-						<p>Para los utensilios, solo se aceptarán devoluciones si están defectuosos o se ha enviado un producto incorrecto.</p>
-
 						<h2>Reembolsos</h2>
 
 						<p>Ofrecemos reembolsos para los fermentos si no estás satisfecho con tu compra, sin necesidad de devolver el producto. El plazo máximo para solicitar un reembolso es de 15 días.</p>
 
-						<p>El procedimiento para solicitar un reembolso es a través de WhatsApp en el número +34 620 373 319, el cual se encuentra en nuestra página web. El reembolso se procesará en un máximo de 2 días hábiles.</p>
+						<p>El procedimiento para solicitar un reembolso es a través de <a href="https://api.whatsapp.com/send?phone=+34620373319"><span style="color: var(--primary-color);">WhatsApp</span></a>. El reembolso se procesará en un máximo de 2 días hábiles.</p>
 
 						<p>El reembolso se realizará con el mismo método de pago utilizado durante la compra, siempre y cuando el reembolso sea total. En caso de reembolsos parciales, se hará a conveniencia del cliente.</p>
+						<h2>Devoluciones</h2>
+
+						<p>Aceptamos devoluciones en caso de productos defectuosos o si has recibido un producto equivocado. El plazo máximo para solicitar una devolución es de 15 días a partir de la recepción del pedido.</p>
 
 						<h2>Cambios</h2>
 
 						<p>Es posible cambiar productos siempre y cuando la devolución esté a cargo del cliente. Los cambios solo están permitidos para productos con el mismo precio; en caso contrario, el cliente deberá cubrir la diferencia de precio.</p>
-
-						<h2>Contacto</h2>
-
-						<p>Para realizar devoluciones o solicitar información, por favor contacta a través de nuestro WhatsApp en el número +34 620 373 319.</p>
-
+						
                     </div>
                 </div>
             </section>

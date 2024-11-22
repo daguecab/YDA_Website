@@ -19,8 +19,13 @@ function addClickEventToCartButtons() {
                 if(cantidadSeleccionada>1){
                     textoDescuento =  "\nPuedes usar el cupón DESCUENTO2A para tener un descuento por comprar más de una unidad.";
                 }
-                agregarAlCarrito(producto, parseInt(cantidadSeleccionada), precio, idPrecio);
-                alert('Se ha añadido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
+				if(precio != "?"){
+	                agregarAlCarrito(producto, parseInt(cantidadSeleccionada), precio, idPrecio);
+    	            alert('Se ha añadido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
+				}
+				else{
+					alert('No seas impaciente, el ' + producto + ' aún no está disponible, pero lo estará próximamente. Aquí tienes un 20% de descuento para su salida😊 PREVENTA20' );
+				}
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
                 // $('#cart-modal').modal('show');
             }
@@ -56,7 +61,7 @@ function mostrarCarrito() {
         const carritoHTML = `
             <div style="text-align:center;">
                 <h2>Tu cesta está vacía<h2>
-                <a href="productos-de-antaño" class="custom-btn">Seguir comprando</a>
+                <a href="productos-de-antaño.html" class="custom-btn">Seguir comprando</a>
             </div>
         `;
         carritoCompraDiv.innerHTML = carritoHTML;
@@ -311,7 +316,7 @@ function actualizarLocalStorage(carrito, index, newCantidad) {
     }
     localStorage.setItem('carrito', JSON.stringify(carrito));
     if (tbody.rows.length === 0) {
-        window.location.href = 'carrito';
+        window.location.href = 'carrito.html';
     }
 }
 

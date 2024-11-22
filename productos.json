@@ -1,6 +1,21 @@
 [
     
     {
+        "name": "Kéfir",
+	"imageSrc": "https://www.quadest.net/37782-superlarge_default/producto-sorpresa.jpg",
+        "secondaryImageSrc": "images/products/Skyr.jpg",
+        "productLink": "https://xn--yogures-de-antao-lub.com/productos-de-antaño",
+        "isNew": true,
+        "description": "Fermentos para hacer Skyr (Póximamente)",
+        "productPageDescription":"",
+        "longDescription":"",
+        "price": "?",
+        "priceId": "",
+        "oldPrice": "?",
+        "category": "",
+        "incluye":"-Un sobre de 2g de Fermentos para hacer Kéfir, 1g para empezar y otro de reserva.<br>"
+    },
+    {
         "name": "Termómetro",
         "imageSrc": "images/products/Termometro.jpg",
         "productLink": "termometro-detail",
@@ -55,21 +70,5 @@
         "oldPrice": "14.95",
         "category": "yogur",
         "incluye":"-Un sobre de 2g de Fermentos para hacer Yogur Búlgaro, 1g para empezar y otro de reserva.<br>"
-    }
-	,  
-    {
-        "name": "Kéfir",
-		"imageSrc": "https://www.quadest.net/37782-superlarge_default/producto-sorpresa.jpg",
-        "secondaryImageSrc": "images/products/Skyr.jpg",
-        "productLink": "https://xn--yogures-de-antao-lub.com/productos-de-antaño",
-        "isNew": true,
-        "description": "Fermentos para hacer Skyr (Póximamente)",
-        "productPageDescription":"",
-        "longDescription":"",
-        "price": "?",
-        "priceId": "",
-        "oldPrice": "?",
-        "category": "",
-        "incluye":"-Un sobre de 2g de Fermentos para hacer Kéfir, 1g para empezar y otro de reserva.<br>"
-    }
+    }	
 ]

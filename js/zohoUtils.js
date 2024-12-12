@@ -1,4 +1,4 @@
-async function obtenerReviewsDesdeCrm(productCrmId) {
+export async function obtenerReviewsDesdeCrm(productCrmId) {
     const url = `https://stripe-integration-n0er.onrender.com/zoho/productReviews?product=${productCrmId}`;
 
     try {

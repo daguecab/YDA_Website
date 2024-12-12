@@ -385,6 +385,56 @@ function loadProducts(category, name) {
         .catch(error => console.error("Error al cargar los productos:", error));
 }
 
+
+// Crear un SVG para la estrella
+function createStar(type) {
+	const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	star.setAttribute('class', 'star');
+	star.setAttribute('viewBox', '0 0 24 24');
+	const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+	polygon.setAttribute('points', '12 2 15 9 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 9');
+
+	if (type === 'full') {
+		star.setAttribute('class', 'star star-full');
+	} else if (type === 'empty') {
+		star.setAttribute('class', 'star star-empty');
+	} else if (type === 'half') {
+		star.setAttribute('class', 'star star-half');
+		polygon.setAttribute('clip-path', 'inset(0 50% 0 0)');
+	}
+
+	star.appendChild(polygon);
+	return star;
+}
+
+// Función para crear estrellas según la puntuación
+function createStars(rating, container) {
+	container.innerHTML = ''; // Limpiar el contenido
+
+	const fullStars = Math.floor(rating); // Estrellas completas
+	const halfStar = rating % 1 >= 0.5 ? 1 : 0; // Estrella media
+	const emptyStars = 5 - fullStars - halfStar; // Estrellas vacías
+
+	const fragment = document.createDocumentFragment(); // Crear un fragmento para añadir todos los elementos
+
+	// Crear estrellas completas
+	for (let i = 0; i < fullStars; i++) {
+		fragment.appendChild(createStar('full'));
+	}
+
+	// Crear estrella media
+	if (halfStar) {
+		fragment.appendChild(createStar('half'));
+	}
+
+	// Crear estrellas vacías
+	for (let i = 0; i < emptyStars; i++) {
+		fragment.appendChild(createStar('empty'));
+	}
+
+	container.appendChild(fragment); // Añadir todo el fragmento al contenedor
+}
+
 // Función para generar el HTML de los detalles del producto
 async function generateProductDetailHTML(productName) {
     const productHeader = document.getElementById('productHeader');
@@ -392,6 +442,8 @@ async function generateProductDetailHTML(productName) {
     const products = await response.json();
 
     const product = products.find(p => p.name === productName);
+	const rating = 5;
+	const totalReviews = 120;
 
     if (!product) {
         return "<p>Producto no encontrado</p>";
@@ -413,6 +465,10 @@ async function generateProductDetailHTML(productName) {
                         <div>
                             <h2 class="product-title mb-0">${product.name}</h2>
                             <p class="product-p">${product.productPageDescription}</p>
+							<div class="rating-stars-container d-flex">
+                                <div class="rating-stars" id="ratingStars"></div>
+                                <span>(${totalReviews})</span>
+                            </div>
                             <h5 style="margin-bottom: 20px;"><span class="precio">${product.price}</span><span class="precio" style="text-decoration: line-through;color: grey"> ${oldPriceHTML}</span></h5>
                         </div>
                     </div>
@@ -473,9 +529,14 @@ async function generateProductDetailHTML(productName) {
     `;
 
     productHeader.insertAdjacentHTML('afterend', productDetailHTML);
+	// Añadir las estrellas
+    const starsContainer = document.getElementById('ratingStars');
+    createStars(rating, starsContainer);
+	
     funcionalidadCampoCantidad(false);
     funcionalidadDetalles();
 }
+
 function funcionalidadDetalles() {
     const botonIncluye = document.getElementById('botonIncluye');
     const incluye = document.getElementById('incluye');

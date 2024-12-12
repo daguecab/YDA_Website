@@ -253,6 +253,79 @@ strong {
 }
 
 /*---------------------------------------
+  REVIEW RATING               
+-----------------------------------------*/
+.reviews-container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1);
+}
+
+.review-title {
+	font-size: 24px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.review-item {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.review-item:last-child {
+	border-bottom: none;
+}
+
+.review-author {
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.review-date {
+	font-size: 14px;
+	color: #777;
+	margin-bottom: 10px;
+}
+
+.review-content {
+	font-size: 16px;
+	margin-bottom: 15px;
+	color: #555;
+}
+
+.rating-stars {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.star {
+	width: 20px;
+	height: 20px;
+	margin-right: 3px;
+}
+
+.star-full {
+	fill: gold;
+}
+
+.star-empty {
+	fill: #d3d3d3;
+}
+
+.star-half {
+	fill: gold;
+	clip-path: inset(0 50% 0 0);
+}
+
+/*---------------------------------------
   PRE LOADER               
 -----------------------------------------*/
 .loading {

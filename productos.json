@@ -17,6 +17,7 @@
     },
     {
         "name": "Termómetro",
+         "idCrm":"5964088000000757001",
         "imageSrc": "images/products/Termometro.jpg",
         "productLink": "termometro-detail",
         "isNew": true,
@@ -28,6 +29,7 @@
     },
     {
         "name": "Skyr",
+        "idCrm":"5964088000000836018",
         "imageSrc": "images/products/fermento-yogur-skyr.png",
         "secondaryImageSrc": "images/products/Skyr.png",
         "productLink": "skyr-detail",
@@ -43,6 +45,7 @@
     },
     {
         "name": "Yogur Griego",
+    	"idCrm":"5964088000000836019",
         "imageSrc": "images/products/fermento-yogur-griego.png",
         "secondaryImageSrc": "images/products/Yogur Griego.png",
         "productLink": "griego-detail",
@@ -58,6 +61,7 @@
     },  
     {
         "name": "Yogur Original",
+    	"idCrm":"5964088000000836020",
         "imageSrc": "images/products/fermento-yogur-bulgaro.png",
         "secondaryImageSrc": "images/products/Skyr.jpg",
         "productLink": "bulgaro-detail",

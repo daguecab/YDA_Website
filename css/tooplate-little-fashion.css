@@ -1183,6 +1183,7 @@ button:focus:not(:focus-visible) {
   transition: all 0.5s ease-out;
   border-radius: 15px;
   max-width: 80% !important;
+  aspect-ratio:1/1;
 }
 
 .product-thumb:hover .product-image {
@@ -1204,7 +1205,7 @@ button:focus:not(:focus-visible) {
 }
 
 .featured-product .product-info {
-  background-color: #efefef;
+  background-color: transparent;
 }
 
 .product-description,
@@ -1238,6 +1239,7 @@ button:focus:not(:focus-visible) {
   font-weight: var(--font-weight-bold);
   padding: 3px 10px;
   border-radius: 5px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.50);
 }
 
 .product-p {
@@ -1411,6 +1413,7 @@ button:focus:not(:focus-visible) {
   .slick-slideshow .custom-btn {
     padding-right: 27px;
     padding-left: 27px;
+    width: 95%;
   }
 
   .social-login,

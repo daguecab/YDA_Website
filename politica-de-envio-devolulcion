@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Yogures de Antaño - Política de Envíos y Devoluciones</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+        <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/slick.css"/>
+
+        <link href="css/tooplate-little-fashion.css" rel="stylesheet">
+        
+        <script src="js/misc.js"></script>
+    </head>
+    
+    <body>
+
+        <main>
+
+            <nav class=" pageProducto navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <img class="logo" src="images/Logo.png">
+                    </a>
+                    <div class="d-lg-none">
+                        <a href="carrito.html" class="bi-bag custom-icon"></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
+                        <div class="d-none d-lg-block" style="text-align: right;">
+                            <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
+                        </div>
+                    </div> 
+                </div>
+            </nav>
+
+            <header style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h1>
+                                <span class="d-block">Política de Envíos y Devoluciones</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="related-product section-padding border-top">
+                <div class="container">
+                    <div id="politicaDeEnvios">
+						
+
+							<h2>Condiciones Generales de venta</h2>
+							<p>No existen condiciones específicas de venta, como restricciones de edad o requisitos de registro para realizar un pedido en nuestra página web.</p>
+
+							<h2>Métodos de Pago</h2>
+							<p>Aceptamos únicamente pagos a través de Tarjeta de Crédito, utilizando la pasarela de pago segura de Stripe. Este es el único método de pago aceptado actualmente.</p>
+
+							<h2>Precios e Impuestos</h2>
+							<p>Todos los precios de nuestros productos incluyen los impuestos correspondientes. En caso de que se produzca un error en el precio de algún producto, asumiremos la diferencia de precio para garantizar la satisfacción del cliente.</p>
+
+							<h2>Proceso de Pedido</h2>
+							<p>Para realizar un pedido, selecciona los productos deseados y añádelos a la cesta de la compra. Una vez completada la selección, procede a pagar a través de nuestra pasarela segura Stripe. Al completar la compra, recibirás una confirmación del pedido a través del correo electrónico proporcionado.</p>
+
+							<h2>Confirmación de Pedido</h2>
+							<p>La confirmación del pedido se enviará por correo electrónico una vez que se haya procesado el pago con éxito. Este correo incluirá los detalles del pedido y un número de referencia para cualquier consulta futura.</p>
+
+							<h2>Cancelación de Pedidos</h2>
+							<p>No aceptamos cancelaciones de pedidos una vez que se ha realizado la compra. Si tienes alguna pregunta o necesitas más información, por favor, contáctanos a través de nuestro número de WhatsApp, disponible en la página web.</p>
+
+							<h2>Caducidad y Garantía de Productos</h2>
+							<p>Todos nuestros fermentos tienen una caducidad de 2 años. En caso de que un producto no funcione según lo esperado, se reembolsará el importe íntegro al cliente.</p>
+
+							<h2>Limitaciones de Responsabilidad</h2>
+							<p>No existen limitaciones específicas de responsabilidad a priori. Sin embargo, nos reservamos el derecho de revisar las políticas en el futuro si se considera necesario.</p>
+
+
+
+						<h2>Envíos</h2>
+
+						<p>El pedido tarda entre 0 y 1 días hábiles en prepararse.</p>
+
+						<h2>Métodos de Envío y Plazos de Entrega</h2>
+
+						<p>Ofrecemos diferentes métodos de envío para adaptarnos a tus necesidades:</p>
+
+						<p><strong>Envío Estándar:</strong> Plazo de entrega de 5 a 7 días hábiles, sin coste adicional.</p>
+
+						<p><strong>Envío Certificado/Express:</strong> Plazo de entrega de 2 a 3 días hábiles con un coste de 4€.</p>
+
+						<p>Los envíos se realizan a través de la compañía Correos y están disponibles para toda la península.</p>
+
+						<p>El seguimiento del envío solo está disponible con la opción de envío certificado. La información de seguimiento se enviará por correo electrónico cuando el pedido haya sido despachado.</p>
+
+						<h2>Reembolsos</h2>
+
+						<p>Ofrecemos reembolsos para los fermentos si no estás satisfecho con tu compra, sin necesidad de devolver el producto. El plazo máximo para solicitar un reembolso es de 15 días.</p>
+
+						<p>El procedimiento para solicitar un reembolso es a través de <a href="https://api.whatsapp.com/send?phone=+34620373319"><span style="color: var(--primary-color);">WhatsApp</span></a>. El reembolso se procesará en un máximo de 2 días hábiles.</p>
+
+						<p>El reembolso se realizará con el mismo método de pago utilizado durante la compra, siempre y cuando el reembolso sea total. En caso de reembolsos parciales, se hará a conveniencia del cliente.</p>
+						<h2>Devoluciones</h2>
+
+						<p>Aceptamos devoluciones en caso de productos defectuosos o si has recibido un producto equivocado. El plazo máximo para solicitar una devolución es de 15 días a partir de la recepción del pedido.</p>
+
+						<h2>Cambios</h2>
+
+						<p>Es posible cambiar productos siempre y cuando la devolución esté a cargo del cliente. Los cambios solo están permitidos para productos con el mismo precio; en caso contrario, el cliente deberá cubrir la diferencia de precio.</p>
+						
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        <footer class="site-footer">
+            <script>loadFooter()</script>
+        </footer>
+
+       
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/Headroom.js"></script>
+        <script src="js/jQuery.headroom.js"></script>
+        <script src="js/slick.min.js"></script>
+
+    </body>
+</html>

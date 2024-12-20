@@ -1,20 +1,26 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Tooplate's Little Fashion - FAQs Page</title>
+        <title>Yogures de Antaño - Preguntas frecuentes </title>
+		 <meta name="description" content="Sabemos que los fermentos de Yogures de Antaño son muy sencillos de usar, pero puede que tengas preguntas: aquí tienes las más frecuentes.">
+        <meta name="keywords" content="yogures, tradicion, tradicionales, yogur, fermentos,faq">
+        <meta name="author" content="David Guerrero Cabrerizo">
 
+        <title>Yogures de Antaño - Fermentos Vivos para Yogur Casero</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+        <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-icons.css" rel="stylesheet">
@@ -23,234 +29,193 @@
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
         
-<!--
-
-Tooplate 2127 Little Fashion
-
-https://www.tooplate.com/view/2127-little-fashion
-
--->
+        <script src="js/misc.js"></script>
     </head>
     
     <body>
 
-        <section class="preloader">
-            <div class="spinner">
-                <span class="sk-inner-circle"></span>
-            </div>
-        </section>
-    
         <main>
 
-            <nav class="navbar navbar-expand-lg">
+            <nav class=" pageProducto navbar navbar-expand-lg">
                 <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
                     <a class="navbar-brand" href="index.html">
-                        <strong><span>Little</span> Fashion</strong>
+                        <img class="logo" src="images/Logo.png">
                     </a>
-
                     <div class="d-lg-none">
-                        <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                        <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                        <a href="carrito.html" class="bi-bag custom-icon"></a>
                     </div>
-
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">Story</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="productos-de-antaño.html">Products</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active" href="faq.html">FAQs</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-none d-lg-block">
-                            <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                            <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                    <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
+                        <div class="d-none d-lg-block" style="text-align: right;">
+                            <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </nav>
 
-            <header class="site-header section-padding d-flex justify-content-center align-items-center">
+            <header style="padding:2rem; text-align: center;" class="site-header section-padding d-flex justify-content-center align-items-center">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-10 col-12">
+                        <div class="col-12">
                             <h1>
-                                <span class="d-block text-primary">Your favorite questions</span>
-                                <span class="d-block text-dark">and our answers to them</span>
+                                <span class="d-block">Preguntas Frecuentes</span>
                             </h1>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <section class="faq section-padding">
+            <section class="featured-product section-padding-little">
                 <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-lg-8 col-12">
-                            <h2>General Info.</h2>
+                    <h4>Estamos aquí para ayudar</h4>
+					<p>Aunque los fermentos de Yogures de Antaño son fáciles de usar, puede que tengas algunas dudas. Aquí bajo tienes las más frecuentes, sino puedes contactarnos por WhatsApp, Instagram o TikTok</p>
+				</div>
+			</section>
+            <section class="related-product section-padding-little">
+                <div class="container">
+                    <h4>Preguntas</h4>
+					<div class="accordion" id="accordionGeneral">
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralOne" aria-expanded="false" aria-controls="accordionGeneralOne">
+							¿Cuánto yogur puedo hacer con mis fermentos?
+						  </button>
+						</h2>
+						<div id="accordionGeneralOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">¡INFINITO🙂! Pero en cada tanda puedes hacer por ejemplo 1L de yogur con 1g de fermentos. Tienes la tabla de referencia  <a href="https://yogures-de-antaño.com/aterrizaje" style="color:var(--primary-color)" target="_blank">aquí</a>.</p>
+						  </div>
+						</div>
+					  </div>
 
-                            <div class="accordion" id="accordionGeneral">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralOne" aria-expanded="true" aria-controls="accordionGeneralOne">
-                                        What is this Little Fashion?
-                                        </button>
-                                    </h2>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralTwo" aria-expanded="false" aria-controls="accordionGeneralTwo">
+							¿Puedo resembrar mis yogures?
+						  </button>
+						</h2>
+						<div id="accordionGeneralTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Sí, una vez hecho el yogur con los fermentos, se puede hacer yogur cuantas veces queramos hasta el infinito*.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                    <div id="accordionGeneralOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGeneral">
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingThree">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralThree" aria-expanded="false" aria-controls="accordionGeneralThree">
+							¿Cuánto tiempo dura el yogur?
+						  </button>
+						</h2>
+						<div id="accordionGeneralThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Lo ideal es consumirlo antes de los 4 días, pero se sigue pudiendo utilizar para resembrar hasta una semana, y para consumir hasta dos semanas. Podría consumirse pasadas las dos semanas, pero dependiendo de las condiciones de creación y guardado del yogur, puede no ser seguro, así que recomendamos comerlo cuanto antes para obtener la mayor cantidad de beneficios.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                        <div class="accordion-body">
-                                            <p class="large-paragraph"><strong>Little Fashion</strong> is free Bootstrap 5 website template for everyone. There are 8 HTML pages included in this template and you can expand more pages as you need.</p>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingFour">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralFour" aria-expanded="false" aria-controls="accordionGeneralFour">
+							¿Qué hago con la tela blanca que salió en la leche?
+						  </button>
+						</h2>
+						<div id="accordionGeneralFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Esa tela es nata, la grasa natural de la leche, y se puede volver a mezclar removiendo con insistencia, o si no nos es agradable retirándola (al quitar la grasa, la consistencia puede ser algo más blanda). Es recomendable disolverla de nuevo en la leche antes de echar el fermento, para que no se quede adherido, ya que esto puede dificultar la disolución del fermento.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                            <p class="large-paragraph">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                        </div>
-                                    </div>
-                                </div>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingFive">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralFive" aria-expanded="false" aria-controls="accordionGeneralFive">
+							¿Qué cantidad de yogur uso para volver a hacer mi yogur?
+						  </button>
+						</h2>
+						<div id="accordionGeneralFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Para 1L has de usar unos 50ml de yogur para cada litro de leche, o lo que es lo mismo 5 cucharadas de postre rebosantes, pero si quieres hacer diferentes cantidades puedes ver la tabla de referencia <a href="https://yogures-de-antaño.com/aterrizaje" style="color:var(--primary-color)" target="_blank">aquí</a>.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralTwo" aria-expanded="false" aria-controls="accordionGeneralTwo">
-                                        What is Tooplate website?
-                                        </button>
-                                    </h2>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingSix">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralSix" aria-expanded="false" aria-controls="accordionGeneralSix">
+							¿Hay que esperar el mismo tiempo usando fermentos o yogur?
+						  </button>
+						</h2>
+						<div id="accordionGeneralSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">No, el fermento viene liofilizado, y necesita un tiempo de activación para empezar a hacer magia, entonces el tiempo de espera usando fermento será de 1-2h mayor que usando el yogur como cultivo.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                    <div id="accordionGeneralTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGeneral">
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingSeven">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralSeven" aria-expanded="false" aria-controls="accordionGeneralSeven">
+							¿Se pueden hacer a temperatura ambiente?
+						  </button>
+						</h2>
+						<div id="accordionGeneralSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">El yogur original (búlgaro), griego y Skyr son fermentos termófilos, es decir, necesitan calor para convertir la leche en yogur, así que necesitarás una fuente de calor como horno o yogurtera.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                        <div class="accordion-body">
-                                            <p class="large-paragraph"><a href="https://www.tooplate.com/free-templates" target="_blank">Tooplate</a> is a great website to download free HTML website templates for your business or personal use. Tooplate website has been online for almost 8 years now. Thank you for visiting our website.</p>
-                                        </div>
-                                    </div>
-                                </div>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingEight">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralEight" aria-expanded="false" aria-controls="accordionGeneralEight">
+							¿Cómo almaceno los productos y cuándo caducan?
+						  </button>
+						</h2>
+						<div id="accordionGeneralEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Para una duración máxima, hay que almacenarlos en el congelador. Mantenga los paquetes abiertos en una bolsa Zip, o cierre bien la original para evitar que entre humedad.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralThree" aria-expanded="false" aria-controls="accordionGeneralThree">
-                                        How do I support your website?
-                                        </button>
-                                    </h2>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingNine">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralNine" aria-expanded="false" aria-controls="accordionGeneralNine">
+							¿Uso leche pasteurizada, debo hervirla igualmente?
+						  </button>
+						</h2>
+						<div id="accordionGeneralNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Por lo general, hervir la leche se hace para eliminar cualquier bacteria existente en la leche. La leche pasteurizada ya ha sido tratada, así que no es necesario, pero acercar la leche a las temperaturas de ebullición desnaturaliza las proteínas y realinea las moléculas de grasa, lo que luego resulta en un yogur superior. Lo único es que las bacterias beneficiosas de la leche y algunos nutrientes podrían perderse.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                    <div id="accordionGeneralThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingTen">
+						  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralTen" aria-expanded="false" aria-controls="accordionGeneralTen">
+							¿Puedo usar leche UHT?
+						  </button>
+						</h2>
+						<div id="accordionGeneralTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionGeneral">
+						  <div class="accordion-body">
+							<p class="large-paragraph">Aunque la consistencia puede ser algo menos consistente y no tendrá tanto valor nutricional (las vitaminas se destruyen durante el proceso de uperizado), no hay problema: el yogur resultante sigue siendo de buena calidad.</p>
+						  </div>
+						</div>
+					  </div>
 
-                                        <div class="accordion-body">
-                                            <p class="large-paragraph">You can support our Tooplate website by sharing it to your friends or colleagues on the web or social media.</p>
-                                        </div>
-                                    </div>
-                                </div>
+					</div>
 
-                            </div>
-
-                            <h2 class="mt-5">About <span>our products</span></h2>
-
-                            <div class="accordion" id="accordionProduct">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProductOne" aria-expanded="true" aria-controls="accordionProductOne">
-                                        What is Fashion Design?
-                                        </button>
-                                    </h2>
-
-                                    <div id="accordionProductOne" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionProduct">
-
-                                        <div class="accordion-body">
-                                            <p class="large-paragraph"><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-
-                                            <p class="large-paragraph">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFive">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProductTwo" aria-expanded="false" aria-controls="accordionProductTwo">
-                                        How do I use the product?
-                                        </button>
-                                    </h2>
-
-                                    <div id="accordionProductTwo" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionProduct">
-
-                                        <div class="accordion-body">
-                                            <p class="large-paragraph">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
                 </div>
             </section>
 
         </main>
-
         <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-10 me-auto mb-4">
-                        <h4 class="text-white mb-3"><a href="index.html">Little</a> Fashion</h4>
-                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
-                        <br>
-                        <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
-                    </div>
-
-                    <div class="col-lg-5 col-8">
-                        <h5 class="text-white mb-3">Sitemap</h5>
-
-                        <ul class="footer-menu d-flex flex-wrap">
-                            <li class="footer-menu-item"><a href="about.html" class="footer-menu-link">Story</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Products</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Privacy policy</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">FAQs</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-4">
-                        <h5 class="text-white mb-3">Social</h5>
-
-                        <ul class="social-icon">
-
-                            <li><a href="#" class="social-icon-link bi-youtube"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-skype"></a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
+            <script>loadFooter()</script>
         </footer>
+
+       
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
@@ -258,7 +223,6 @@ https://www.tooplate.com/view/2127-little-fashion
         <script src="js/Headroom.js"></script>
         <script src="js/jQuery.headroom.js"></script>
         <script src="js/slick.min.js"></script>
-        <script src="js/custom.js"></script>
 
     </body>
 </html>

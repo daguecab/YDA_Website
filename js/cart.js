@@ -215,25 +215,27 @@ function agregarAlCarrito(producto, cantidad,precio, idPrecio) {
 
 // FunciÃ³n para cargar y mostrar el contenido del carrito desde localStorage
 function mostrarCarrito() {
-    // ObtÃ©n los productos del carrito desde el localStorage
+    // Obtén los productos del carrito desde el localStorage
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const carritoCompraDiv = document.querySelector(".carritoCompra");
-    // Verifica si el cesta estÃ¡ vacÃ­a
+    
+    // Verifica si el carrito está vacío
     if (carrito.length === 0) {
         const carritoHTML = `
             <div style="text-align:center;">
-                <h2>Tu cesta estÃ¡ vacÃ­a<h2>
-                <a href="productos-de-antaÃ±o.html" class="custom-btn">Seguir comprando</a>
+                <h2>Tu cesta está vacía<h2>
+                <a href="productos-de-antaño.html" class="custom-btn">Seguir comprando</a>
             </div>
         `;
         carritoCompraDiv.innerHTML = carritoHTML;
         return;
     }
-    // Carga los productos de manera asÃ­ncrona desde products.json utilizando fetch
+    
+    // Carga los productos de manera asíncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
-            // Genera el HTML para mostrar los productos en el carrito
+            let subtotal = 0; // Inicializa el subtotal
             const carritoHTML = `
                 <div class="carrito">
                     <table>
@@ -248,16 +250,29 @@ function mostrarCarrito() {
                             ${carrito.map(item => {
                                 // Busca el producto correspondiente en products.json por el nombre
                                 const product = products.find(p => p.name === item.producto);
-                                // Elimina el sÃ­mbolo â‚¬ y convierte el precio por unidad a nÃºmero
-                                const precioUnidad = parseFloat(product.price.replace('â‚¬', '').trim());
-                                const totalProducto = product.price * item.cantidad;
+                                if (!product) return ''; // Si el producto no se encuentra, omítelo
+                                
+                                // Calcula el precio por unidad y el total del producto
+                                const precioUnidad = parseFloat(product.price.replace('€', '').trim());
+                                const totalProducto = precioUnidad * item.cantidad;
                                 subtotal += totalProducto;
+
+                                // Genera HTML para las opciones dinámicas (si existen)
+                                const opcionesHTML = Object.keys(item)
+                                    .filter(key => key.startsWith('opcion') && item[key]) // Filtra las opciones válidas
+                                    .map(key => {
+                                        const nombreOpcion = key.charAt(0).toUpperCase() + key.slice(1); // Primera letra mayúscula
+                                        return `<p class="opcion-pack" style="margin-left: 20px;"><b>${nombreOpcion}:</b> ${item[key]}</p>`;
+                                    })
+                                    .join('');
+
                                 return `
                                     <tr>
                                         <td class="product-details">
-                                            <a href="${product.productLink}" ><img src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb"/></a>
+                                            <a href="${product.productLink}"><img src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb"/></a>
                                             <div style="margin-left:5%">
                                                 <p class="carrito-nombre-producto">${item.producto}</p>
+                                                ${opcionesHTML} <!-- Muestra las opciones del pack -->
                                                 <p class="precio carrito-precio-unitario">${product.price}</p>
                                                 <div class="number-field medio mt-1">
                                                     <button id="decreaseMedio">-</button>
@@ -268,18 +283,16 @@ function mostrarCarrito() {
                                                     <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
                                                 </button>
                                             </div>
+                                        </td>
                                         <td class="carrito-cantidad">
                                             <div class="number-field">
                                                 <button id="decrease">-</button>
                                                 <input type="text" id="cantidadCarrito" value="${item.cantidad}" min="1">
                                                 <button id="increase">+</button>
                                             </div>
-                                            <button id="deleteMedio">
-                                                <i class="material-icons" style="vertical-align:middle;padding-left:5px;">delete</i>
-                                            </button>
                                         </td>
                                         <td class="carrito-producto-total">
-                                            <p class="precio">${totalProducto.toFixed(2)}</p>
+                                            <p class="precio">${totalProducto.toFixed(2)} €</p>
                                         </td>
                                     </tr>
                                 `;
@@ -287,29 +300,29 @@ function mostrarCarrito() {
                         </tbody>
                     </table>
                     <div class="subtotal">
-                        <p style="float:left" >Comentarios del Pedido:</p>
-                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquÃ­"></textarea>
+                        <p style="float:left">Comentarios del Pedido:</p>
+                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquí"></textarea>
                         <div class="subtotal-envio">
                             <table>
                                 <tr style="border:none;">
-                                    <td class="izquierda" >Subtotal:</td>
-                                    <td class="derecha precio" id="subtotalField">${subtotal.toFixed(2)}</td>
+                                    <td class="izquierda">Subtotal:</td>
+                                    <td class="derecha precio" id="subtotalField">${subtotal.toFixed(2)} €</td>
                                 </tr>
-                                <tr >
-                                    <td class="izquierda">EnvÃ­o gratuito:</td>
-                                    <td class="derecha precio">0.0</td>
+                                <tr>
+                                    <td class="izquierda">Envío gratuito:</td>
+                                    <td class="derecha precio">0.0 €</td>
                                 </tr>
                             </table>
                             <button id="checkout" class="btn-comprar btn custom-btn cart-btn">Comprar</button>
                         </div>
                     </div>
-                    <!--p class="total" id="totalField"><b>Total:<b> ${subtotal.toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p-->
-                    
-
                 </div>
             `;
-            // Inserta el contenido del carrito despuÃ©s del div con la clase "carritoCompra"
+            
+            // Inserta el contenido del carrito después del div con la clase "carritoCompra"
             carritoCompraDiv.innerHTML = carritoHTML;
+            
+            // Configura funcionalidades adicionales
             funcionalidadComprar();
             funcionalidadCampoCantidad(true);
         })

@@ -1,7 +1,169 @@
+async function obtenerReviewsDesdeCrm(productCrmId) {
+    const url = `https://stripe-integration-n0er.onrender.com/zoho/productReviews?product=${productCrmId}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+
+        const reviews = await response.json();
+        return reviews; // Devuelve las reseÃ±as
+    } catch (error) {
+        throw new Error(`Error al obtener las reseÃ±as: ${error.message}`);
+    }
+}
+
+// FunciÃ³n privada para calcular la nota media
+function calcularNotaMedia(json) {
+    const reviews = json.reviews;
+
+    // Filtrar las reseÃ±as con calificaciÃ³n vÃ¡lida
+    const calificaciones = reviews
+        .map((review) => parseFloat(review.Calificaci_n))
+        .filter((calificacion) => !isNaN(calificacion));
+
+    // Verificar si hay calificaciones
+    if (calificaciones.length === 0) {
+        return 0;
+    }
+
+    // Calcular el promedio
+    const suma = calificaciones.reduce((total, calificacion) => total + calificacion, 0);
+    const promedio = suma / calificaciones.length;
+
+    return promedio.toFixed(1); // Redondear a 1 decimal
+}
+
+// FunciÃ³n privada para mapear las reseÃ±as
+function mapearReviews(reviews) {
+    if (!Array.isArray(reviews)) {
+        throw new Error('El parÃ¡metro reviews debe ser un array');
+    }
+
+    // Mapeamos los datos necesarios de cada reseÃ±a
+    return reviews.map((review) => ({
+        nombre: review.Nombre_a_mostrar || 'AnÃ³nimo',
+        comentario: review.Comentario || 'Sin comentario',
+        calificacion: review.Calificaci_n || 'Sin calificaciÃ³n',
+        fechaCreacion: review.Created_Time || 'Fecha no disponible',
+    }));
+}
+
+ async function extraerReviewsInfo(productCrmId, mapear = true) {
+    try {
+        const json = await obtenerReviewsDesdeCrm(productCrmId);
+
+        // Si el flag `mapear` es verdadero, mapeamos las reseÃ±as
+        const reviews = mapear ? mapearReviews(json.reviews) : json.reviews;
+
+        // Calcular nota media
+        const notaMedia = calcularNotaMedia(json);
+
+        // NÃºmero de reseÃ±as
+        const numeroDeReviews = json.reviews.length;
+
+        return {
+            reviews, // Devolver las reseÃ±as mapeadas o sin mapear segÃºn el flag
+            notaMedia,
+            numeroDeReviews,
+        };
+    } catch (error) {
+        throw new Error(`Error al procesar las reviews: ${error.message}`);
+    }
+}
+
+async function obtenerReviewsDesdeCrm(productCrmId) {
+    const url = `https://stripe-integration-n0er.onrender.com/zoho/productReviews?product=${productCrmId}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+
+        const reviews = await response.json();
+        return reviews; // Devuelve las reseÃ±as
+    } catch (error) {
+        throw new Error(`Error al obtener las reseÃ±as: ${error.message}`);
+    }
+}
+
+// FunciÃ³n privada para calcular la nota media
+function calcularNotaMedia(json) {
+    const reviews = json.reviews;
+
+    // Filtrar las reseÃ±as con calificaciÃ³n vÃ¡lida
+    const calificaciones = reviews
+        .map((review) => parseFloat(review.Calificaci_n))
+        .filter((calificacion) => !isNaN(calificacion));
+
+    // Verificar si hay calificaciones
+    if (calificaciones.length === 0) {
+        return 0;
+    }
+
+    // Calcular el promedio
+    const suma = calificaciones.reduce((total, calificacion) => total + calificacion, 0);
+    const promedio = suma / calificaciones.length;
+
+    return promedio.toFixed(1); // Redondear a 1 decimal
+}
+
+// FunciÃ³n privada para mapear las reseÃ±as
+function mapearReviews(reviews) {
+    if (!Array.isArray(reviews)) {
+        throw new Error('El parÃ¡metro reviews debe ser un array');
+    }
+
+    // Mapeamos los datos necesarios de cada reseÃ±a
+    return reviews.map((review) => ({
+        nombre: review.Nombre_a_mostrar || 'AnÃ³nimo',
+        comentario: review.Comentario || 'Sin comentario',
+        calificacion: review.Calificaci_n || 'Sin calificaciÃ³n',
+        fechaCreacion: review.Created_Time || 'Fecha no disponible',
+    }));
+}
+
+ async function extraerReviewsInfo(productCrmId, mapear = true) {
+    try {
+        const json = await obtenerReviewsDesdeCrm(productCrmId);
+
+        // Si el flag `mapear` es verdadero, mapeamos las reseÃ±as
+        const reviews = mapear ? mapearReviews(json.reviews) : json.reviews;
+
+        // Calcular nota media
+        const notaMedia = calcularNotaMedia(json);
+
+        // NÃºmero de reseÃ±as
+        const numeroDeReviews = json.reviews.length;
+
+        return {
+            reviews, // Devolver las reseÃ±as mapeadas o sin mapear segÃºn el flag
+            notaMedia,
+            numeroDeReviews,
+        };
+    } catch (error) {
+        throw new Error(`Error al procesar las reviews: ${error.message}`);
+    }
+}
+
 //Subtotal de la cesta
 var subtotal = 0;
 
-// Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
+// Evento de clic en el botÃ³n "AÃ±adir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
 function addClickEventToCartButtons() {
     var addToCartButtons = document.querySelectorAll('.cart-btn');
     addToCartButtons.forEach(button => {
@@ -13,18 +175,18 @@ function addClickEventToCartButtons() {
             var cantidadSeleccionada = cantidad != null ? cantidad : button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
             if (cantidadSeleccionada === 'Cantidad') {
-                alert('Selecciona una cantidad válida para agregar al carrito.');
+                alert('Selecciona una cantidad vÃ¡lida para agregar al carrito.');
             } else {
                 textoDescuento = "";
                 if(cantidadSeleccionada>1){
-                    textoDescuento =  "\nPuedes usar el cupón DESCUENTO2A para tener un descuento por comprar más de una unidad.";
+                    textoDescuento =  "\nPuedes usar el cupÃ³n DESCUENTO2A para tener un descuento por comprar mÃ¡s de una unidad.";
                 }
 				if(precio != "?"){
 	                agregarAlCarrito(producto, parseInt(cantidadSeleccionada), precio, idPrecio);
-    	            alert('Se ha añadido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
+    	            alert('Se ha aÃ±adido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
 				}
 				else{
-					alert('No seas impaciente, el ' + producto + ' aún no está disponible, pero lo estará próximamente. Aquí tienes un 20% de descuento para su salida😊 PREVENTA20' );
+					alert('No seas impaciente, el ' + producto + ' aÃºn no estÃ¡ disponible, pero lo estarÃ¡ prÃ³ximamente. AquÃ­ tienes un 20% de descuento para su salidaðŸ˜Š PREVENTA20' );
 				}
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
                 // $('#cart-modal').modal('show');
@@ -37,7 +199,7 @@ function vaciarCarrito(){
     localStorage.setItem('carrito', null);
 }
 
-// Función para agregar al carrito
+// FunciÃ³n para agregar al carrito
 function agregarAlCarrito(producto, cantidad,precio, idPrecio) {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -51,23 +213,23 @@ function agregarAlCarrito(producto, cantidad,precio, idPrecio) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// Función para cargar y mostrar el contenido del carrito desde localStorage
+// FunciÃ³n para cargar y mostrar el contenido del carrito desde localStorage
 function mostrarCarrito() {
-    // Obtén los productos del carrito desde el localStorage
+    // ObtÃ©n los productos del carrito desde el localStorage
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const carritoCompraDiv = document.querySelector(".carritoCompra");
-    // Verifica si el cesta está vacía
+    // Verifica si el cesta estÃ¡ vacÃ­a
     if (carrito.length === 0) {
         const carritoHTML = `
             <div style="text-align:center;">
-                <h2>Tu cesta está vacía<h2>
-                <a href="productos-de-antaño.html" class="custom-btn">Seguir comprando</a>
+                <h2>Tu cesta estÃ¡ vacÃ­a<h2>
+                <a href="productos-de-antaÃ±o.html" class="custom-btn">Seguir comprando</a>
             </div>
         `;
         carritoCompraDiv.innerHTML = carritoHTML;
         return;
     }
-    // Carga los productos de manera asíncrona desde products.json utilizando fetch
+    // Carga los productos de manera asÃ­ncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
@@ -86,8 +248,8 @@ function mostrarCarrito() {
                             ${carrito.map(item => {
                                 // Busca el producto correspondiente en products.json por el nombre
                                 const product = products.find(p => p.name === item.producto);
-                                // Elimina el símbolo € y convierte el precio por unidad a número
-                                const precioUnidad = parseFloat(product.price.replace('€', '').trim());
+                                // Elimina el sÃ­mbolo â‚¬ y convierte el precio por unidad a nÃºmero
+                                const precioUnidad = parseFloat(product.price.replace('â‚¬', '').trim());
                                 const totalProducto = product.price * item.cantidad;
                                 subtotal += totalProducto;
                                 return `
@@ -126,7 +288,7 @@ function mostrarCarrito() {
                     </table>
                     <div class="subtotal">
                         <p style="float:left" >Comentarios del Pedido:</p>
-                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquí"></textarea>
+                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquÃ­"></textarea>
                         <div class="subtotal-envio">
                             <table>
                                 <tr style="border:none;">
@@ -134,7 +296,7 @@ function mostrarCarrito() {
                                     <td class="derecha precio" id="subtotalField">${subtotal.toFixed(2)}</td>
                                 </tr>
                                 <tr >
-                                    <td class="izquierda">Envío gratuito:</td>
+                                    <td class="izquierda">EnvÃ­o gratuito:</td>
                                     <td class="derecha precio">0.0</td>
                                 </tr>
                             </table>
@@ -146,7 +308,7 @@ function mostrarCarrito() {
 
                 </div>
             `;
-            // Inserta el contenido del carrito después del div con la clase "carritoCompra"
+            // Inserta el contenido del carrito despuÃ©s del div con la clase "carritoCompra"
             carritoCompraDiv.innerHTML = carritoHTML;
             funcionalidadComprar();
             funcionalidadCampoCantidad(true);
@@ -175,7 +337,7 @@ function funcionalidadComprar() {
             name: producto.producto,
             price: Math.round(producto.precio * 100), // Convierte el precio a centavos (si es necesario)
             price_id: producto.price_id,
-            quantity: producto.cantidad || 1 // Establece una cantidad predeterminada si no está definida
+            quantity: producto.cantidad || 1 // Establece una cantidad predeterminada si no estÃ¡ definida
         }));
         const comentarios = document.querySelector('#comentariosPedido').value;
 
@@ -206,7 +368,7 @@ function restarUnoProducto(){
 }
 
 
-//Añadimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
+//AÃ±adimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
 function funcionalidadCampoCantidad(funcionalidadCarrito) {
     const decreaseButtons = document.querySelectorAll('#decrease');
     const increaseButtons = document.querySelectorAll('#increase');
@@ -287,7 +449,7 @@ function recalcularTotalProductos(index,nuevaCantidad) {
     recalcularTotal(totalFields,index, nuevaCantidad);
 }
 
-// Función para recalcular los totales
+// FunciÃ³n para recalcular los totales
 function recalcularTotal(totalFields, index, nuevaCantidad) {
     //Reseteamos el subtotal y lo calculamos sumando todos los totales
     subtotal = 0;
@@ -297,7 +459,7 @@ function recalcularTotal(totalFields, index, nuevaCantidad) {
     });
     // Actualizar los elementos en el HTML
     document.querySelector('#subtotalField').innerHTML = subtotal.toFixed(2);
-    //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
+    //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + 'â‚¬';
 }
 
 function actualizarLocalStorage(carrito, index, newCantidad) {
@@ -324,6 +486,7 @@ function generateProductHTML(product) {
     let priceHTML = `<div class="d-inline-flex" style="width:100%">
                         <h6 style="width:100%;color:black !important;" class="product-price precio text-muted ms-auto mt-auto mb-1 price">${product.price}</h6>
                     </div>`;
+	const totalReviews = product.totalReviews;
     
     if (product.oldPrice) {
         priceHTML = `
@@ -345,6 +508,8 @@ function generateProductHTML(product) {
                 <div class="product-top d-flex">
                     ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
                     ${product.isRecommended ? '<span class="product-alert me-auto">Recomendado</span>' : ''}
+					${product.isOferta ? '<span class="product-alert me-auto">Oferta</span>' : ''}
+					${product.isSopresa ? '<span class="product-alert me-auto">PrÃ³ximamente</span>' : ''}
                 </div>
 
                 <div class="product-info text-center">
@@ -353,8 +518,12 @@ function generateProductHTML(product) {
                             <a href="${product.productLink}" class="product-title-link">${product.name}</a>
                         </h5>
                         <p class="product-p">${product.description}</p>
+						<div class="rating-stars-container d-flex" style="justify-content: center;">
+                        	<div class="rating-stars" id="ratingStars-${product.name}" ></div>
+                            <span>(${totalReviews})</span>
+                        </div>
                         ${priceHTML}</div>
-                        <button type="submit" id="addToCart" style="width:60%" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                        <button type="submit" id="addToCart" style="width:60%" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">AÃ±adir al carrito</button>
                     </div>
                     <div class="d-flex ms-auto">
                         
@@ -366,12 +535,12 @@ function generateProductHTML(product) {
 }
 
 function loadProducts(category, name) {
-    // Carga los productos de manera asíncrona desde products.json utilizando fetch
+    // Carga los productos de manera asÃ­ncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
             const productContainer = document.getElementById("product-container");
-            // Filtrar productos por categoría
+            // Filtrar productos por categorÃ­a
             const filteredProducts = category
                 ? products.filter(product => product.category === category && product.name != name)
                 : products.filter(product => product.name != name);
@@ -379,19 +548,77 @@ function loadProducts(category, name) {
             filteredProducts.forEach(product => {
                 const productHTML = generateProductHTML(product);
                 productContainer.insertAdjacentHTML("afterend", productHTML);
+				//Meter estrellas
+				const starsContainer = document.getElementById(`ratingStars-${product.name}`);
+				const notaMedia = product.notaMedia;
+    			createStars(notaMedia, starsContainer);
             });
             addClickEventToCartButtons();
         })
         .catch(error => console.error("Error al cargar los productos:", error));
 }
 
-// Función para generar el HTML de los detalles del producto
+// Crear un SVG para la estrella
+function createStar(type) {
+	const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	star.setAttribute('class', 'star');
+	star.setAttribute('viewBox', '0 0 24 24');
+	const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+	polygon.setAttribute('points', '12 2 15 9 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 9');
+
+	if (type === 'full') {
+		star.setAttribute('class', 'star star-full');
+	} else if (type === 'empty') {
+		star.setAttribute('class', 'star star-empty');
+	} else if (type === 'half') {
+		star.setAttribute('class', 'star star-half');
+		polygon.setAttribute('clip-path', 'inset(0 50% 0 0)');
+	}
+
+	star.appendChild(polygon);
+	return star;
+}
+
+// FunciÃ³n para crear estrellas segÃºn la puntuaciÃ³n
+function createStars(rating, container) {
+	container.innerHTML = ''; // Limpiar el contenido
+
+	const fullStars = Math.floor(rating); // Estrellas completas
+	const halfStar = rating % 1 >= 0.5 ? 1 : 0; // Estrella media
+	const emptyStars = 5 - fullStars - halfStar; // Estrellas vacÃ­as
+
+	const fragment = document.createDocumentFragment(); // Crear un fragmento para aÃ±adir todos los elementos
+
+	// Crear estrellas completas
+	for (let i = 0; i < fullStars; i++) {
+		fragment.appendChild(createStar('full'));
+	}
+
+	// Crear estrella media
+	if (halfStar) {
+		fragment.appendChild(createStar('half'));
+	}
+
+	// Crear estrellas vacÃ­as
+	for (let i = 0; i < emptyStars; i++) {
+		fragment.appendChild(createStar('empty'));
+	}
+
+	container.appendChild(fragment); // AÃ±adir todo el fragmento al contenedor
+}
+
+// FunciÃ³n para generar el HTML de los detalles del producto
 async function generateProductDetailHTML(productName) {
     const productHeader = document.getElementById('productHeader');
     const response = await fetch("productos.json");
     const products = await response.json();
+	
+    const product = products.find(p => p.name === productName);	
+	//const { reviews, notaMedia, totalReviews } = await extraerReviewsInfo(product.idCrm);	
+	//console.log(`Nota media: ${notaMedia}\nNÃºmero de reseÃ±as: ${totalReviews}`);
 
-    const product = products.find(p => p.name === productName);
+	const notaMedia = product.notaMedia;
+	const totalReviews = product.totalReviews;
 
     if (!product) {
         return "<p>Producto no encontrado</p>";
@@ -413,6 +640,10 @@ async function generateProductDetailHTML(productName) {
                         <div>
                             <h2 class="product-title mb-0">${product.name}</h2>
                             <p class="product-p">${product.productPageDescription}</p>
+							<div class="rating-stars-container d-flex">
+                                <div class="rating-stars" id="ratingStars"></div>
+                                <span>(${totalReviews})</span>
+                            </div>
                             <h5 style="margin-bottom: 20px;"><span class="precio">${product.price}</span><span class="precio" style="text-decoration: line-through;color: grey"> ${oldPriceHTML}</span></h5>
                         </div>
                     </div>
@@ -428,14 +659,14 @@ async function generateProductDetailHTML(productName) {
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
+                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">AÃ±adir al carrito</button>
                         </div>
                         <script src="js/cart.js"></script>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
                             <h6>
                                 <a href="#" id="botonIncluye" class="product-additional-link">
                                     <i id="arrowBotonIncluye" class="material-icons">keyboard_arrow_down</i>
-                                    Qué incluye
+                                    QuÃ© incluye
                                 </a>
 
                             </h6>
@@ -447,11 +678,11 @@ async function generateProductDetailHTML(productName) {
                             <h6>
                                 <a href="#" id="botonGastos" class="product-additional-link">
                                     <i id="arrowBotonGastos" class="material-icons">keyboard_arrow_down</i>
-                                    Gastos de Envío
+                                    Gastos de EnvÃ­o
                                 </a>
                             </h6>
                             <div id="gastos" style="display: none;">
-                                <p>Los gastos de envío son GRATIS, aunque damos la opción de un envío express.</p>
+                                <p>Los gastos de envÃ­o son GRATIS, aunque damos la opciÃ³n de un envÃ­o express.</p>
                             </div>
                         </div>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
@@ -473,6 +704,10 @@ async function generateProductDetailHTML(productName) {
     `;
 
     productHeader.insertAdjacentHTML('afterend', productDetailHTML);
+	// AÃ±adir las estrellas
+    const starsContainer = document.getElementById('ratingStars');
+    createStars(notaMedia, starsContainer);
+	
     funcionalidadCampoCantidad(false);
     funcionalidadDetalles();
 }

@@ -482,7 +482,7 @@
                 window.addEventListener('load', function() {
                      if (!localStorage.getItem('emailModalShown')) {
 						// Si no se ha mostrado, lo muestra y lo marca como "mostrado" en LocalStorage
-						emailModal.style.display = 'block';
+						emailModal.style.display = 'none';
 						localStorage.setItem('emailModalShown', 'true');
 					}
                 });

@@ -612,19 +612,19 @@ async function generateProductDetailHTML(productName) {
     const productHeader = document.getElementById('productHeader');
     const response = await fetch("productos.json");
     const products = await response.json();
-	
-    const product = products.find(p => p.name === productName);	
-	//const { reviews, notaMedia, totalReviews } = await extraerReviewsInfo(product.idCrm);	
-	//console.log(`Nota media: ${notaMedia}\nNÃºmero de reseÃ±as: ${totalReviews}`);
 
-	const notaMedia = product.notaMedia;
-	const totalReviews = product.totalReviews;
+    const product = products.find(p => p.name === productName);
+
+    const notaMedia = product.notaMedia;
+    const totalReviews = product.totalReviews;
 
     if (!product) {
         return "<p>Producto no encontrado</p>";
     }
 
-    const oldPriceHTML = product.oldPrice ? `<span style="text-decoration: line-through;color: grey">${product.oldPrice}</span>` : '';
+    const oldPriceHTML = product.oldPrice
+        ? `<span style="text-decoration: line-through;color: grey">${product.oldPrice}</span>`
+        : '';
     const productDetailHTML = `
     <section class="product-detail section-padding">
         <div class="container">
@@ -640,11 +640,16 @@ async function generateProductDetailHTML(productName) {
                         <div>
                             <h2 class="product-title mb-0">${product.name}</h2>
                             <p class="product-p">${product.productPageDescription}</p>
-							<div class="rating-stars-container d-flex">
+                            <div class="rating-stars-container d-flex">
                                 <div class="rating-stars" id="ratingStars"></div>
                                 <span>(${totalReviews})</span>
                             </div>
-                            <h5 style="margin-bottom: 20px;"><span class="precio">${product.price}</span><span class="precio" style="text-decoration: line-through;color: grey"> ${oldPriceHTML}</span></h5>
+                            <h5 style="margin-bottom: 20px;">
+                                <span class="precio">${product.price}</span>
+                                <span class="precio" style="text-decoration: line-through;color: grey"> 
+                                    ${oldPriceHTML}
+                                </span>
+                            </h5>
                         </div>
                     </div>
                     <div class="product-description">
@@ -659,33 +664,41 @@ async function generateProductDetailHTML(productName) {
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">AÃ±adir al carrito</button>
+                            <button type="submit" 
+                                id="addToCart" 
+                                class="btn custom-btn cart-btn" 
+                                data-precio="${product.price}" 
+                                data-idprecio="${product.priceId}" 
+                                data-producto="${product.name}" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="">
+                                Añadir al carrito
+                            </button>
                         </div>
                         <script src="js/cart.js"></script>
-                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
                             <h6>
                                 <a href="#" id="botonIncluye" class="product-additional-link">
                                     <i id="arrowBotonIncluye" class="material-icons">keyboard_arrow_down</i>
-                                    QuÃ© incluye
+                                    Qué incluye
                                 </a>
-
                             </h6>
                             <div id="incluye" style="display: none;">
                                 <p>${product.incluye}</p>
                             </div>
                         </div>
-                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
                             <h6>
                                 <a href="#" id="botonGastos" class="product-additional-link">
                                     <i id="arrowBotonGastos" class="material-icons">keyboard_arrow_down</i>
-                                    Gastos de EnvÃ­o
+                                    Gastos de Envío
                                 </a>
                             </h6>
                             <div id="gastos" style="display: none;">
-                                <p>Los gastos de envÃ­o son GRATIS, aunque damos la opciÃ³n de un envÃ­o express.</p>
+                                <p>Los gastos de envío son GRATIS, aunque damos la opción de un envío express.</p>
                             </div>
                         </div>
-                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+                        <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
                             <h6>
                                 <a href="#" id="botonDevolver" class="product-additional-link">
                                     <i id="arrowBotonDevolver" class="material-icons">keyboard_arrow_down</i>
@@ -704,13 +717,30 @@ async function generateProductDetailHTML(productName) {
     `;
 
     productHeader.insertAdjacentHTML('afterend', productDetailHTML);
-	// AÃ±adir las estrellas
+
+    // Añadir las estrellas
     const starsContainer = document.getElementById('ratingStars');
     createStars(notaMedia, starsContainer);
-	
+
+    // Añadir atributos dinámicos basados en los campos presentes en la UI solo si no son nulos o vacíos
+    const addToCartButton = document.getElementById('addToCart');
+    addToCartButton.addEventListener('click', () => {
+        const dynamicFields = document.querySelectorAll('[id^="opcion"]'); // Selecciona todos los campos con id que empiecen por "opcion"
+        dynamicFields.forEach(field => {
+            const fieldValue = field.value || ''; // Obtiene el valor o un string vacío
+            if (fieldValue.trim() !== '') { // Solo si el valor no está vacío
+                addToCartButton.dataset[field.id] = fieldValue; // Añade un atributo dinámico data-opcion1, data-opcion2, etc.
+            }
+        });
+
+        // Log para depuración
+        console.log('Datos añadidos al carrito:', addToCartButton.dataset);
+    });
+
     funcionalidadCampoCantidad(false);
     funcionalidadDetalles();
 }
+
 function funcionalidadDetalles() {
     const botonIncluye = document.getElementById('botonIncluye');
     const incluye = document.getElementById('incluye');

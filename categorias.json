@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Yogures",
+    "image": "images/products/Skyr.jpg",
+    "url": "productos-de-antaño?category=yogur"
+  },
+  {
+    "name": "Utensilios",
+    "image": "images/products/Termometro.jpg",
+    "url": "productos-de-antaño?category=utensilios"
+  },
+  {
+    "name": "Packs",
+    "image": "images/packs.jpg",
+    "url": "productos-de-antaño?category=packs"
+  }
+]

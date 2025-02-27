@@ -23,7 +23,7 @@
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
         <link href="css/slick.css" rel="stylesheet" >
 
-        <script src="js/cart.js"></script>
+        <script  src="js/cart.js"></script>
         <script src="js/misc.js"></script>
     </head>
     
@@ -33,15 +33,15 @@
 
             <nav class=" pageProducto navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="index>
                         <img class="logo" src="images/Logo.png">
                     </a>
                     <div class="d-lg-none">
-                        <a href="carrito.html" class="bi-bag custom-icon"></a>
+                        <a href="carrito class="bi-bag custom-icon"></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
                         <div class="d-none d-lg-block" style="text-align: right;">
-                            <a href="carrito.html" class="bi-bag custom-icon" style="color:black"></a>
+                            <a href="carrito class="bi-bag custom-icon" style="color:black"></a>
                         </div>
                     </div> 
                 </div>
@@ -67,16 +67,33 @@
                         <div class="col-12 text-center" id="product-container">
                         </div>
                         <!-- Añadimos todos los productos -->
-                        <script> loadProducts(null); </script>
+                        <script> 
+							loadProducts(null);
+						</script>
 
                     </div>
                 </div>
             </section>
 
         </main>
+		<!-- Modal Email-->
+		<div class="custom-modal" id="emailModal">
+			<section class="loading" style="display: none !important;">
+				<div class="spinner">
+					<span class="sk-inner-circle"></span>
+				</div>
+			</section>
+			<div class="custom-modal-content" id="emailDescuento" >
+				<script>
+				</script>
+			</div>
+		</div>
 
         <footer class="site-footer">
-            <script>loadFooter()</script>
+            <script>
+				loadFooter();
+				mostrarModales();
+			</script>
         </footer>
 
         <!-- JAVASCRIPT FILES -->

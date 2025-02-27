@@ -7,7 +7,7 @@ function loadFooter() {
         <div class="container">
           <div class="row">
               <div class="col-lg-3 col-10 text-center mb-4" style="margin:auto">
-                  <a class="navbar-brand" href="index.html">
+                  <a class="navbar-brand" href="index>
                       <img class="logo" style="margin-top: -5%;" src="images/Logo.png">
                   </a>
                   <p class="copyright-text text-muted mt-lg-3 mb-4 mb-lg-0">Copyright © <span id="current-year"></span>
@@ -54,4 +54,177 @@ function loadFooter() {
         // Ahora selecciona el elemento y establece el año actual
         document.getElementById("current-year").textContent = new Date().getFullYear();
     }
+}
+
+// Función para obtener el parámetro utm_source y propagarlo a todos los enlaces
+function propagarUtmSource() {
+    // Obtener el valor del parámetro utm_source de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source');
+
+    // Si no hay utm_source, no hacemos nada
+    if (!utmSource) return;
+
+    // Seleccionar todos los enlaces de la página
+    const links = document.querySelectorAll('a');
+
+    links.forEach(link => {
+        const url = new URL(link.href);
+
+        // Agregar el parámetro utm_source al enlace
+        url.searchParams.set('utm_source', utmSource);
+
+        // Actualizar el atributo href del enlace
+        link.href = url.toString();
+    });
+}
+//propagarUtmSource();
+function mostrarModales(){
+	// JavaScript para mostrar el modal al cargar la página
+	var descuentoModal = document.getElementById('descuentoModal');
+	if(descuentoModal){
+		descuentoModal.style.display = 'none';
+	}
+
+	if (localStorage.getItem('emailModalFinalizado') != 'true') {
+		loadEmailDescuento();
+		emailModal.style.display = 'block';
+	}	
+	
+	function loadEmailDescuento(){
+		// Obtener el contenedor padre y el otro donde se insertará el formulario
+		var emailModal = document.getElementById('emailModal');
+		var  emailDescuentoContainer= emailModal.querySelector('#emailDescuento');
+		//
+
+		// Definir el contenido HTML que queremos cargar
+		const datosPreventaHTML = `
+			<div id="datosPreventaDiv" class="divCarroussel" style="width: 100%;height: 100%; display: block; position: relative;">
+				<div style="position: absolute; top: -1%; right: -3%; color: black;">
+					<a class="cerrar-btn" id="closeModalBtn">✖</a>
+				</div>
+				<h3>¡Suscríbete y consigue tu -20%!</h3>
+				<h6 style="font-weight: var(--font-weight-thin);">Vas a recibir novedades, descuentos y consejos de utilidad para hacer recetas muuuy deliciosas</h6>
+				<form id="datosPreventa" action="#" method="post">
+					<div class="form-floating my-4">
+						<input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" style="text-align: left;" placeholder="Correo Electrónico">
+						<label for="email">Correo Electrónico</label>
+					</div>
+					<button type="submit" style="background-color:var(--primary-color)" class="form-control mt-lg-3">RECOGER CUPÓN</button>
+				</form>
+				<h6 style="font-weight: var(--font-weight-thin); font-size: 14px;">Al unirte aceptas recibir comunicaciones comerciales de Yogures de Antaño. Puedes retirar el consentimiento cuando quieras mandando un mail <a href="mailto:hola@yogures-de-antaño.com">aquí</a></h6>
+			</div>
+		`;
+
+		// Insertar el contenido en el contenedor
+		if (emailDescuentoContainer) {
+			emailDescuentoContainer.innerHTML = datosPreventaHTML;
+			var closeModalBtn = document.getElementById('closeModalBtn');
+			closeModalBtn.addEventListener('click', function() {
+				emailModal.style.display = 'none';
+				localStorage.setItem('emailModalFinalizado',true);
+			});
+			// Validador de datos e integración con Zoho CRM
+			const datosPreventa = document.getElementById('datosPreventa');
+			datosPreventa.addEventListener('submit', function(event){
+				submitDatos(event,emailDescuentoContainer,datosPreventa);
+			});
+		}
+	}
+	
+	async function submitDatos(event,emailDescuentoContainer,datosPreventa) {
+				// Evita que el formulario se envíe automáticamente
+				event.preventDefault();
+
+				if (validarDatosPreventa(datosPreventa)) {
+					try {
+						crearLeadZohoCRM();
+						emailDescuentoContainer.innerHTML = `
+							<div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+								<h2 style="font-weight: bold;">¡Gracias por registrarte!</h2>
+								<h7 style="margin: 10px 0px; font-size: 18px; max-width: 80%;">
+									Usa el cupón <strong>BIENVENIDO20</strong> en tu compra y disfruta de un 20% de descuento en tu primer pedido de fermentos para yogur.
+								</h7>
+								<a id="redirectToShopBtn" class="btn custom-btn cart-btn">IR A LA TIENDA</a>
+							</div>
+						`;
+						document.getElementById('redirectToShopBtn').addEventListener('click', function() {
+							window.location.href = "productos-de-antaño"; 
+						});
+						localStorage.setItem('emailModalFinalizado',true);
+						datosPreventa.reset();
+						// preguntarProductos();
+					} catch (error) {
+						console.error('Error en la petición:', error);
+						alert('Hubo un error en la petición. Por favor, contáctenos por WhatsApp o teléfono. Gracias por su comprensión.');
+					}
+					const preloader = document.querySelector('.loading');
+					preloader.style.display = 'none';
+				}
+			}
+	
+	function validarDatosPreventa(){
+		var emailInput = document.getElementById('email');
+		var emailValue = emailInput.value.trim();
+
+		// Verificar si al menos uno de los campos está relleno
+		if (emailValue === '') {
+			alert('Por favor, rellena el campo email');
+			return false;
+		}
+		return true;
+	}
+
+	async function crearLeadZohoCRM() {
+    try {
+        // Mostrar Spinner
+        const preloader = document.querySelector('.loading');
+        preloader.style.display = 'flex';
+
+        // Obtiene los valores de los campos del formulario
+        const email = document.getElementById("email").value;
+		const dispositivo = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ? "Móvil" : "PC";
+		console.log(dispositivo);
+        // Estructura los datos en el formato requerido
+        const lead = {
+            lead: {
+                Email: email,
+                Last_Name: "-",
+                Lead_Source: "Suscripción web",
+				Dispositivo: dispositivo 
+            }
+        };
+
+        // Realiza la solicitud POST para crear el lead en Zoho CRM
+        const response = await fetch('https://stripe-integration-n0er.onrender.com/zoho/insertLead', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(lead)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log(data);
+            console.log(data.leadId);
+
+            // Almacenar el ID del Lead en el localStorage
+            const leadId = data.leadId; // Suponiendo que 'id' es el campo donde Zoho devuelve el ID del lead
+            localStorage.setItem('leadId', leadId);
+
+            return data;
+        } else {
+            console.error(data);
+            throw new Error(data.message || "Error en la solicitud al servidor");
+        }
+    } catch (error) {
+        console.error(error);
+        throw error; // Devuelve el error para que pueda ser manejado por el código que llama a esta función
+    }
+}
+
+}
+function actualizarLead(){
 }

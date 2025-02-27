@@ -1,3 +1,6 @@
+//import { extraerReviewsInfo } from './zohoUtils.js';
+
+// Función privada para obtener las reseñas desde el CRM
 async function obtenerReviewsDesdeCrm(productCrmId) {
     const url = `https://stripe-integration-n0er.onrender.com/zoho/productReviews?product=${productCrmId}`;
 
@@ -14,17 +17,17 @@ async function obtenerReviewsDesdeCrm(productCrmId) {
         }
 
         const reviews = await response.json();
-        return reviews; // Devuelve las reseÃ±as
+        return reviews; // Devuelve las reseñas
     } catch (error) {
-        throw new Error(`Error al obtener las reseÃ±as: ${error.message}`);
+        throw new Error(`Error al obtener las reseñas: ${error.message}`);
     }
 }
 
-// FunciÃ³n privada para calcular la nota media
+// Función privada para calcular la nota media
 function calcularNotaMedia(json) {
     const reviews = json.reviews;
 
-    // Filtrar las reseÃ±as con calificaciÃ³n vÃ¡lida
+    // Filtrar las reseñas con calificación válida
     const calificaciones = reviews
         .map((review) => parseFloat(review.Calificaci_n))
         .filter((calificacion) => !isNaN(calificacion));
@@ -41,17 +44,17 @@ function calcularNotaMedia(json) {
     return promedio.toFixed(1); // Redondear a 1 decimal
 }
 
-// FunciÃ³n privada para mapear las reseÃ±as
+// Función privada para mapear las reseñas
 function mapearReviews(reviews) {
     if (!Array.isArray(reviews)) {
-        throw new Error('El parÃ¡metro reviews debe ser un array');
+        throw new Error('El parámetro reviews debe ser un array');
     }
 
-    // Mapeamos los datos necesarios de cada reseÃ±a
+    // Mapeamos los datos necesarios de cada reseña
     return reviews.map((review) => ({
-        nombre: review.Nombre_a_mostrar || 'AnÃ³nimo',
+        nombre: review.Nombre_a_mostrar || 'Anónimo',
         comentario: review.Comentario || 'Sin comentario',
-        calificacion: review.Calificaci_n || 'Sin calificaciÃ³n',
+        calificacion: review.Calificaci_n || 'Sin calificación',
         fechaCreacion: review.Created_Time || 'Fecha no disponible',
     }));
 }
@@ -60,17 +63,17 @@ function mapearReviews(reviews) {
     try {
         const json = await obtenerReviewsDesdeCrm(productCrmId);
 
-        // Si el flag `mapear` es verdadero, mapeamos las reseÃ±as
+        // Si el flag `mapear` es verdadero, mapeamos las reseñas
         const reviews = mapear ? mapearReviews(json.reviews) : json.reviews;
 
         // Calcular nota media
         const notaMedia = calcularNotaMedia(json);
 
-        // NÃºmero de reseÃ±as
+        // Número de reseñas
         const numeroDeReviews = json.reviews.length;
 
         return {
-            reviews, // Devolver las reseÃ±as mapeadas o sin mapear segÃºn el flag
+            reviews, // Devolver las reseñas mapeadas o sin mapear según el flag
             notaMedia,
             numeroDeReviews,
         };
@@ -95,17 +98,17 @@ async function obtenerReviewsDesdeCrm(productCrmId) {
         }
 
         const reviews = await response.json();
-        return reviews; // Devuelve las reseÃ±as
+        return reviews; // Devuelve las reseñas
     } catch (error) {
-        throw new Error(`Error al obtener las reseÃ±as: ${error.message}`);
+        throw new Error(`Error al obtener las reseñas: ${error.message}`);
     }
 }
 
-// FunciÃ³n privada para calcular la nota media
+// Función privada para calcular la nota media
 function calcularNotaMedia(json) {
     const reviews = json.reviews;
 
-    // Filtrar las reseÃ±as con calificaciÃ³n vÃ¡lida
+    // Filtrar las reseñas con calificación válida
     const calificaciones = reviews
         .map((review) => parseFloat(review.Calificaci_n))
         .filter((calificacion) => !isNaN(calificacion));
@@ -122,17 +125,17 @@ function calcularNotaMedia(json) {
     return promedio.toFixed(1); // Redondear a 1 decimal
 }
 
-// FunciÃ³n privada para mapear las reseÃ±as
+// Función privada para mapear las reseñas
 function mapearReviews(reviews) {
     if (!Array.isArray(reviews)) {
-        throw new Error('El parÃ¡metro reviews debe ser un array');
+        throw new Error('El parámetro reviews debe ser un array');
     }
 
-    // Mapeamos los datos necesarios de cada reseÃ±a
+    // Mapeamos los datos necesarios de cada reseña
     return reviews.map((review) => ({
-        nombre: review.Nombre_a_mostrar || 'AnÃ³nimo',
+        nombre: review.Nombre_a_mostrar || 'Anónimo',
         comentario: review.Comentario || 'Sin comentario',
-        calificacion: review.Calificaci_n || 'Sin calificaciÃ³n',
+        calificacion: review.Calificaci_n || 'Sin calificación',
         fechaCreacion: review.Created_Time || 'Fecha no disponible',
     }));
 }
@@ -141,17 +144,17 @@ function mapearReviews(reviews) {
     try {
         const json = await obtenerReviewsDesdeCrm(productCrmId);
 
-        // Si el flag `mapear` es verdadero, mapeamos las reseÃ±as
+        // Si el flag `mapear` es verdadero, mapeamos las reseñas
         const reviews = mapear ? mapearReviews(json.reviews) : json.reviews;
 
         // Calcular nota media
         const notaMedia = calcularNotaMedia(json);
 
-        // NÃºmero de reseÃ±as
+        // Número de reseñas
         const numeroDeReviews = json.reviews.length;
 
         return {
-            reviews, // Devolver las reseÃ±as mapeadas o sin mapear segÃºn el flag
+            reviews, // Devolver las reseñas mapeadas o sin mapear según el flag
             notaMedia,
             numeroDeReviews,
         };
@@ -159,11 +162,13 @@ function mapearReviews(reviews) {
         throw new Error(`Error al procesar las reviews: ${error.message}`);
     }
 }
+
+//Codigo normal
 
 //Subtotal de la cesta
 var subtotal = 0;
 
-// Evento de clic en el botÃ³n "AÃ±adir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
+// Evento de clic en el botón "Añadir al carrito". Como se llama desde varios html, ChatGPT dice de usar un foreach. Comprobar con console
 function addClickEventToCartButtons() {
     var addToCartButtons = document.querySelectorAll('.cart-btn');
     addToCartButtons.forEach(button => {
@@ -175,31 +180,75 @@ function addClickEventToCartButtons() {
             var cantidadSeleccionada = cantidad != null ? cantidad : button.parentNode.parentNode.querySelector('#cantidadCarrito').value;
 
             if (cantidadSeleccionada === 'Cantidad') {
-                alert('Selecciona una cantidad vÃ¡lida para agregar al carrito.');
+                alert('Selecciona una cantidad válida para agregar al carrito.');
             } else {
                 textoDescuento = "";
                 if(cantidadSeleccionada>1){
-                    textoDescuento =  "\nPuedes usar el cupÃ³n DESCUENTO2A para tener un descuento por comprar mÃ¡s de una unidad.";
+                    textoDescuento =  "\nPuedes usar el cupón DESCUENTO2A para tener un descuento por comprar más de una unidad.";
                 }
 				if(precio != "?"){
 	                agregarAlCarrito(producto, parseInt(cantidadSeleccionada), precio, idPrecio);
-    	            alert('Se ha aÃ±adido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
+    	            alert('Se ha añadido el ' + producto + ' correctamente a la cesta.' + textoDescuento);
+					actualizarCarritoEnLead();
 				}
 				else{
-					alert('No seas impaciente, el ' + producto + ' aÃºn no estÃ¡ disponible, pero lo estarÃ¡ prÃ³ximamente. AquÃ­ tienes un 20% de descuento para su salidaðŸ˜Š PREVENTA20' );
+					alert('No seas impaciente, el ' + producto + ' aún no está disponible, pero lo estará próximamente. Aquí tienes un 20% de descuento para su salida😊 PREVENTA20' );
 				}
                 //localStorage.setItem('productoReciente', JSON.stringify({ producto: producto, cantidad: cantidad }));
-                // $('#cart-modal').modal('show');
+                 //$('#cart-modal').modal('show');
             }
         });
     });
 }
 
+async function actualizarCarritoEnLead() {
+  try {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const leadId = localStorage.getItem("leadId");
+
+    if (!leadId) {
+      console.error("No hay leadId en el localStorage");
+      return { message: "Error: No hay leadId almacenado" };
+    }
+
+    if (!Array.isArray(carrito) || carrito.length === 0) {
+      console.error("El carrito está vacío o no es válido");
+      return { message: "Error: El carrito está vacío" };
+    }
+
+    const productosFormateados = carrito
+      .map(item => `${item.cantidad} ${item.producto}`)
+      .join(", ");
+	console.log('Actualizando el lead');
+    const response = await fetch('https://stripe-integration-n0er.onrender.com/zoho/updateLead', {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        leadId: leadId,
+        camposActualizar: {
+          Productos_Carrito: productosFormateados
+        }
+      })
+    });
+
+    const data = await response.json();
+    console.log("Respuesta del backend:", data);
+    return data;
+  } catch (error) {
+    console.error("Error al actualizar el carrito en el lead", error);
+    return { message: "Error interno", error };
+  }
+}
+
+
+
 function vaciarCarrito(){
     localStorage.setItem('carrito', null);
 }
 
-// FunciÃ³n para agregar al carrito
+// Función para agregar al carrito
 function agregarAlCarrito(producto, cantidad,precio, idPrecio) {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -213,23 +262,89 @@ function agregarAlCarrito(producto, cantidad,precio, idPrecio) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// FunciÃ³n para cargar y mostrar el contenido del carrito desde localStorage
+function cargarNav() {
+    // Calcula el total de productos en el carrito
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalProductos = carrito.reduce((total, item) => total + item.cantidad, 0);
+
+    // Código HTML del nav
+    const navHTML = `
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img class="logo" src="images/Logo.png" alt="Logo">
+                </a>
+                <div class="d-lg-none">
+                    <a href="carrito" class="bi-bag custom-icon position-relative" style="color:black">
+                        <span 
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-circle" 
+                            style="
+                                background-color: black; 
+                                color: white; 
+                                font-size: 0.8rem; 
+                                font-weight: bold; 
+                                width: 1rem; 
+                                height: 1rem; 
+                                display: ${totalProductos > 0 ? 'flex' : 'none'}; 
+                                align-items: center; 
+                                justify-content: center;"
+                        >
+                            ${totalProductos}
+                        </span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav" style="display: block !important;">
+                    <div class="d-none d-lg-block" style="text-align: right;">
+                        <a href="carrito" class="bi-bag custom-icon position-relative" style="color:black">
+                            <span 
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-circle" 
+                                style="
+                                    background-color: black; 
+                                    color: white; 
+                                    font-size: 0.8rem; 
+                                    font-weight: bold; 
+                                    width: 1rem; 
+                                    height: 1rem; 
+                                    display: ${totalProductos > 0 ? 'flex' : 'none'}; 
+                                    align-items: center; 
+                                    justify-content: center;"
+                            >
+                                ${totalProductos}
+                            </span>
+                        </a>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+    `;
+
+    // Inserta el nav después del div con id="main-container"
+    const mainDiv = document.getElementById('main-container');
+    if (mainDiv) {
+        mainDiv.insertAdjacentHTML('afterend', navHTML);
+    }
+}
+                                
+//Cargar al finalizar
+//document.addEventListener('DOMContentLoaded', cargarNav);
+
+// Función para cargar y mostrar el contenido del carrito desde localStorage
 function mostrarCarrito() {
-    // ObtÃ©n los productos del carrito desde el localStorage
+    // Obtén los productos del carrito desde el localStorage
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const carritoCompraDiv = document.querySelector(".carritoCompra");
-    // Verifica si el cesta estÃ¡ vacÃ­a
+    // Verifica si el cesta está vacía
     if (carrito.length === 0) {
         const carritoHTML = `
             <div style="text-align:center;">
-                <h2>Tu cesta estÃ¡ vacÃ­a<h2>
-                <a href="productos-de-antaÃ±o.html" class="custom-btn">Seguir comprando</a>
+                <h2>Tu cesta está vacía<h2>
+                <a href="productos-de-antaño class="custom-btn">Seguir comprando</a>
             </div>
         `;
         carritoCompraDiv.innerHTML = carritoHTML;
         return;
     }
-    // Carga los productos de manera asÃ­ncrona desde products.json utilizando fetch
+    // Carga los productos de manera asíncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
@@ -248,11 +363,21 @@ function mostrarCarrito() {
                             ${carrito.map(item => {
                                 // Busca el producto correspondiente en products.json por el nombre
                                 const product = products.find(p => p.name === item.producto);
-                                // Elimina el sÃ­mbolo â‚¬ y convierte el precio por unidad a nÃºmero
-                                const precioUnidad = parseFloat(product.price.replace('â‚¬', '').trim());
+                                // Elimina el símbolo € y convierte el precio por unidad a número
+                                const precioUnidad = parseFloat(product.price.replace('€', '').trim());
                                 const totalProducto = product.price * item.cantidad;
                                 subtotal += totalProducto;
-                                return `
+		// Solo muestra las opciones si la categoría del producto es "pack"
+                /*                const opcionesHTML = product.category === "pack" 
+                                    ? Object.keys(item)
+                                        .filter(key => key.startsWith('opcion') && item[key]) // Filtra las opciones válidas
+                                        .map(key => {
+                                            const nombreOpcion = key.charAt(0).toUpperCase() + key.slice(1); // Primera letra mayúscula
+                                            return `<p class="opcion-pack" style="margin-left: 20px;"><b>${nombreOpcion}:</b> ${item[key]}</p>`;
+                                        })
+                                        .join('')
+                                    : '';		*/
+ return `
                                     <tr>
                                         <td class="product-details">
                                             <a href="${product.productLink}" ><img src="${product.imageSrc}" alt="${item.producto}" class="product-image product-thumb"/></a>
@@ -288,7 +413,7 @@ function mostrarCarrito() {
                     </table>
                     <div class="subtotal">
                         <p style="float:left" >Comentarios del Pedido:</p>
-                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquÃ­"></textarea>
+                        <textarea id="comentariosPedido" placeholder="Deja tus comentarios aquí"></textarea>
                         <div class="subtotal-envio">
                             <table>
                                 <tr style="border:none;">
@@ -296,7 +421,7 @@ function mostrarCarrito() {
                                     <td class="derecha precio" id="subtotalField">${subtotal.toFixed(2)}</td>
                                 </tr>
                                 <tr >
-                                    <td class="izquierda">EnvÃ­o gratuito:</td>
+                                    <td class="izquierda">Envío gratuito:</td>
                                     <td class="derecha precio">0.0</td>
                                 </tr>
                             </table>
@@ -308,7 +433,7 @@ function mostrarCarrito() {
 
                 </div>
             `;
-            // Inserta el contenido del carrito despuÃ©s del div con la clase "carritoCompra"
+            // Inserta el contenido del carrito después del div con la clase "carritoCompra"
             carritoCompraDiv.innerHTML = carritoHTML;
             funcionalidadComprar();
             funcionalidadCampoCantidad(true);
@@ -337,7 +462,7 @@ function funcionalidadComprar() {
             name: producto.producto,
             price: Math.round(producto.precio * 100), // Convierte el precio a centavos (si es necesario)
             price_id: producto.price_id,
-            quantity: producto.cantidad || 1 // Establece una cantidad predeterminada si no estÃ¡ definida
+            quantity: producto.cantidad || 1 // Establece una cantidad predeterminada si no está definida
         }));
         const comentarios = document.querySelector('#comentariosPedido').value;
 
@@ -368,7 +493,7 @@ function restarUnoProducto(){
 }
 
 
-//AÃ±adimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
+//Añadimos funcionalidad al campo de cantidad. Si funcionalidadCarrito == true, hay que calcular totales y localStorage
 function funcionalidadCampoCantidad(funcionalidadCarrito) {
     const decreaseButtons = document.querySelectorAll('#decrease');
     const increaseButtons = document.querySelectorAll('#increase');
@@ -449,7 +574,7 @@ function recalcularTotalProductos(index,nuevaCantidad) {
     recalcularTotal(totalFields,index, nuevaCantidad);
 }
 
-// FunciÃ³n para recalcular los totales
+// Función para recalcular los totales
 function recalcularTotal(totalFields, index, nuevaCantidad) {
     //Reseteamos el subtotal y lo calculamos sumando todos los totales
     subtotal = 0;
@@ -459,7 +584,7 @@ function recalcularTotal(totalFields, index, nuevaCantidad) {
     });
     // Actualizar los elementos en el HTML
     document.querySelector('#subtotalField').innerHTML = subtotal.toFixed(2);
-    //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + 'â‚¬';
+    //document.querySelector('#totalField').innerText = 'Total: ' + subtotal.toFixed(2) + '€';
 }
 
 function actualizarLocalStorage(carrito, index, newCantidad) {
@@ -509,7 +634,7 @@ function generateProductHTML(product) {
                     ${product.isNew ? '<span class="product-alert me-auto">Nuevo</span>' : ''}
                     ${product.isRecommended ? '<span class="product-alert me-auto">Recomendado</span>' : ''}
 					${product.isOferta ? '<span class="product-alert me-auto">Oferta</span>' : ''}
-					${product.isSopresa ? '<span class="product-alert me-auto">PrÃ³ximamente</span>' : ''}
+					${product.isSopresa ? '<span class="product-alert me-auto">Próximamente</span>' : ''}
                 </div>
 
                 <div class="product-info text-center">
@@ -523,7 +648,7 @@ function generateProductHTML(product) {
                             <span>(${totalReviews})</span>
                         </div>
                         ${priceHTML}</div>
-                        <button type="submit" id="addToCart" style="width:60%" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">AÃ±adir al carrito</button>
+                        <button type="submit" id="addToCart" style="width:60%" class="btn custom-btn cart-btn" data-precio="${product.price}" data-cantidad="1" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                     </div>
                     <div class="d-flex ms-auto">
                         
@@ -535,12 +660,12 @@ function generateProductHTML(product) {
 }
 
 function loadProducts(category, name) {
-    // Carga los productos de manera asÃ­ncrona desde products.json utilizando fetch
+    // Carga los productos de manera asíncrona desde products.json utilizando fetch
     fetch("productos.json")
         .then(response => response.json())
         .then(products => {
             const productContainer = document.getElementById("product-container");
-            // Filtrar productos por categorÃ­a
+            // Filtrar productos por categoría
             const filteredProducts = category
                 ? products.filter(product => product.category === category && product.name != name)
                 : products.filter(product => product.name != name);
@@ -579,15 +704,15 @@ function createStar(type) {
 	return star;
 }
 
-// FunciÃ³n para crear estrellas segÃºn la puntuaciÃ³n
+// Función para crear estrellas según la puntuación
 function createStars(rating, container) {
 	container.innerHTML = ''; // Limpiar el contenido
 
 	const fullStars = Math.floor(rating); // Estrellas completas
 	const halfStar = rating % 1 >= 0.5 ? 1 : 0; // Estrella media
-	const emptyStars = 5 - fullStars - halfStar; // Estrellas vacÃ­as
+	const emptyStars = 5 - fullStars - halfStar; // Estrellas vacías
 
-	const fragment = document.createDocumentFragment(); // Crear un fragmento para aÃ±adir todos los elementos
+	const fragment = document.createDocumentFragment(); // Crear un fragmento para añadir todos los elementos
 
 	// Crear estrellas completas
 	for (let i = 0; i < fullStars; i++) {
@@ -599,15 +724,15 @@ function createStars(rating, container) {
 		fragment.appendChild(createStar('half'));
 	}
 
-	// Crear estrellas vacÃ­as
+	// Crear estrellas vacías
 	for (let i = 0; i < emptyStars; i++) {
 		fragment.appendChild(createStar('empty'));
 	}
 
-	container.appendChild(fragment); // AÃ±adir todo el fragmento al contenedor
+	container.appendChild(fragment); // Añadir todo el fragmento al contenedor
 }
 
-// FunciÃ³n para generar el HTML de los detalles del producto
+// Función para generar el HTML de los detalles del producto
 async function generateProductDetailHTML(productName) {
     const productHeader = document.getElementById('productHeader');
     const response = await fetch("productos.json");
@@ -615,7 +740,7 @@ async function generateProductDetailHTML(productName) {
 	
     const product = products.find(p => p.name === productName);	
 	//const { reviews, notaMedia, totalReviews } = await extraerReviewsInfo(product.idCrm);	
-	//console.log(`Nota media: ${notaMedia}\nNÃºmero de reseÃ±as: ${totalReviews}`);
+	//console.log(`Nota media: ${notaMedia}\nNúmero de reseñas: ${totalReviews}`);
 
 	const notaMedia = product.notaMedia;
 	const totalReviews = product.totalReviews;
@@ -659,14 +784,14 @@ async function generateProductDetailHTML(productName) {
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">AÃ±adir al carrito</button>
+                            <button type="submit" id="addToCart" class="btn custom-btn cart-btn" data-precio="${product.price}" data-idprecio="${product.priceId}" data-producto="${product.name}" data-bs-toggle="modal" data-bs-target="">Añadir al carrito</button>
                         </div>
                         <script src="js/cart.js"></script>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
                             <h6>
                                 <a href="#" id="botonIncluye" class="product-additional-link">
                                     <i id="arrowBotonIncluye" class="material-icons">keyboard_arrow_down</i>
-                                    QuÃ© incluye
+                                    Qué incluye
                                 </a>
 
                             </h6>
@@ -678,11 +803,11 @@ async function generateProductDetailHTML(productName) {
                             <h6>
                                 <a href="#" id="botonGastos" class="product-additional-link">
                                     <i id="arrowBotonGastos" class="material-icons">keyboard_arrow_down</i>
-                                    Gastos de EnvÃ­o
+                                    Gastos de Envío
                                 </a>
                             </h6>
                             <div id="gastos" style="display: none;">
-                                <p>Los gastos de envÃ­o son GRATIS, aunque damos la opciÃ³n de un envÃ­o express.</p>
+                                <p>Los gastos de envío son GRATIS, aunque damos la opción de un envío express.</p>
                             </div>
                         </div>
                         <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
@@ -704,7 +829,7 @@ async function generateProductDetailHTML(productName) {
     `;
 
     productHeader.insertAdjacentHTML('afterend', productDetailHTML);
-	// AÃ±adir las estrellas
+	// Añadir las estrellas
     const starsContainer = document.getElementById('ratingStars');
     createStars(notaMedia, starsContainer);
 	

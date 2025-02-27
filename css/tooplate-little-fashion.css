@@ -217,6 +217,93 @@ CUSTOM FIELDS
   outline: none;
 }
 
+
+/*---------------------------------------
+  REVIEW RATING               
+-----------------------------------------*/
+/* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	color: #333;
+	padding: 20px;
+}*/
+
+.reviews-container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1);
+}
+
+.review-title {
+	font-size: 24px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.review-item {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.review-item:last-child {
+	border-bottom: none;
+}
+
+.review-author {
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.review-date {
+	font-size: 14px;
+	color: #777;
+	margin-bottom: 10px;
+}
+
+.review-content {
+	font-size: 16px;
+	margin-bottom: 15px;
+	color: #555;
+}
+
+.rating-stars {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.star {
+	width: 20px;
+	height: 20px;
+	margin-right: 3px;
+}
+
+.star-full {
+	fill: gold;
+}
+
+.star-empty {
+	fill: #d3d3d3;
+}
+
+.star-half {
+	fill: gold;
+	clip-path: inset(0 50% 0 0);
+}
+
 /*---------------------------------------
   CUSTOM LINK               
 -----------------------------------------*/
@@ -250,6 +337,53 @@ CUSTOM FIELDS
 b,
 strong {
   font-weight: var(--font-weight-bold);
+}
+
+/*---------------------------------------
+  CUSTOM MODALS               
+-----------------------------------------*/
+
+.custom-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 10000
+}
+.custom-modal-content {
+	display: flex;
+	background-color: #fff;
+	width: 30%;
+	max-height: 80%;
+	margin: 100px auto;
+	padding: 20px;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 0 15px 10px rgba(255, 255, 255, 0.2); ;
+}
+
+@media screen and (max-width: 768px) {
+	.custom-modal-content {
+		width: 80%;
+	}
+}
+
+.cerrar-btn {
+	color: black;
+	background-color: white;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 50px;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+label {
+	display: flex;
 }
 
 /*---------------------------------------
@@ -397,7 +531,8 @@ input {
 
 .cart-btn {
   border-radius: 5px;
-  width: 100%;
+  width: 80% !important;
+  padding: 10.5px 13px !important;
   font-size: var(--product-link-font-size);
 }
 
@@ -698,6 +833,8 @@ h4 span {
   height: 100%;
   object-fit: cover;
 }
+
+
 
 /*---------------------------------------
   SLICK SLIDESHOW               
@@ -1239,7 +1376,7 @@ button:focus:not(:focus-visible) {
   font-weight: var(--font-weight-bold);
   padding: 3px 10px;
   border-radius: 5px;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.50);
+  box-shadow: 0 0 0.5rem rgba(0,0,0, 0.50);
 }
 
 .product-p {
@@ -1413,7 +1550,7 @@ button:focus:not(:focus-visible) {
   .slick-slideshow .custom-btn {
     padding-right: 27px;
     padding-left: 27px;
-    width: 95%;
+	width: 95% !important;
   }
 
   .social-login,

@@ -43,7 +43,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
         <link rel="icon" href="images/Favicon.ico" type="image/x-icon">
@@ -58,7 +58,6 @@
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
-
 
 
         <script src="js/cart.js"></script>
@@ -84,81 +83,8 @@
     <body>
     
         <main>
-            <style>
-                .container2 {
-                    position: relative;
-                    display: inline-block;
-                }
-
-                .item-count {
-                    position: absolute;
-                    bottom: 45px; /* Ajusta la posición vertical según tu diseño */
-                    right: 4px; /* Ajusta la posición horizontal según tu diseño */
-                    background-color: brown; /* Cambia a marrón u otro color según tu preferencia */
-                    color: white;
-                    border-radius: 50%;
-                    width: 15px; /* Ajusta el tamaño del círculo */
-                    height: 15px; /* Ajusta el tamaño del círculo */
-                    text-align: center;
-                    font-size: 10px; /* Ajusta el tamaño de la fuente */
-                }
-
-                .custom-modal {
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    z-index: 10000
-                }
-                .custom-modal-content {
-                    display: flex;
-                    background-color: #fff;
-                    width: 30%;
-                    max-height: 80%;
-                    margin: 100px auto;
-                    padding: 20px;
-                    text-align: center;
-                    border-radius: 5px;
-                    box-shadow: 0 15px 10px rgba(255, 255, 255, 0.2); ;
-                }
-                
-                .background {
-                    height: 100vh;
-                }
-
-                @media screen and (max-width: 768px) {
-                    .custom-modal-content {
-                        width: 70%;
-                    }
-                }
-
-                label {
-                    display: flex;
-                }
-                .hidden {
-                   opacity: 0;
-                   transform: translateX(100%);
-                }
-                .divCarroussel {
-                    transition: all 0.5s ease-in-out;
-                    flex: 0 0 100%;   
-                }
-
-                .cerrar-btn {
-                    color: black;
-                    background-color: white;
-                    padding: 10px 15px;
-                    border: none;
-                    border-radius: 50px;
-                    font-size: 16px;
-                    cursor: pointer;
-                    text-decoration: none;
-                    }
-            </style>
-            <nav class="navbar navbar-expand-lg">
+           
+ <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="/">
                         <img class="logo" src="images/Logo.png">
@@ -173,28 +99,20 @@
                     </div> 
                 </div>
             </nav> 
-            <section class="slick-slideshow" style="overflow: hidden;">
+			<section>
                 <div class="slick-custom">
                     <img src="images/Yogures-de-antano-Background.jpg" class="img-fluid background" alt="">
 
                     <div class="slick-bottom">
                         <div class="container">
                             <div class="row">
-                                <div class="" style="
-    /* text-align: center; */
-    width: 55%;
-">
-                                    <h2 class="index" style="color: white; --darkreader-inline-color: #e8e6e3;" data-darkreader-inline-color="">EL YOGUR<br> MÁS TRADICIONAL</h2>
-                                   
-    <h4 class="index text-primary" style="
-    font-weight: 400;
-">____________________________</h4><h6 class="index text-white">Nuestros Fermentos + Leche
-    </h6>
-                                   
-   
-   
-                                       
-                                </div>
+                                <div style="width: auto;">
+								<h2 class="index" style="color: white;">EL YOGUR<br> MÁS TRADICIONAL</h2>
+
+								<h4 class="index text-primary" style="font-weight: 400; border-bottom: 2px solid var(--primary-color) !important; display: inline-block; padding-bottom: 5px; width: 100%;"></h4>
+
+								<h6 class="index text-white">Nuestros Fermentos + Leche</h6>
+							</div>
                             </div>
                         </div>
                         <div style="padding-top: 2%;position: absolute;bottom: 5%;width: 100%; text-align: center;">
@@ -207,26 +125,6 @@
 
                 <!-- Si necesitas añadir mas imagenes, solo añade más slick-custom aquí -->
             </section>
-
-            <!-- <section class="about section-padding" id="mejores-fermentos">
-                <div class="container">
-                    <div class="row">
-            
-                        <div class="col-10 text-center" style="margin: auto;">
-                            <h3 class="mb-3">Los Mejores Fermentos</h3>
-                            <h5 style="font-weight:100;margin-bottom:20px;">Descubre la autenticidad de nuestros fermentos
-                                tradicionales para yogur. Experimenta el sabor único y los beneficios saludables en cada cucharada.
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="text-center feature-left animate-box mt-3" data-animate-effect="fadeInTop">
-                            <a href="productos-de-antaño" class="custom-btn">¡HAZ TU PROPIO YOGUR CASERO HOY!</a>
-                        </div>
-                    </div>
-                </div>
-            </section> -->
-
             <section class="featured-product section-padding-little">
                 <div class="container">
                     <div class="row" >
@@ -390,9 +288,6 @@
                     </div>
                 </div>
             </section>
-
-            
-
             <section class="featured-product section-padding"> 
                 <div class="container">
                     <div class="row">
@@ -410,7 +305,7 @@
                             <div class="step-info d-flex">
                                 <div>
                                     <h6 class="product-title mb-0">Un sabor tradicional y auténtico</h6>
-                                    <p>Sabemos que el mejor sabor no existe, pero con Yogures de Antaño podrás hacer unos yogures con el sabor y propiedades tradicionales.</h5>
+                                    <p>Sabemos que el mejor sabor no existe, pero con Yogures de Antaño podrás hacer unos yogures con el sabor y propiedades tradicionales.</p>
                                 </div>
                             </div>
                         </div>
@@ -424,7 +319,7 @@
                             <div class="step-info d-flex">
                                 <div>
                                     <h6 class="product-title mb-0">Yogur Ilimitado</h6>
-                                    <p>Con nuestros fermentos podrás hacer yogur de manera ilimitada, para que puedas disfrutar de su sabor sin pagar de más por ello.</h5>
+                                    <p>Con nuestros fermentos podrás hacer yogur de manera ilimitada, para que puedas disfrutar de su sabor sin pagar de más por ello.</p>
                                 </div>
                             </div>
                         </div>
@@ -438,69 +333,120 @@
                             <div class="step-info d-flex">
                                 <div>
                                     <h6 class="product-title mb-0">Un toque ecológico</h6>
-                                    <p>Traemos los mejores fermentos desde las montañas y prados de Bulgaria, famosa por su delicioso yogur, y promovemos prácticas sostenibles para su cuidado.</h5>
+                                    <p>Traemos los mejores fermentos desde las montañas y prados de Bulgaria, famosa por su delicioso yogur, y promovemos prácticas sostenibles para su cuidado.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- Modal -->
-            <div class="custom-modal" id="emailModal">
+            <!-- Modal Email-->
+			<div class="custom-modal" id="emailModal">
+                <section class="loading" style="display: none !important;">
+                    <div class="spinner">
+                        <span class="sk-inner-circle"></span>
+                    </div>
+                </section>
+				<div class="custom-modal-content" id="emailDescuento" >					
+				</div>
+			</div>
+			
+			
+			<!--Modal Descuento-->
+            <div class="custom-modal" id="descuentoModal">
                 <div class="custom-modal-content">
                     <div id="datosPreventaDiv" style="width: 100%; height: 70vh; display: inline-grid; background-image: url('images/descuento.JPG'); background-size: cover; position: relative; border-radius: 5px;">
                         <div style="position: absolute; top: -1%; right: -3%; color: black;">
                             <a class="cerrar-btn" id="closeModalBtn">x</a>
                         </div>
                         <div style="position: absolute; top: 5%; text-align: center; width: 100%; color: black; background-color: transparent;">
-                            <h4 style="color: white; padding: 5px; display: inline-block;">SEMANA BLACK FRIDAY<br> ¡50% de descuento!</h4>
-                            <h4 style="color: white; border: 5px solid white; padding: 5px; border-style: dashed; display: inline-block; margin-top: 10%;margin-left:5%;margin-right:5%;">CODIGO: BLACKWEEK50*</h4>
-                            <div style="text-align: left; color: white; margin-top: 10px; margin-left: 5%;">
-                              <h8>*Sujeto a disponibilidad</h8>
-                            </div>
+                            <h4 style="color: white; padding: 5px; display: inline-block;">SEMANA CYBER WEEK<br> ¡30% de descuento!</h4>
+                            <h4 style="color: white; border: 5px solid white; padding: 5px; border-style: dashed; display: inline-block; margin-top: 10%;margin-left:5%;margin-right:5%;">CODIGO: CYBER30*</h4>
+							 <div style="text-align: left; color: white; margin-top: 10px; margin-left: 5%;">
+								<h8>*Sujeto a disponibilidad</h8>
+							</div>
                         </div>
                         <div style="position: absolute; bottom: 5%; width: 100%; text-align: center; color: white;  ">
                             <a href="productos-de-antaño" class="custom-btn mt-5">APLICAR DESCUENTO</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>           
+            
+            <script>
+				document.addEventListener('DOMContentLoaded', function() {
+
+					const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+					// Calcula el número total de productos
+					const totalProductos = carrito.reduce((total, item) => total + item.cantidad, 0);
+
+					// Actualiza el número en el icono del carrito
+					const carritoCount = document.querySelector('.badge');
+					if (carritoCount) {
+						carritoCount.textContent = totalProductos;
+
+						// Si no hay productos, puedes ocultar el contador (opcional)
+						if (totalProductos === 0) {
+							carritoCount.style.display = "none";
+						} else {
+							carritoCount.style.display = "flex";
+						}
+					} 
+
+    			});
+
+                
+            </script>			
+			
 			<!-- Google Tag Manager (noscript) -->
 			<noscript>
 				<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHWCTFHC"
 					height="0" width="0" style="display:none;visibility:hidden"></iframe>
 			</noscript>
 			<!-- End Google Tag Manager (noscript) -->
-            
-            
-            <script>
+			
+            <style>
+                .container2 {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .item-count {
+                    position: absolute;
+                    bottom: 45px; /* Ajusta la posición vertical según tu diseño */
+                    right: 4px; /* Ajusta la posición horizontal según tu diseño */
+                    background-color: brown; /* Cambia a marrón u otro color según tu preferencia */
+                    color: white;
+                    border-radius: 50%;
+                    width: 15px; /* Ajusta el tamaño del círculo */
+                    height: 15px; /* Ajusta el tamaño del círculo */
+                    text-align: center;
+                    font-size: 10px; /* Ajusta el tamaño de la fuente */
+                }
                 
-                // JavaScript para mostrar el modal al cargar la página
-                var emailModal = document.getElementById('emailModal');
-                var closeModalBtn = document.getElementById('closeModalBtn');
-
-                window.addEventListener('load', function() {
-                     if (!localStorage.getItem('emailModalShown')) {
-						// Si no se ha mostrado, lo muestra y lo marca como "mostrado" en LocalStorage
-						emailModal.style.display = 'none';
-						localStorage.setItem('emailModalShown', 'true');
-					}
-                });
-
-    
-
-                closeModalBtn.addEventListener('click', function() {
-                    emailModal.style.display = 'none';
-                });
-            </script>
+                .background {
+                    height: 100vh;
+                }
+                .hidden {
+                   opacity: 0;
+                   transform: translateX(100%);
+                }
+                .divCarroussel {
+                    transition: all 0.5s ease-in-out;
+                    flex: 0 0 100%;   
+                }
+            </style>
             
             
 
         </main>
 
-        <footer class="site-footer">
-            <script>loadFooter()</script>
-        </footer>
+		<footer class="site-footer"></footer>
+		<script>
+			loadFooter();
+			mostrarModales();
+		</script>
 
        
         <!-- JAVASCRIPT FILES -->
